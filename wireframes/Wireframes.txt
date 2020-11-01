@@ -1,2 +1,3 @@
 Home -> https://wireframe.cc/2r1qmp
-Registr->https://wireframe.cc/VvLxvo
+Registro->https://wireframe.cc/VvLxvo
+Login->https://wireframe.cc/ygrcBk
