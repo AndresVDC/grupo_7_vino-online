@@ -1,1 +1,5 @@
 Home -> https://wireframe.cc/2r1qmp
+Carrito -> https://wireframe.cc/6ezMJh
+Producto -> https://wireframe.cc/P87gPl
+Registro->https://wireframe.cc/VvLxvo
+Login->https://wireframe.cc/ygrcBk
