@@ -2,7 +2,7 @@
   "name": "grupo_7_vino-online",
   "version": "1.0.0",
   "description": "Trabajo integrador del grupo 7.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/AndresVDC/grupo_7_vino-online/issues"
   },
-  "homepage": "https://github.com/AndresVDC/grupo_7_vino-online#readme"
+  "homepage": "https://github.com/AndresVDC/grupo_7_vino-online#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
