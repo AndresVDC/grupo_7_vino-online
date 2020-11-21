@@ -23,7 +23,7 @@
                 <div class="nav-bar--search">
                     <form action="" method="post">
                         <input type="search" name="search" id="search" placeholder="Buscar">
-                        <label for="search"><i class="fas fa-search"></i></label>   
+                        <label for="search"><i class="fas fa-search"></i></label>
                     </form>
                 </div>
                 <div class="dropdown">
@@ -39,12 +39,97 @@
             </div>
         </Header>
         <section>
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                    <img src="img/banner.png" style="width:100%">
+                </div>
 
+                <div class="mySlides fade">
+                    <img src="img/pago.jpg" style="width:100%">
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="img/envio.jpg" style="width:100%">
+                </div>
+
+            </div>
+        </section>
+        <section class="category-container">
+            <div class="category-container-title">
+                <h2>Categorías</h2>
+            </div>
+            <div class="category-container-cards">
+            <div class="category-container-card">
+                <a href="#">
+                    <img src="img/VINO_TINTO.svg" alt="">
+                    <span class="category-container-span">Vinos Tintos</span>
+                </a>
+            </div>
+            <div class="category-container-card">
+                <a href="#">
+                    <img src="img/VINO_TINTO.svg" alt="">
+                    <span class="category-container-span">Vinos Tintos</span>
+                </a>
+            </div>
+            <div class="category-container-card">
+                <a href="#">
+                    <img src="img/VINO_TINTO.svg" alt="">
+                    <span class="category-container-span">Vinos Tintos</span>
+                </a>
+            </div>
+            <div class="category-container-card">
+                <a href="#">
+                    <img src="img/VINO_TINTO.svg" alt="">
+                    <span class="category-container-span">Vinos Tintos</span>
+                </a>
+            </div>
+            <div class="category-container-card">
+                <a href="#">
+                    <img src="img/VINO_TINTO.svg" alt="">
+                    <span class="category-container-span">Vinos Tintos</span>
+                </a>
+            </div>
+            <div class="category-container-card">
+                <a href="#">
+                    <img src="img/VINO_TINTO.svg" alt="">
+                    <span class="category-container-span">Vinos Tintos</span>
+                </a>
+            </div>
+            <div class="category-container-card">
+                <a href="#">
+                    <img src="img/VINO_TINTO.svg" alt="">
+                    <span class="category-container-span">Vinos Tintos</span>
+                </a>
+            </div>
+            <div class="category-container-card">
+                <a href="#">
+                    <img src="img/VINO_TINTO.svg" alt="">
+                    <span class="category-container-span">Vinos Tintos</span>
+                </a>
+            </div>
+            </div>
         </section>
         <footer>
-            
+
         </footer>
     </main>
+    <script>
+        //Scritp de animación en el banner
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 2000); // Cambia de imagen cada 2 segundos
+        }
+    </script>
 </body>
 
 </html>
