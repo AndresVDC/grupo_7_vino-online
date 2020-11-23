@@ -124,7 +124,133 @@ main {
 }
 .category-container-span{
   color: black;
-  
-
-
 }
+/* Style product cart*/ 
+.cart-title{
+  width: 100%;
+  font-size: 15px;
+  margin-top:10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.cart-article-container{
+  background-color: white;
+  width: 100%;
+  display: flex;
+  border: solid 1px rgb(148, 144, 144);
+}
+.cart-article-container-left{
+  align-self: center;
+  background-color: white;
+  width: 40%;
+  margin: 15px;
+}
+
+.cart-article-container-right{
+  align-self: center;
+  background-color: white;
+  width: 60%;
+  padding: 20px;
+}
+.cart-article-container-img{
+  display: block;
+  width: 100%;
+  padding: 0px;
+  
+}
+.cart-article-container-title{
+  background-color: white;
+  font-size: 18px;
+}
+.cart-article-container-price{
+  background-color: white;
+  font-size: 15px;
+  text-align: left;
+}
+.cart-article-container-offer{
+  color: green;
+  background-color: white;
+  font-size: 15px;
+  text-align: left;
+}
+.cart-container-btn{
+  background-color: white;
+  display: flex;
+  margin-top: 5px;   
+}
+.cart-button{
+  background-color: white;
+  border: none;
+}
+.cart-icon {
+  font-weight: 900;
+  background-color: white;
+}
+.cart-counter{
+  background-color: white;
+  width: 10%;
+  text-align: center;
+  border: none;
+}
+.cart-delete-product{
+  color: blue;
+  margin: 2px;
+  background-color: white;
+  font-size: 10px;
+  align-self: center;
+}
+.cart-description{
+  display: flex;
+  background-color: white;
+  border: 1px solid #8E579D;
+  width: 100%;
+  height: 60px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.cart-item-a{
+  background-color: white;
+  align-self: center;
+  margin-left: 5px;
+  width: 50%;
+}
+.cart-item-b{
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-self: center;
+  width: 50%;
+}
+.cart-btn3{
+  color: white;
+  background-color:rgb(0, 160, 85);
+  width: 100%;
+  height: 50px;
+  font-size: 12px;
+  text-align: center;
+  border: none;
+  margin-top: 20px;
+}
+.cart-btn3:hover{
+  background-color:rgb(42, 194, 123);
+  cursor: pointer;
+  border: none;
+}
+.cart-btn4{
+  color: white;
+  background-color:#E9AB05;
+  width: 100%;
+  height:50px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  border: none;   
+}
+.cart-btn4:hover{
+  background-color: rgb(243, 189, 10);
+  cursor: pointer;
+  border: none;
+}
+/* Style product cart end*/
