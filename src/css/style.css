@@ -99,32 +99,61 @@ main {
   to {opacity: 1}
 }
 
+
 .category-container{
   align-items: center;
   display: flex;
-  flex-flow: column;
 }
 
 .category-container-title{
-  display: block;
   align-self: flex-start;
 }
 .category-container-cards{
   display: flex;
-  flex-wrap: wrap;
 }
 .category-container-card{
   border: 1px solid lightgray;
   background-color: white;
+  width: 25%;
 }
-.category-container img{
-  display: block;
-  width: 60%;
-  margin-bottom: 12px;
-}
-.category-container-span{
+.category-container-paragraph{
   color: black;
+  text-align: center;
 }
+.offers-container{
+  border: solid 1px black;
+  margin-top: 20px;
+}
+.offers-container h2{
+  background-color: white;
+}
+.offers-container-grid{
+  display: flex;
+}
+.offers-container-card{
+  margin: 6px;
+  background-color: white;
+}
+.offers-container img{
+  width: 100%;
+}
+.offers-container-card-text{
+  color: black;
+  text-align: center;
+}
+.offers-container-card-title{
+  color: gray;
+}
+.offers-container-card-realPrice{
+  text-decoration: line-through;
+  color: gray;
+  font-size: 12px;
+}
+.offers-container-card-discount{
+  color: green;
+  font-size: 12px;
+}
+
 /* Style product cart*/ 
 .cart-title{
   width: 100%;
