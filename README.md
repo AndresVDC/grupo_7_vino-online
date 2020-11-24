@@ -33,10 +33,10 @@ en el mundo del vino, privilegien la compra online por no tener tiempo libre, va
 
 # Wireframes
 
-[index.html mobile](https://wireframe.cc/2r1qmp)
-[productCart.html](https://wireframe.cc/6ezMJh)
-[prductCart.html mobile](https://wireframe.cc/Xo1RcD)
-[productDetail.html](https://wireframe.cc/P87gPl)
-[productDetail.html mobile](https://wireframe.cc/pe20oC)
-[register.html](https://wireframe.cc/VvLxvo)
-[login.html](https://wireframe.cc/ygrcBk)
+- [index.html mobile](https://wireframe.cc/2r1qmp)
+- [productCart.html](https://wireframe.cc/6ezMJh)
+- [prductCart.html mobile](https://wireframe.cc/Xo1RcD)
+- [productDetail.html](https://wireframe.cc/P87gPl)
+- [productDetail.html mobile](https://wireframe.cc/pe20oC)
+- [register.html](https://wireframe.cc/VvLxvo)
+- [login.html](https://wireframe.cc/ygrcBk)
