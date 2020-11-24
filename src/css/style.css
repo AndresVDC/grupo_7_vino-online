@@ -122,7 +122,7 @@ main {
 }
 .offers-container{
   border: solid 1px black;
-  margin-top: 20px;
+  margin: 20px 0;
 }
 .offers-container h2{
   background-color: white;
@@ -152,6 +152,55 @@ main {
 .offers-container-card-discount{
   color: green;
   font-size: 12px;
+}
+
+.card-banner{
+  display: flex;
+  flex-direction: column;
+}
+.card-banner-shipping{
+  position: relative;
+  display: block;
+  height: 50px;
+  background-color: white;
+  color: black;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  padding: 8px;
+  background-image: url(../../img/delivery.webp);
+  background-position: center left;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.card-banner-payment{
+  position: relative;
+  display: block;
+  height: 50px;
+  background-color: white;
+  color: black;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  padding: 8px;
+  background-image: url(../../img/creditcard.webp);
+  background-position: center left;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.text-icons-large{
+ display: block;
+ padding: 0 80px;
+}
+.text-icons-small{
+  display: block;
+  padding: 0 80px;
+  font-size: 12px;
+  color: #666666;
+}
+.right-arrow{
+  position: absolute;
+  right: 20px;
+  color: #666;
+  top: 15px;
 }
 
 /* Style product cart*/ 
@@ -276,3 +325,99 @@ main {
   border: none;
 }
 /* Style product cart end*/
+
+/* Style product Detail start*/
+/*detail*/
+.productDetail-container{
+  background-color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.productDetail-container img{
+  border: 1px solid black;
+}
+.productDetail-container p{
+  display: block;
+  margin: 0px 10px;
+  padding: 5px 10px;
+}
+.productDetail-container h4{
+  margin: 10px;
+}
+.productDetail-container-price{
+  font-weight: 800;
+}
+
+/*Contador add to card*/
+.productDetail-container-containerUnit{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.productDetail-container-containerUnit p{
+  padding-right: 80px;
+  padding-left: 80px;
+  background-color: white;
+}
+/*boton add to card*/
+.productDetail-container-addToCart{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.productDetail-container-addToCart button{
+    padding: 5px;
+}
+
+/*Banner*/
+
+.productDetail-container-banner{
+  background-color: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 1px solid black;
+}
+.productDetail-container-banner i{
+  padding-right: 15px;
+}
+
+/*productos similares*/
+
+.productDetail-similarProduct-title{
+  background-color: white;
+  margin: 10px 10px;
+}
+.productDetail-similarProduct-title p{
+  margin: 3px 10px;
+font-weight: 800;
+}
+.productDetail-similarProduct-title img{
+  padding: 30px;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+}
+.productDetail-similarProduct-title h4{
+  padding: 5px 10px;
+  margin-top: 10px;
+  }
+.productDetail-similarProduct-title p{
+padding: 5px 10px;
+}
+.productDetail-similarProduct-title p span{
+color: green;
+  }
+/* Style product Detail end*/
