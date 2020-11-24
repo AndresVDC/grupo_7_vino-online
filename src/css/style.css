@@ -303,10 +303,17 @@ main {
 .productDetail-container h4{
   margin: 10px;
 }
+.productDetail-container-price{
+  font-weight: 800;
+}
+
+/*Contador add to card*/
 .productDetail-container-containerUnit{
   display: flex;
   flex-direction: row;
   margin-top: 10px;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 10px;
   padding-left: 20px;
   padding-right: 20px;
@@ -316,10 +323,19 @@ main {
   padding-left: 80px;
   background-color: white;
 }
+/*boton add to card*/
 .productDetail-container-addToCart{
-  padding: 3px;
-  margin: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
+.productDetail-container-addToCart button{
+    padding: 5px;
+}
+
+/*Banner*/
+
 .productDetail-container-banner{
   background-color: white;
   width: 100%;
@@ -336,18 +352,30 @@ main {
 }
 
 /*productos similares*/
+
 .productDetail-similarProduct-title{
-  margin: 10px;
+  background-color: white;
+  margin: 10px 10px;
+}
+.productDetail-similarProduct-title p{
+  margin: 3px 10px;
 font-weight: 800;
 }
-.productDetail-cantainer-similarProduct img{
+.productDetail-similarProduct-title img{
   padding: 30px;
   width: 100%;
+  background-color: white;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
 }
-.productDetail-cantainer-similarProduct h4{
+.productDetail-similarProduct-title h4{
   padding: 5px 10px;
+  margin-top: 10px;
   }
-.productDetail-cantainer-similarProduct p{
+.productDetail-similarProduct-title p{
 padding: 5px 10px;
 }
+.productDetail-similarProduct-title p span{
+color: green;
+  }
 /* Style product Detail end*/
