@@ -30,3 +30,13 @@ en el mundo del vino, privilegien la compra online por no tener tiempo libre, va
 4. **Don Vino:** En esta se puede encontrar noticias, de muchos tipos, sobre sus productos y hay un apartado para el vino del mes.
 
 5. **Vinissimus:** Aquí se encuentran vinos ecológicos y biodinámicos. También se encuentra un apartado para calificar todas las variedades de licores de la página.
+
+# Wireframes
+
+[index.html mobile](https://wireframe.cc/2r1qmp)
+[productCart.html](https://wireframe.cc/6ezMJh)
+[prductCart.html mobile](https://wireframe.cc/Xo1RcD)
+[productDetail.html](https://wireframe.cc/P87gPl)
+[productDetail.html mobile](https://wireframe.cc/pe20oC)
+[register.html](https://wireframe.cc/VvLxvo)
+[login.html](https://wireframe.cc/ygrcBk)

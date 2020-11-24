@@ -121,9 +121,9 @@ main {
   text-align: center;
 }
 .offers-container{
-  border: solid 1px black;
   margin: 20px 0;
-}
+  border-bottom: solid 10px white;
+  }
 .offers-container h2{
   background-color: white;
 }
@@ -131,8 +131,10 @@ main {
   display: flex;
 }
 .offers-container-card{
-  margin: 6px;
+  margin: 2px;
+
   background-color: white;
+  justify-content: space-around;
 }
 .offers-container img{
   width: 100%;
