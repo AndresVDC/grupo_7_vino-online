@@ -204,7 +204,22 @@ main {
   color: #666;
   top: 15px;
 }
-
+footer{
+  background-color: rgb(170, 168, 168);
+}
+footer h4{
+  text-align: center;
+  font-size: 9px;
+  font-weight: normal;
+}
+.footer-logos{
+  padding-top: 20px;
+}
+.footer-logos img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 /* Style product cart*/ 
 /* Style product cart empty*/
 .cart-article-container-empty{
