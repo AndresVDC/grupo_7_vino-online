@@ -155,14 +155,6 @@ main {
 }
 
 /* Style product cart*/ 
-.cart-title{
-  width: 100%;
-  font-size: 15px;
-  margin-top:10px;
-  margin-bottom: 10px;
-  padding-left: 10px;
-}
-
 .cart-article-container{
   background-color: white;
   width: 100%;
@@ -261,6 +253,7 @@ main {
   text-align: center;
   border: none;
   margin-top: 20px;
+  text-decoration: none;
 }
 .cart-btn3:hover{
   background-color:rgb(42, 194, 123);
