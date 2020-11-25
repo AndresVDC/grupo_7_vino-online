@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenidos a VinoOnline</title>
+    <title>Iniciar sesión en VinoOnline</title>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <!-- FAS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <!-- Font PT SANS NARROW-->
@@ -15,12 +15,12 @@
 </head>
 
 <body>
-    <main>
+    <main class="login-and-register">
         <Header>
             <div class="nav-bar">
                 <div class="nav-bar--logo">
                     <a href="/">
-                        <img src="img\logo.png" alt="Logo" width="100%" height="100%" id="logo">
+                        <img src="../../public/img\logo.png" alt="Logo" width="100%" height="100%" id="logo">
                     </a>
                 </div>
                 <div class="nav-bar--search">
@@ -34,20 +34,53 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <div class="dropdown-content">
-                        <a href="productCart">Carrito</a>
-                        <a href="register">Registro</a>
-                        <a href="login">Login</a>
+                        <a href="productCart.html">Carrito</a>
+                        <a href="register.html">Registro</a>
+                        <a href="login.html">Login</a>
                     </div>
                 </div>
 
             </div>
         </Header>
-        <section>
 
+        <section class="container-form-login">
+            <div class="register-with-facebook">
+                <button class="button-facebook" name="facebook"><span class="fab fa-facebook-f"></span></button>
+                <button class="button-facebook1" name="facebook"><p>Ingresar con facebook</p></button>
+            </div>
+
+            <form class="register" action="validar.php" method="post">
+                <div class="text">
+                    <p>O INGRESA TUS DATOS:</p>
+                </div>
+
+                <div class="container-dates">
+                    <input class="name" type="text" name="nickname" placeholder="Nombre de usuario">
+                </div>
+
+                <div class="container-dates">
+                    <input class="email" type="email" name="email" placeholder="E-mail">
+                </div>
+
+                <div class="container-dates">
+                    <input class="password" type="password" name="password" placeholder="Cree una contraseña">
+                </div>
+
+                <div class="send-or-reset">
+                    <button class="btn-enter" type="submit" name="send">Ingresar</button>
+                    <button class="btn-delete-content" type="reset" name="reset">Borrar contenido</button>
+                </div>
+
+                <div class="go-to-page">
+                    <a href="#">Olvidé mi contraseña</a>
+                    <a href="register.html">¿No tengo cuenta?</a>
+                </div>
+            </form>
         </section>
+
         <footer>
             <div class="footer-logos">
-                <img src="/img/footer-logos.webp" alt="Footer-logos">
+                <img src="../../public/img/footer-logos.webp" alt="Footer-logos">
             </div>
             <h4>BEBER CON MODERACIÓN.</h4>
             <h4>PROHIBIDA LA VENTA A MENORES DE 18 AÑOS.</h4>
