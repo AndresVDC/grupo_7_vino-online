@@ -204,6 +204,24 @@ main {
   color: #666;
   top: 15px;
 }
+.row{
+  display: flex;
+}
+.row img {
+  width: 100%;
+}
+
+.imageblock-small{
+  display: flex;
+  width: 100%;
+}
+
+.imageblock-small2{
+  display: flex;
+  width: 100%;
+}
+
+
 footer{
   background-color: rgb(170, 168, 168);
 }
