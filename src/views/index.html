@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenidos a VinoOnline</title>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- FAS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <!-- Font PT SANS NARROW-->
@@ -20,7 +20,7 @@
             <div class="nav-bar">
                 <div class="nav-bar--logo">
                     <a href="/">
-                        <img src="../../public/img\logo.png" alt="Logo" width="100%" height="100%" id="logo">
+                        <img src="img\logo.png" alt="Logo" width="100%" height="100%" id="logo">
                     </a>
                 </div>
                 <div class="nav-bar--search">
@@ -34,176 +34,174 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <div class="dropdown-content">
-                        <a href="productCart.html">Carrito</a>
-                        <a href="register.html">Registro</a>
-                        <a href="login.html">Login</a>
+                        <a href="/productCart">Carrito</a>
+                        <a href="register">Registro</a>
+                        <a href="login">Login</a>
                     </div>
                 </div>
             </div>
         </Header>
-        <section class="container-sections">
-          <section>
-              <div class="slideshow-container">
-                  <div class="mySlides fade">
-                      <img src="../../public/img/banner.png" style="width:100%">
-                  </div>
+        <section>
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                    <img src="/img/banner.png" style="width:100%">
+                </div>
 
-                  <div class="mySlides fade">
-                      <img src="../../public/img/pago.jpg" style="width:100%">
-                  </div>
+                <div class="mySlides fade">
+                    <img src="/img/pago.jpg" style="width:100%">
+                </div>
 
-                  <div class="mySlides fade">
-                      <img src="../../public/img/envio.jpg" style="width:100%">
-                  </div>
-              </div>
-          </section>
-          <div class="category-container-title">
-              <h2>Categorías</h2>
-          </div>
-          <section class="category-container">
-              <div class="category-container-card">
-                  <a href="#">
-                      <img src="../../public/img/VINO_TINTO.svg" alt="">
-                  </a>
-                  <p class="category-container-paragraph">Vinos Tintos</p>
-              </div>
-              <div class="category-container-card">
-                  <a href="#">
-                      <img src="../../public/img/ESPUMANTES.svg" alt="">
-                  </a>
-                  <p class="category-container-paragraph">Espumantes</p>
-              </div>
-              <div class="category-container-card">
-                  <a href="#">
-                      <img src="../../public/img/VINO_TINTO.svg" alt="">
-                  </a>
-                  <p class="category-container-paragraph">Vinos Blancos</p>
-              </div>
-              <div class="category-container-card">
-                  <a href="#">
-                      <img src="../../public/img/ESPIRITUOSOS.svg" alt="">
-                  </a>
-                  <p class="category-container-paragraph">Espirituosos</p>
-              </div>
-          </section>
-          <section class="offers-container">
-              <div>
-                  <h2>Ofertas Destacadas</h2>
-              </div>
-              <div class="offers-container-grid">
-                  <div class="offers-container-card">
-                      <a href="productDetail.html">
-                          <div>
-                              <img src="../../public/img/Makka_Gran_Corte.jpg" alt="Oferta1">
-                          </div>
-                          <div class="offers-container-card-text">
-                              <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
-                              <h5 class="offers-container-card-price">$2.545,54</h5>
-                              <span class="offers-container-card-realPrice">2.985,45</span>
-                              <span class="offers-container-card-discount">20% off</span>
-                          </div>
-                      </a>
-                  </div>
-                  <div class="offers-container-card">
-                      <a href="productDetail">
-                          <div>
-                              <img src="../../public/img/Qubo_Cabernet.jpg" alt="Oferta1">
-                          </div>
-                          <div class="offers-container-card-text">
-                              <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
-                              <h5 class="offers-container-card-price">$2.545,54</h5>
-                              <span class="offers-container-card-realPrice">2.985,45</span>
-                              <span class="offers-container-card-discount">20% off</span>
-                          </div>
-                      </a>
-                  </div>
-                  <div class="offers-container-card">
-                      <a href="productDetail">
-                          <div>
-                              <img src="../../public/img/Progenie.jpg" alt="Oferta1">
-                          </div>
-                          <div class="offers-container-card-text">
-                              <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
-                              <h5 class="offers-container-card-price">$2.545,54</h5>
-                              <span class="offers-container-card-realPrice">2.985,45</span>
-                              <span class="offers-container-card-discount">20% off</span>
-                          </div>
-                      </a>
-                  </div>
-                  <div class="offers-container-card">
-                      <a href="productDetail">
-                          <div>
-                              <img src="../../public/img/Vistalba_CorteC.jpg" alt="Oferta1">
-                          </div>
-                          <div class="offers-container-card-text">
-                              <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
-                              <h5 class="offers-container-card-price">$2.545,54</h5>
-                              <span class="offers-container-card-realPrice">2.985,45</span>
-                              <span class="offers-container-card-discount">20% off</span>
-                          </div>
-                      </a>
-                  </div>
-              </div>
-          </section>
-          <section class="card-banner">
-              <div>
-                  <a class="card-banner-shipping" href="#">
-                      <span class="text-icons-large">Opciones de envío</span>
-                      <span class="text-icons-small">Llegamos a todo el país</span>
-                      <i class="fas fa-chevron-right right-arrow"></i>
-                  </a>
-              </div>
-              <div>
-                  <a class="card-banner-payment" href="#">
-                      <span class="text-icons-large">Opciones de pago</span>
-                      <span class="text-icons-small">¡Pagá en cuotas sin interés!</span>
-                      <i class="fas fa-chevron-right right-arrow"></i>
-                  </a>
-              </div>
-          </section>
-          <section class="imageblock">
-              <div class="row">
-                  <a class="double-height" href="#">
-                      <div>
-                          <img alt="" src="../../public/img/image-block-malbec.jpg">
-                      </div>
-                  </a>
-                  <div class="imageblock-small-container">
-                      <div class="imageblock-small">
-                          <a class="single-height" href="#">
-                              <div class="single-height-img">
-                                  <img alt="" src="../../public/img/image-block-vinospremiados.jpg">
-                              </div>
-                          </a>
-                          <a class="single-height" href="#">
-                              <div class="single-height-img">
-                                  <img alt="" src="../../public/img/image-block-descuentos.jpg">
-                              </div>
-                          </a>
-                      </div>
-                      <div class="imageblock-small2">
-                          <a class="single-height" href="#">
-                              <div class="single-height-img">
-                                  <img alt="" src="../../public/img/image-block-pararegalar.jpg">
-                              </div>
-                          </a>
-                          <a class="single-height" href="#">
-                              <div class="single-height-img">
-                                  <img alt="" src="../../public/img/image-block-baginbox.jpg">
-                              </div>
-                          </a>
-                      </div>
-                  </div>
-              </div>
-          </section>
-          <footer>
-              <div class="footer-logos">
-                  <img src="../../public/img/footer-logos.webp" alt="Footer-logos">
-              </div>
-              <h4>BEBER CON MODERACIÓN.</h4>
-              <h4>PROHIBIDA LA VENTA A MENORES DE 18 AÑOS.</h4>
-          </footer>
+                <div class="mySlides fade">
+                    <img src="/img/envio.jpg" style="width:100%">
+                </div>
+            </div>
         </section>
+        <div class="category-container-title">
+            <h2>Categorías</h2>
+        </div>
+        <section class="category-container">
+            <div class="category-container-card">
+                <a href="#">
+                    <img src="img/VINO_TINTO.svg" alt="">
+                </a>
+                <p class="category-container-paragraph">Vinos Tintos</p>
+            </div>
+            <div class="category-container-card">
+                <a href="#">
+                    <img src="img/ESPUMANTES.svg" alt="">
+                </a>
+                <p class="category-container-paragraph">Espumantes</p>
+            </div>
+            <div class="category-container-card">
+                <a href="#">
+                    <img src="img/VINO_TINTO.svg" alt="">
+                </a>
+                <p class="category-container-paragraph">Vinos Blancos</p>
+            </div>
+            <div class="category-container-card">
+                <a href="#">
+                    <img src="img/ESPIRITUOSOS.svg" alt="">
+                </a>
+                <p class="category-container-paragraph">Espirituosos</p>
+            </div>
+        </section>
+        <section class="offers-container">
+            <div>
+                <h2>Ofertas Destacadas</h2>
+            </div>
+            <div class="offers-container-grid">
+                <div class="offers-container-card">
+                    <a href="productDetail">
+                        <div>
+                            <img src="/img/Makka_Gran_Corte.jpg" alt="Oferta1">
+                        </div>
+                        <div class="offers-container-card-text">
+                            <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
+                            <h5 class="offers-container-card-price">$2.545,54</h5>
+                            <span class="offers-container-card-realPrice">2.985,45</span>
+                            <span class="offers-container-card-discount">20% off</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="offers-container-card">
+                    <a href="productDetail">
+                        <div>
+                            <img src="/img/Qubo_Cabernet.jpg" alt="Oferta1">
+                        </div>
+                        <div class="offers-container-card-text">
+                            <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
+                            <h5 class="offers-container-card-price">$2.545,54</h5>
+                            <span class="offers-container-card-realPrice">2.985,45</span>
+                            <span class="offers-container-card-discount">20% off</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="offers-container-card">
+                    <a href="productDetail">
+                        <div>
+                            <img src="/img/Progenie.jpg" alt="Oferta1">
+                        </div>
+                        <div class="offers-container-card-text">
+                            <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
+                            <h5 class="offers-container-card-price">$2.545,54</h5>
+                            <span class="offers-container-card-realPrice">2.985,45</span>
+                            <span class="offers-container-card-discount">20% off</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="offers-container-card">
+                    <a href="productDetail">
+                        <div>
+                            <img src="/img/Vistalba_CorteC.jpg" alt="Oferta1">
+                        </div>
+                        <div class="offers-container-card-text">
+                            <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
+                            <h5 class="offers-container-card-price">$2.545,54</h5>
+                            <span class="offers-container-card-realPrice">2.985,45</span>
+                            <span class="offers-container-card-discount">20% off</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section class="card-banner">
+            <div>
+                <a class="card-banner-shipping" href="#">
+                    <span class="text-icons-large">Opciones de envío</span>
+                    <span class="text-icons-small">Llegamos a todo el país</span>
+                    <i class="fas fa-chevron-right right-arrow"></i>
+                </a>
+            </div>
+            <div>
+                <a class="card-banner-payment" href="#">
+                    <span class="text-icons-large">Opciones de pago</span>
+                    <span class="text-icons-small">¡Pagá en cuotas sin interés!</span>
+                    <i class="fas fa-chevron-right right-arrow"></i>
+                </a>
+            </div>
+        </section>
+        <section class="imageblock">
+            <div class="row">
+                <a class="double-height" href="#">
+                    <div>
+                        <img alt="" src="/img/image-block-malbec.jpg">
+                    </div>
+                </a>
+                <div class="imageblock-small-container">
+                    <div class="imageblock-small">
+                        <a class="single-height" href="#">
+                            <div class="single-height-img">
+                                <img alt="" src="/img/image-block-vinospremiados.jpg">
+                            </div>
+                        </a>
+                        <a class="single-height" href="#">
+                            <div class="single-height-img">
+                                <img alt="" src=" /img/image-block-descuentos.jpg">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="imageblock-small2">
+                        <a class="single-height" href="#">
+                            <div class="single-height-img">
+                                <img alt="" src=" /img/image-block-pararegalar.jpg">
+                            </div>
+                        </a>
+                        <a class="single-height" href="#">
+                            <div class="single-height-img">
+                                <img alt="" src=" /img/image-block-baginbox.jpg">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="footer-logos">
+                <img src="/img/footer-logos.webp" alt="Footer-logos">
+            </div>
+            <h4>BEBER CON MODERACIÓN.</h4>
+            <h4>PROHIBIDA LA VENTA A MENORES DE 18 AÑOS.</h4>
+        </footer>
     </main>
     <script>
         //Scritp de animación en el banner

@@ -10,17 +10,6 @@ a {
 }
 main {
   background-color: lightgray;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.productCart {
-  background-color: lightgray;
-  display: grid;
-  flex-wrap: wrap;
-}
-.container-sections {
-  margin-top: 60px;
 }
 
 /* Barra de navegación */
@@ -31,9 +20,6 @@ main {
     align-items: center;
     justify-content: space-between;
     height: 60px;
-    position: fixed;
-    width: 100%;
-    z-index: 10;
 }
 .nav-bar--logo{
     width: 82px;
@@ -55,12 +41,12 @@ main {
     border: none;
     height: 60px;
   }
-
+  
   .dropdown {
     position: relative;
     display: inline-block;
   }
-
+  
   .dropdown-content {
     display: none;
     position: absolute;
@@ -70,17 +56,17 @@ main {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
-
+  
   .dropdown-content a {
     color: white;
     padding: 12px 16px;
     display: block;
   }
-
+  
   .dropdown-content a:hover {background-color: #ddd;}
-
+  
   .dropdown:hover .dropdown-content {display: block;}
-
+  
   .dropdown:hover .dropbtn {background-color: #3e3f8e;}
 
   /* Slideshow container */
@@ -252,7 +238,7 @@ footer h4{
   margin-left: auto;
   margin-right: auto;
 }
-/* Style product cart*/
+/* Style product cart*/ 
 /* Style product cart empty*/
 .cart-article-container-empty{
   background-color: white;
@@ -276,7 +262,7 @@ footer h4{
   font-size: 20px;
   width: 33%;
   align-self: center;
-  text-align: center;
+  text-align: center;    
 }
 .cart-return{
   font-size: 15px;
@@ -285,8 +271,8 @@ footer h4{
   width: 33%;
   height: 5vh;
   align-self: center;
-  border: none;
-  text-decoration: none;
+  border: none;  
+  text-decoration: none;  
 }
 .cart-article-container{
   background-color: white;
@@ -311,7 +297,7 @@ footer h4{
   display: block;
   width: 100%;
   padding: 0px;
-
+  
 }
 .cart-article-container-title{
   background-color: white;
@@ -331,7 +317,7 @@ footer h4{
 .cart-container-btn{
   background-color: white;
   display: flex;
-  margin-top: 5px;
+  margin-top: 5px;   
 }
 .cart-button{
   background-color: white;
@@ -401,7 +387,7 @@ footer h4{
   font-size: 12px;
   text-align: center;
   cursor: pointer;
-  border: none;
+  border: none;   
 }
 .cart-btn4:hover{
   background-color: rgb(243, 189, 10);
@@ -505,214 +491,3 @@ padding: 5px 10px;
 color: green;
   }
 /* Style product Detail end*/
-
-
-/*Register and Login*/
-
-.login-and-register {
-  background-color: lightgray;
-  display: block;
-  flex-wrap: wrap;
-}
-
-.container-form-login {
-  box-sizing: border-box;
-  height: 650px;
-  position: relative;
-  margin: 0px 20%;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #fff;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.8);
-}
-
-.container-form-register {
-  box-sizing: border-box;
-  height: 750px;
-  position: relative;
-  margin: 0px 20%;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #fff;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.8);
-}
-
-/*registrarse con facebook*/
-
-.register-with-facebook {
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-  margin: 30px 0px;
-  align-items: flex-start;
-}
-
-.button-facebook, .button-facebook1 {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #3b5998;
-  color: #fff;
-  border: none;
-}
-
-.button-facebook {
-  font-size: 30px;
-  margin: 0px 1px;
-  padding: 5px;
-}
-
-.button-facebook1 {
-  padding: 7px;
-  font-size: 20px;
-  align-self: center;
-}
-
-.button-facebook:hover, .button-facebook1:hover {
-  background-color: rgba(66,103,178,0.8);
-  cursor: pointer;
-}
-
-.button-facebook:focus, .button-facebook1:focus {
-  outline: none;
-}
-
-
-
-/*formulario de registro*/
-
-/*texto principal*/
-
-.text {
-  font-size: 15px;
-  color: #2E8B57;
-  margin-top: 12px;
-  width: auto;
-}
-
-/*contenedores de datos*/
-
-.container-dates {
-  margin: 12px 0px;
-}
-
-.container-dates input {
-  background: none;
-  font-size: 22px;
-  padding: 15px 30px 15px 0px;
-  width: 100%;
-  border: none;
-  color: #999999;
-  border-bottom: 2px solid #999999;
-}
-
-.container-dates input:focus {
-  outline: none;
-}
-
-/*tetrminos y condiciones*/
-
-.terms-and-conditions {
-  font-size: 18px;
-  margin: 15px;
-}
-
-.terms-and-conditions a {
-  color: #3366BB;
-  text-decoration: none;
-}
-
-.terms-and-conditions a:hover {
-  text-decoration: underline;
-}
-
-/*enviar o resetear*/
-
-.send-or-reset button {
-  text-align: center;
-  cursor: pointer;
-  height: 50%;
-  width: 100%;
-  color: #ffff;
-  font-size: 25px;
-  border: none;
-}
-
-.btn-enter {
-  background-color: #00A055;
-  margin-top: 20px;
-}
-
-.btn-enter:hover {
-  background-color: #2AC27B;
-}
-
-.btn-delete-content {
-  background-color:#E9AB05;
-  margin-top: 10px;
-}
-
-.btn-delete-content:hover{
-  background-color: rgb(243, 189, 10);
-  cursor: pointer;
-  border: none;
-}
-
-.btn-enter:focus, .btn-delete-content:focus {
-  outline: none;
-  border: none;
-}
-
-/*ir a la página*/
-
-.go-to-page a {
-  margin: 5px;
-  font-size: 18px;
-  color: #3366BB;
-  text-decoration: none;
-}
-
-.go-to-page a:hover {
-  text-decoration: underline;
-}
-
-/*media del login y register*/
-
-@media (max-width: 630px) {
-  .container-form-login {
-    box-sizing: border-box;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #fff;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0px;
-  }
-
-  .container-form-register {
-    box-sizing: border-box;
-    height: 750px;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #fff;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0px;
-  }
-
-  .button-facebook1 p {
-    text-align: center;
-  }
-}
-
-/*Register and Login end*/
