@@ -1,46 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrate en VinoOnline</title>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- FAS-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
-    <!-- Font PT SANS NARROW-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
-</head>
+<%- include('./partials/head') %>
 
 <body>
     <main class="login-and-register">
-        <Header>
-            <div class="nav-bar">
-                <div class="nav-bar--logo">
-                    <a href="/">
-                        <img src="img\logo.png" alt="Logo" width="100%" height="100%" id="logo">
-                    </a>
-                </div>
-                <div class="nav-bar--search">
-                    <form action="" method="post">
-                        <input type="search" name="search" id="search" placeholder="Buscar">
-                        <label for="search"><i class="fas fa-search"></i></label>
-                    </form>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="productCart">Carrito</a>
-                        <a href="register">Registro</a>
-                        <a href="login">Login</a>
-                    </div>
-                </div>
-            </div>
-        </Header>
+        <%- include('./partials/header') %>
 
         <section class="container-form-register">
             <div class="register-with-facebook">
@@ -89,13 +51,7 @@
             </form>
         </section>
 
-        <footer>
-            <div class="footer-logos">
-                <img src="img/footer-logos.webp" alt="Footer-logos">
-            </div>
-            <h4>BEBER CON MODERACIÓN.</h4>
-            <h4>PROHIBIDA LA VENTA A MENORES DE 18 AÑOS.</h4>
-        </footer>
+        <%- include('./partials/footer') %>
     </main>
 </body>
 

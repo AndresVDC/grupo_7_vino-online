@@ -1,58 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenidos a VinoOnline</title>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- FAS-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
-    <!-- Font PT SANS NARROW-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
-</head>
 
 <body>
     <main>
-        <Header>
-            <div class="nav-bar">
-                <div class="nav-bar--logo">
-                    <a href="/">
-                        <img src="img\logo.png" alt="Logo" width="100%" height="100%" id="logo">
-                    </a>
-                </div>
-                <div class="nav-bar--search">
-                    <form action="" method="post">
-                        <input type="search" name="search" id="search" placeholder="Buscar">
-                        <label for="search"><i class="fas fa-search"></i></label>
-                    </form>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="/productCart">Carrito</a>
-                        <a href="register">Registro</a>
-                        <a href="login">Login</a>
-                    </div>
-                </div>
-            </div>
-        </Header>
+        <%- include('./partials/head') %>
+
+        <%- include('./partials/header') %>
         <section>
             <div class="slideshow-container">
                 <div class="mySlides fade">
-                    <img src="/img/banner.png" style="width:100%">
+                    <img src="/images/banner.png" style="width:100%">
                 </div>
 
                 <div class="mySlides fade">
-                    <img src="/img/pago.jpg" style="width:100%">
+                    <img src="/images/pago.jpg" style="width:100%">
                 </div>
 
                 <div class="mySlides fade">
-                    <img src="/img/envio.jpg" style="width:100%">
+                    <img src="/images/envio.jpg" style="width:100%">
                 </div>
             </div>
         </section>
@@ -62,25 +26,25 @@
         <section class="category-container">
             <div class="category-container-card">
                 <a href="#">
-                    <img src="img/VINO_TINTO.svg" alt="">
+                    <img src="/images/VINO_TINTO.svg" alt="">
                 </a>
                 <p class="category-container-paragraph">Vinos Tintos</p>
             </div>
             <div class="category-container-card">
                 <a href="#">
-                    <img src="img/ESPUMANTES.svg" alt="">
+                    <img src="/images/ESPUMANTES.svg" alt="">
                 </a>
                 <p class="category-container-paragraph">Espumantes</p>
             </div>
             <div class="category-container-card">
                 <a href="#">
-                    <img src="img/VINO_TINTO.svg" alt="">
+                    <img src="/images/VINO_TINTO.svg" alt="">
                 </a>
                 <p class="category-container-paragraph">Vinos Blancos</p>
             </div>
             <div class="category-container-card">
                 <a href="#">
-                    <img src="img/ESPIRITUOSOS.svg" alt="">
+                    <img src="/images/ESPIRITUOSOS.svg" alt="">
                 </a>
                 <p class="category-container-paragraph">Espirituosos</p>
             </div>
@@ -93,7 +57,7 @@
                 <div class="offers-container-card">
                     <a href="productDetail">
                         <div>
-                            <img src="/img/Makka_Gran_Corte.jpg" alt="Oferta1">
+                            <img src="/images/Makka_Gran_Corte.jpg" alt="Oferta1">
                         </div>
                         <div class="offers-container-card-text">
                             <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
@@ -106,7 +70,7 @@
                 <div class="offers-container-card">
                     <a href="productDetail">
                         <div>
-                            <img src="/img/Qubo_Cabernet.jpg" alt="Oferta1">
+                            <img src="/images/Qubo_Cabernet.jpg" alt="Oferta1">
                         </div>
                         <div class="offers-container-card-text">
                             <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
@@ -119,7 +83,7 @@
                 <div class="offers-container-card">
                     <a href="productDetail">
                         <div>
-                            <img src="/img/Progenie.jpg" alt="Oferta1">
+                            <img src="/images/Progenie.jpg" alt="Oferta1">
                         </div>
                         <div class="offers-container-card-text">
                             <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
@@ -132,7 +96,7 @@
                 <div class="offers-container-card">
                     <a href="productDetail">
                         <div>
-                            <img src="/img/Vistalba_CorteC.jpg" alt="Oferta1">
+                            <img src="/images/Vistalba_CorteC.jpg" alt="Oferta1">
                         </div>
                         <div class="offers-container-card-text">
                             <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
@@ -164,44 +128,39 @@
             <div class="row">
                 <a class="double-height" href="#">
                     <div>
-                        <img alt="" src="/img/image-block-malbec.jpg">
+                        <img alt="" src="/images/image-block-malbec.jpg">
                     </div>
                 </a>
                 <div class="imageblock-small-container">
                     <div class="imageblock-small">
                         <a class="single-height" href="#">
                             <div class="single-height-img">
-                                <img alt="" src="/img/image-block-vinospremiados.jpg">
+                                <img alt="" src="/images/image-block-vinospremiados.jpg">
                             </div>
                         </a>
                         <a class="single-height" href="#">
                             <div class="single-height-img">
-                                <img alt="" src=" /img/image-block-descuentos.jpg">
+                                <img alt="" src="/images/image-block-descuentos.jpg">
                             </div>
                         </a>
                     </div>
                     <div class="imageblock-small2">
                         <a class="single-height" href="#">
                             <div class="single-height-img">
-                                <img alt="" src=" /img/image-block-pararegalar.jpg">
+                                <img alt="" src="/images/image-block-pararegalar.jpg">
                             </div>
                         </a>
                         <a class="single-height" href="#">
                             <div class="single-height-img">
-                                <img alt="" src=" /img/image-block-baginbox.jpg">
+                                <img alt="" src="/images/image-block-baginbox.jpg">
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
         </section>
-        <footer>
-            <div class="footer-logos">
-                <img src="/img/footer-logos.webp" alt="Footer-logos">
-            </div>
-            <h4>BEBER CON MODERACIÓN.</h4>
-            <h4>PROHIBIDA LA VENTA A MENORES DE 18 AÑOS.</h4>
-        </footer>
+        <%- include('./partials/footer') %>
+        
     </main>
     <script>
         //Scritp de animación en el banner

@@ -1,0 +1,40 @@
+<%- include('./partials/head') %>
+
+<body>
+    <main>
+        <%- include('./partials/header') %>
+        <section class="cart-article-container-empty">
+            <i class="fas fa-shopping-cart"></i>
+            <div class="cart-empty-cart">
+                Tu carrito esta vacio
+            </div>
+            <button class="cart-return" type="submit"><a class="cart-return" href="/">Volver a la tienda</a></button>
+        </section>
+        <section>
+            <div class="cart-description">
+                <div class="cart-item-a">SUBTOTAL(0 items)</div>
+                <div class="cart-item-b">$0,00</div>
+            </div>
+        </section>
+        <section>
+            <div class="cart-description">
+                <div class="cart-item-a">ENVIO</div>
+                <div class="cart-item-b">CODIGO POSTAL</div>
+            </div>
+        </section>
+        <section>
+            <div class="cart-description">
+                <div class="cart-item-a">TOTAL</div>
+                <div class="cart-item-b">$0,00</div>
+            </div>
+        </section>
+        <section>
+            <button class="cart-btn3"><a class="cart-btn3" href="/">Seguir comprando</a></button>
+            </div>
+        </section>
+
+        <%- include('./partials/footer') %>
+    </main>
+</body>
+
+</html>

@@ -169,7 +169,7 @@ main {
   margin-bottom: 20px;
   border-radius: 2px;
   padding: 8px;
-  background-image: url(../../img/delivery.webp);
+  background-image: url(../../images/delivery.webp);
   background-position: center left;
   background-size: contain;
   background-repeat: no-repeat;
@@ -183,7 +183,7 @@ main {
   margin-bottom: 20px;
   border-radius: 2px;
   padding: 8px;
-  background-image: url(../../img/creditcard.webp);
+  background-image: url(../../images/creditcard.webp);
   background-position: center left;
   background-size: contain;
   background-repeat: no-repeat;

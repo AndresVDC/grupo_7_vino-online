@@ -1,24 +1,16 @@
 {
-  "name": "grupo_7_vino-online",
-  "version": "1.0.0",
-  "description": "Trabajo integrador del grupo 7.",
-  "main": "app.js",
+  "name": "grupo-7-vino-online",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./src/app.js"
+    "start": "nodemon ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AndresVDC/grupo_7_vino-online.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AndresVDC/grupo_7_vino-online/issues"
-  },
-  "homepage": "https://github.com/AndresVDC/grupo_7_vino-online#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
   }
 }
