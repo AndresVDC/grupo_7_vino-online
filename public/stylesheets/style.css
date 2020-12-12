@@ -680,6 +680,27 @@ padding: 5px 10px;
 .productDetail-similarProduct-title p span{
 color: green;
   }
+
+/*ProductList*/
+.container-productList{
+  display: inline-flex;
+}
+.container-productList-img{
+ width: 45%;
+}
+.container-productList-img img{
+  width: 100%;
+}
+
+.container-productList-info{
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+  
 /* Style product Detail end*/
 @media(min-width:769px){
 
