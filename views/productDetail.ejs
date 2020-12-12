@@ -3,25 +3,29 @@
 <body>
     <main>
         <%- include('./partials/header') %>
-
-        <div class="productDetail-container">
+        <section class="productDetail">
+        <div class="productDetail-container1">
             <img class="productDetail-container-image" src="/images/botella-vino.webp" alt="">
             <p class="productDetail-container-score">0.0 Estrellas</p>
+        </div>
+        <div class="productDetail-container2">
             <h4 class="productDetail-container-productName">Producto 1</h4>
             <p class="productDetail-container-Detail">Juguemos a descubrir tanto los terruños como los métodos de
                 vinificación.... Da la rienda suelta a tus sentidos, sé parte de descubrir la evolución en estructura,
                 cuerpo, frutalidad de nuestras líneas jóvenes. Luego contanos por la redes como te fue explorando...</p>
             <p class="productDetail-container-price">$3.999,00</p>
             <p class="productDetail-container-unitsPerProduct">Caja de 6 unidades</p>
-        </div>
-        <div class="productDetail-container-containerUnit">
+                <div class="productDetail-container-containerUnit">
+            <div class="contador">
             <button class="productDetail-container-containerUnit-remove"><i class="fas fa-minus-circle"></i></button>
             <p>1</p>
             <button class="productDetail-container-containerUnit-add"><i class="fas fa-plus-circle"></i></button>
-        </div>
-        <div class="productDetail-container-addToCart">
+            </div>    
+            <div class="productDetail-container-addToCart">
             <button class="cart-btn5">Agregar al carrito</button>
+            </div>
         </div>
+    </section>
         <section class="card-banner">
             <div>
                 <a class="card-banner-shipping" href="#">
