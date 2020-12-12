@@ -638,32 +638,22 @@ footer h4{
   padding-left: 80px;
   background-color: white;
 }
-/*boton add to card*/
-.productDetail-container-addToCart{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.productDetail-container-addToCart button{
-    padding: 5px;
-}
 
-/*Banner*/
+/*botton add to cart*/
 
-.productDetail-container-banner{
-  background-color: white;
+.cart-btn5{
+  color: white;
+  background-color:rgb(0, 160, 85);
   width: 100%;
-  display: flex;
-  justify-content: center;
+  height: 50px;
+  font-size: 12px;
+  text-align: center;
+  border: none;
   margin-top: 20px;
-  margin-bottom: 20px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border: 1px solid black;
+  text-decoration: none;
 }
-.productDetail-container-banner i{
-  padding-right: 15px;
+.productDetail-container-addToCart{
+  margin-bottom: 20px;
 }
 
 /*productos similares*/
