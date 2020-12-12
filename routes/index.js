@@ -15,7 +15,7 @@ router.get("/productDetail", (req,res) => {
 })
 
 router.get("/productCart-empty", (req,res) => {
-  res.render('productCart',)
+  res.render('productCart-empty',)
 })
 
 router.get("/register", (req,res) => {
