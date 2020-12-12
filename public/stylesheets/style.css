@@ -719,6 +719,12 @@ color: green;
   .productDetail-container-containerUnit{
     width: 100%;
   }
+  .cart-btn3{
+    width:50%
+  }
+  .cart-btn4{
+    width:50%
+  }
   
 
 }
