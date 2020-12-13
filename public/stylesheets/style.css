@@ -700,20 +700,28 @@ color: green;
 /*ProductList*/
 .container-productList{
   display: inline-flex;
-}
-.container-productList-img{
- width: 45%;
-}
-.container-productList-img img{
-  width: 100%;
-}
-
-.container-productList-info{
-  width: 45%;
-  display: flex;
-  flex-direction: column;
+  margin: 2% 6%;
+  background-color: white;
+  width: 90%;
+  box-sizing: border-box;
   justify-content: center;
   align-items: center;
+  
+}
+.container-productList-img{
+ width: 30%;
+ border-right: solid 1px lightgray;
+ text-align: center;
+}
+.container-productList-img img{
+  width: 120px;
+  }
+
+.container-productList-info{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 5px 5px 10px;
 }
 /*formulario de producto*/
 .form-product-title{
