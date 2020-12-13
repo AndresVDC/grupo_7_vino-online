@@ -40,3 +40,4 @@ en el mundo del vino, privilegien la compra online por no tener tiempo libre, va
 - [productDetail.html mobile](https://wireframe.cc/pe20oC)
 - [register.html](https://wireframe.cc/VvLxvo)
 - [login.html](https://wireframe.cc/ygrcBk)
+- [productList.ejs] (https://wireframe.cc/3XXEyi)
