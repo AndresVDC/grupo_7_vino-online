@@ -32,5 +32,15 @@ router.get("/productList", (req,res) => {
 router.get("/formProduct", (req,res)=>{
   res.render('formProduct')
 })
+router.post('/formProduct', function(req, res){
+  let nuevoProducto={
+      Producto: req.body.Producto,
+      categoria:req.body.categoria,
+      precio:req.body.precio,
+      descripcion:req.body.descripcion,
+      imagen:req.body.imagen}
+
+  res.send(nuevoProducto)
+})
 
 module.exports = router;
