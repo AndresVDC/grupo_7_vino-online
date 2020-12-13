@@ -1,12 +1,11 @@
 ## Comenzar a hacer:
-Implementaremos 2 reuniones semanales de 15 minutos cada una para conversar respecto a los avances y necesidades del proyecto.
+Debemos alinear los estilos de las vistas de cada integrante. Se comienza a coordinar y definir la aplicación de estilos en CSS para generar una vista la homogénea.
 
 ## Hacer más
-Concluimos que debemos dedicar mayor tiempo a la generación de los wireframe. Darle más importancia ya que es un gran ahorro de tiempo y son de gran utilidad al momento de reflejar en el navegador.
-Tambien entendemos que debemos realizar más consultas al cliente para retroalimentarnos de sus necesidades.
+Continuar generando soporte entre los distintos integrantes del grupo. Cada uno tiene facilidades para el entendiemiento de algunos temas, y se busca generar lideres en temas que ayude a potenciar al grupo.
 
 ## Continuar haciendo
-Darle más importancia a la herramientra Trello para identificar el estado de cada tarea. Apelar más al uso de discord para mejorar la comunicación.
+Continuar utilizando Trello para identificar el estado de cada tarea. Continuar utilizando discord para mejorar la comunicación.
 
 ## Hacer menos
 No se detecta.
