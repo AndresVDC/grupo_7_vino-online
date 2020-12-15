@@ -230,22 +230,18 @@ main {
   flex-direction: column;
   align-items: center;
   padding: 10px 0px;
+  flex-wrap: wrap;
 }
 
 /*registrarse con facebook*/
 
 .register-with-facebook {
   display: flex;
-  flex-wrap: wrap;
-  position: relative;
   margin: 30px 0px;
-  align-items: flex-start;
 }
 
 .button-facebook, .button-facebook1 {
-  position: relative;
   display: flex;
-  flex-wrap: wrap;
   background-color: #3b5998;
   color: #fff;
   border: none;
@@ -258,9 +254,8 @@ main {
 }
 
 .button-facebook1 {
-  padding: 7px;
+  padding: 7px 40px;
   font-size: 20px;
-  align-self: center;
 }
 
 .button-facebook:hover, .button-facebook1:hover {
@@ -322,9 +317,7 @@ main {
 /*enviar o resetear*/
 
 .send-or-reset button {
-  text-align: center;
   cursor: pointer;
-  height: 50%;
   width: 100%;
   color: #ffff;
   font-size: 25px;
@@ -371,36 +364,7 @@ main {
 
 /*media del login y register*/
 
-@media (max-width: 630px) {
-  .container-form-login {
-    box-sizing: border-box;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #fff;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0px;
-  }
 
-  .container-form-register {
-    box-sizing: border-box;
-    height: 750px;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #fff;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0px;
-  }
-
-  .button-facebook1 p {
-    text-align: center;
-  }
-}
 
 /*Register and Login end*/
 
@@ -643,7 +607,7 @@ footer h4{
 
 .contador {
   display: flex;
-  
+
 }
 
 .cart-btn5{
@@ -654,7 +618,7 @@ footer h4{
   font-size: 12px;
   text-align: center;
   border: none;
-  
+
   text-decoration: none;
 }
 .productDetail-container-addToCart{
@@ -706,7 +670,7 @@ color: green;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  
+
 }
 .container-productList-img{
  width: 30%;
@@ -749,7 +713,7 @@ color: green;
 }
 
 .form-product-btn{
-  font-family: 'PT Sans Narrow', sans-serif;    
+  font-family: 'PT Sans Narrow', sans-serif;
   color: white;
   background-color:rgb(0, 160, 85);
   width: 100%;
@@ -774,7 +738,7 @@ color: green;
   font-size: 20px;
   text-align: center;
   cursor: pointer;
-  border: none;  
+  border: none;
 }
 .form-product-btn-reset:hover{
   background-color: rgb(243, 189, 10);
@@ -783,7 +747,7 @@ color: green;
 }
 /*termina estilos de formulario de carga de productos*/
 
-  
+
 /* Style product Detail end*/
 @media(min-width:769px){
 
@@ -808,6 +772,6 @@ color: green;
   .cart-btn4{
     width:50%
   }
-  
+
 
 }
