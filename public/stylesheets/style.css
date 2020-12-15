@@ -364,7 +364,12 @@ main {
 
 /*media del login y register*/
 
-
+@media(min-width:769px){
+  .container-form {
+    margin: 0px 20vw;
+    padding-bottom: 5vh;
+  }
+}
 
 /*Register and Login end*/
 
