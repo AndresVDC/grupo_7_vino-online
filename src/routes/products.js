@@ -2,22 +2,22 @@ var express = require('express');
 var router = express.Router();
 
 router.get("/productCart", (req,res) => {
-    res.render('productCart',)
+    res.render('products/productCart',)
   })
   
   router.get("/productDetail", (req,res) => {
-    res.render('productDetail',)
+    res.render('products/productDetail',)
   })
   
   router.get("/productCart-empty", (req,res) => {
-    res.render('productCart-empty',)
+    res.render('products/productCart-empty',)
   })
 
   router.get("/productList", (req,res) => {
-    res.render('productList',)
+    res.render('products/productList',)
   })
   router.get("/formProduct", (req,res)=>{
-    res.render('formProduct')
+    res.render('products/formProduct')
   })
   router.post('/formProduct', function(req, res){
     let nuevoProducto={
