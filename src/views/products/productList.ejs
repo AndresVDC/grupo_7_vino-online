@@ -1,19 +1,35 @@
 <%- include('../partials/head') %>
 
-<body>
+  <body>
     <main>
-        <%- include('../partials/header') %>
-      <section class="container-productList">
-          <div class="container-productList-img">
-              <img src="/images/botella-vino.webp" alt="">
-          </div>
-          <div class="container-productList-info">
-            <h4 class="productDetail-container-productName">Producto 1</h4>
-            <p class="productDetail-container-price">$3.999,00</p>
-            <p class="productDetail-container-unitsPerProduct">Caja de 6 unidades</p>
-          </div>
-      </section>
-    
+      <%- include('../partials/header') %>
+        <%products.forEach(element=> { %>
+          <a href="products/<%= element.id %>">
+            <section class="container-productList">
+              <div class="container-productList-img">
+                <img src="<%= element.img%>" alt="">
+              </div>
+              <div class="container-productList-info">
+                <h4 class="productDetail-container-productName">
+                  <%= element.productName %>
+                </h4>
+
+                <span class="productDetail-container-price">$
+                  <%=element.productPrice-element.productPrice*element.productDiscount /100 %>
+                </span>
+                <div class="productDetail-container3">
+                  <span class="offers-container-card-realPrice">$
+                    <%=element.productPrice%>
+                  </span>
+                  <span class="offers-container-card-discount">
+                    <%=element.productDiscount%>%off
+                  </span>
+                </div>
+                <p class="productDetail-container-unitsPerProduct">Caja de 6 unidades</p>
+              </div>
+            </section>
+          </a>
+          <%}); %>
     </main>
     <%- include('../partials/footer') %>
-</body>
+  </body>

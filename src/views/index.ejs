@@ -22,26 +22,26 @@
         </div>
         <section class="category-container">
             <div class="category-container-card">
-                <a href="#">
-                    <img src="/images/VINO_TINTO.svg" alt="">
+                <a href="/products">
+                    <img class="category-container-img" src="/images/VINO_TINTO.svg" alt="">
                 </a>
                 <p class="category-container-paragraph">Vinos Tintos</p>
             </div>
             <div class="category-container-card">
-                <a href="#">
-                    <img src="/images/ESPUMANTES.svg" alt="">
+                <a href="/products">
+                    <img class="category-container-img" src="/images/ESPUMANTES.svg" alt="">
                 </a>
                 <p class="category-container-paragraph">Espumantes</p>
             </div>
             <div class="category-container-card">
-                <a href="#">
-                    <img src="/images/VINO_TINTO.svg" alt="">
+                <a href="/products">
+                    <img class="category-container-img" src="/images/VINO_TINTO.svg" alt="">
                 </a>
                 <p class="category-container-paragraph">Vinos Blancos</p>
             </div>
             <div class="category-container-card">
-                <a href="#">
-                    <img src="/images/ESPIRITUOSOS.svg" alt="">
+                <a href="/products">
+                    <img class="category-container-img" src="/images/ESPIRITUOSOS.svg" alt="">
                 </a>
                 <p class="category-container-paragraph">Espirituosos</p>
             </div>
@@ -51,58 +51,22 @@
                 <h2>Ofertas Destacadas</h2>
             </div>
             <div class="offers-container-grid">
+                <%for (let index = 0; index < 4; index++) { %>
+                    <%const element = products[index];%>
                 <div class="offers-container-card">
-                    <a href="products/productDetail">
+                    <a href="products/<%= element.id %>">
                         <div>
-                            <img src="/images/Makka_Gran_Corte.jpg" alt="Oferta1">
+                            <img src="<%= element.img%>" alt="Oferta<%= element.id %>">
                         </div>
                         <div class="offers-container-card-text">
-                            <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
-                            <h5 class="offers-container-card-price">$2.545,54</h5>
-                            <span class="offers-container-card-realPrice">2.985,45</span>
-                            <span class="offers-container-card-discount">20% off</span>
+                            <h3 class="offers-container-card-title"><%= element.productName %></h3>
+                            <h5 class="offers-container-card-price">$<%= element.productPrice-element.productPrice*element.productDiscount/100 %></h5>
+                            <span class="offers-container-card-realPrice">$<%= element.productPrice %></span>
+                            <span class="offers-container-card-discount"><%= element.productDiscount %>% off</span>
                         </div>
                     </a>
                 </div>
-                <div class="offers-container-card">
-                    <a href="products/productDetail">
-                        <div>
-                            <img src="/images/Qubo_Cabernet.jpg" alt="Oferta1">
-                        </div>
-                        <div class="offers-container-card-text">
-                            <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
-                            <h5 class="offers-container-card-price">$2.545,54</h5>
-                            <span class="offers-container-card-realPrice">2.985,45</span>
-                            <span class="offers-container-card-discount">20% off</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="offers-container-card">
-                    <a href="products/productDetail">
-                        <div>
-                            <img src="/images/Progenie.jpg" alt="Oferta1">
-                        </div>
-                        <div class="offers-container-card-text">
-                            <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
-                            <h5 class="offers-container-card-price">$2.545,54</h5>
-                            <span class="offers-container-card-realPrice">2.985,45</span>
-                            <span class="offers-container-card-discount">20% off</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="offers-container-card">
-                    <a href="products/productDetail">
-                        <div>
-                            <img src="/images/Vistalba_CorteC.jpg" alt="Oferta1">
-                        </div>
-                        <div class="offers-container-card-text">
-                            <h3 class="offers-container-card-title">Lorem, ipsum dolor.</h3>
-                            <h5 class="offers-container-card-price">$2.545,54</h5>
-                            <span class="offers-container-card-realPrice">2.985,45</span>
-                            <span class="offers-container-card-discount">20% off</span>
-                        </div>
-                    </a>
-                </div>
+                <%}%>
             </div>
         </section>
         <section class="card-banner">

@@ -1,57 +1,70 @@
 <%- include('../partials/head') %>
 
-<body>
-    <main>
-        <%- include('../partials/header') %>
-        <section class="productDetail">
-        <div class="productDetail-container1">
-            <img class="productDetail-container-image" src="/images/botella-vino.webp" alt="">
-            <p class="productDetail-container-score">0.0 Estrellas</p>
-        </div>
-        <div class="productDetail-container2">
-            <h4 class="productDetail-container-productName">Producto 1</h4>
-            <p class="productDetail-container-Detail">Juguemos a descubrir tanto los terruños como los métodos de
-                vinificación.... Da la rienda suelta a tus sentidos, sé parte de descubrir la evolución en estructura,
-                cuerpo, frutalidad de nuestras líneas jóvenes. Luego contanos por la redes como te fue explorando...</p>
-            <p class="productDetail-container-price">$3.999,00</p>
-            <p class="productDetail-container-unitsPerProduct">Caja de 6 unidades</p>
-                <div class="productDetail-container-containerUnit">
-            <div class="contador">
-            <button class="productDetail-container-containerUnit-remove"><i class="fas fa-minus-circle"></i></button>
-            <p>1</p>
-            <button class="productDetail-container-containerUnit-add"><i class="fas fa-plus-circle"></i></button>
-            </div>    
-            <div class="productDetail-container-addToCart">
-            <button class="cart-btn5">Agregar al carrito</button>
-            </div>
-        </div>
-    </section>
-        <section class="card-banner">
-            <div>
-                <a class="card-banner-shipping" href="#">
-                    <span class="text-icons-large">Opciones de envío</span>
-                    <span class="text-icons-small">Llegamos a todo el país</span>
-                    <i class="fas fa-chevron-right right-arrow"></i>
-                </a>
-            </div>
-            <div>
-                <a class="card-banner-payment" href="#">
-                    <span class="text-icons-large">Opciones de pago</span>
-                    <span class="text-icons-small">¡Pagá en cuotas sin interés!</span>
-                    <i class="fas fa-chevron-right right-arrow"></i>
-                </a>
-            </div>
-        </section>
-            <div class="productDetail-similarProduct-title">
-            <h4>Productos similares</h4>
-            <img src="/images/botella-vino.webp" alt="">
-            <h4>Producto sugerido</h4>
-            <p>$3.000,00</p>
-            <p>$.4000,00 <span class="productDetail-cantainer-similarProduct-preciOff">25% OFF</span></p>
-        </div>
+    <body>
+        <main>
+            <%- include('../partials/header') %>
+                <section class="productDetail">
+                    <div class="productDetail-container1">
+                        <img class="productDetail-container-image" src="<%= product.img %>" alt="">
+                        <p class="productDetail-container-score">
+                            <%= product.productScore %> Estrellas
+                        </p>
+                    </div>
+                    <div class="productDetail-container2">
+                        <h4 class="productDetail-container-productName">
+                            <%= product.productName %>
+                        </h4>
+                        <span class="productDetail-container-Detail">
+                            <%= product.productDetail %>
+                        </span>
+                        <span class="productDetail-container-price">$
+                            <%=product.productPrice-product.productPrice*product.productDiscount /100 %>
+                        </span>
+                        <div class="productDetail-container3"><span class="offers-container-card-realPrice">$
+                                <%=product.productPrice%>
+                            </span> <span class="offers-container-card-discount">
+                                <%=product.productDiscount%>%off
+                            </span>
+                        </div>
+                        <span class="productDetail-container-unitsPerProduct">Caja de 6 unidades</span>
+                        <div class="productDetail-container-containerUnit">
+                            <div class="cart-container-btn">
+                                <button class="cart-button"><i class="fas fa-minus-circle cart-icon"></i></button>
+                                <input class="cart-counter" type="text" id="counter" class="form-control" value="1">
+                                <button class="cart-button"><i class="fas fa-plus-circle cart-icon"></i></button>
+                            </div>
+                            <div class="productDetail-container-addToCart">
+                                <button class="cart-btn5">Agregar al carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="card-banner">
+                    <div>
+                        <a class="card-banner-shipping" href="#">
+                            <span class="text-icons-large">Opciones de envío</span>
+                            <span class="text-icons-small">Llegamos a todo el país</span>
+                            <i class="fas fa-chevron-right right-arrow"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <a class="card-banner-payment" href="#">
+                            <span class="text-icons-large">Opciones de pago</span>
+                            <span class="text-icons-small">¡Pagá en cuotas sin interés!</span>
+                            <i class="fas fa-chevron-right right-arrow"></i>
+                        </a>
+                    </div>
+                </section>
+                <div class="productDetail-similarProduct-title">
+                    <h4>Productos similares</h4>
+                    <img src="/images/botella-vino.webp" alt="">
+                    <h4>Producto sugerido</h4>
+                    <p>$3.000,00</p>
+                    <p>$.4000,00 <span class="productDetail-cantainer-similarProduct-preciOff">25% OFF</span></p>
+                </div>
 
-<%- include('../partials/footer') %>
-    </main>
-</body>
+                <%- include('../partials/footer') %>
+        </main>
+    </body>
 
-</html>
+    </html>

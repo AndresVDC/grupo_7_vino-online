@@ -1,0 +1,33 @@
+<%- include('../partials/head') %>
+
+    <body>
+        <main>
+            <%- include('../partials/header') %>
+                <section class="productDetail">
+                    <form action="/<%=productToEdit.id %>?_method=PUT" method="POST">
+                        <div class="productDetail-container1">
+                            <img class="productDetail-container-image" src="<%= productToEdit.img%>" alt="">
+                            <p class="productDetail-container-score">
+                                <%= productToEdit.productScore%> Estrellas
+                            </p>
+                        </div>
+                        <div class="productDetail-container2">
+                            <label for="nombre" name="nombre">Nombre </label>
+                            <input type="text" name="nombre" value="<%= productToEdit.productName%>">
+
+                            <p class="productDetail-container-Detail">
+                                <%= productToEdit.productDetail%>
+                            </p>
+                            <p class="productDetail-container-price">$<%= productToEdit.productPrice%>
+                            </p>
+                            <p class="productDetail-container-unitsPerProduct">Caja de 6 unidades</p>
+                            <button class="cart-btn5 type=" submit">Editar</button>
+                        </div>
+                    </form>
+
+                </section>
+                <%- include('../partials/footer') %>
+        </main>
+    </body>
+
+    </html>
