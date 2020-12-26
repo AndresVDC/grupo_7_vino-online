@@ -60,7 +60,7 @@
                         </div>
                         <div class="offers-container-card-text">
                             <h3 class="offers-container-card-title"><%= element.productName %></h3>
-                            <h5 class="offers-container-card-price">$<%= element.productPrice-element.productPrice*element.productDiscount/100 %></h5>
+                            <h5 class="offers-container-card-price">$<%= (element.productPrice-element.productPrice*element.productDiscount/100).toFixed(2) %></h5>
                             <span class="offers-container-card-realPrice">$<%= element.productPrice %></span>
                             <span class="offers-container-card-discount"><%= element.productDiscount %>% off</span>
                         </div>
