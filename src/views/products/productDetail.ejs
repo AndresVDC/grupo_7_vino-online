@@ -18,7 +18,7 @@
                             <%= product.productDetail %>
                         </span>
                         <span class="productDetail-container-price">$
-                            <%=product.productPrice-product.productPrice*product.productDiscount /100 %>
+                            <%=(product.productPrice-product.productPrice*product.productDiscount /100).toFixed(2) %>
                         </span>
                         <div class="productDetail-container3"><span class="offers-container-card-realPrice">$
                                 <%=product.productPrice%>
@@ -36,6 +36,10 @@
                             <div class="productDetail-container-addToCart">
                                 <button class="cart-btn5">Agregar al carrito</button>
                             </div>
+                            <form class="productDetail-container-btn" action="delete/<%=product.id%>?_method=DELETE"" method="POST">
+                                <a class="cart-btn51" href="edit/<%=product.id%>"><span >Editar producto</span></a>
+                                <button class="cart-btn52" type="submit">Borrar producto</button>
+                            </form>
                         </div>
                     </div>
                 </section>

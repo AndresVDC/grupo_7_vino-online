@@ -5,10 +5,12 @@ const productController = require(path.join('..', 'controllers', 'productControl
 
 router.get("/", productController.productList)
 router.get("/create", productController.create)
+router.post("/create",productController.save)
 router.get("/productCart", productController.cart)
+router.get("/edit/:id", productController.edit)
+router.put("/edit/:id", productController.actualizar)
+router.delete("/delete/:id",productController.delete)
 router.get("/:id", productController.detail)
-router.get("/:id/edit", productController.edit)
-router.put("/:id", productController.actualizar)
 
 
 

@@ -15,7 +15,7 @@
                 </h4>
 
                 <span class="productDetail-container-price">$
-                  <%=element.productPrice-element.productPrice*element.productDiscount /100 %>
+                  <%=(element.productPrice-element.productPrice*element.productDiscount /100).toFixed(2) %>
                 </span>
                 <div class="productDetail-container3">
                   <span class="offers-container-card-realPrice">$

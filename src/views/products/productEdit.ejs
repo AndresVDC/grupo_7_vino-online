@@ -4,24 +4,20 @@
         <main>
             <%- include('../partials/header') %>
                 <section class="productDetail">
-                    <form action="/<%=productToEdit.id %>?_method=PUT" method="POST">
+                    <form action="/products/edit/<%= productToEdit.id%>?_method=PUT" method="POST">
                         <div class="productDetail-container1">
                             <img class="productDetail-container-image" src="<%= productToEdit.img%>" alt="">
-                            <p class="productDetail-container-score">
-                                <%= productToEdit.productScore%> Estrellas
-                            </p>
+                            <input type="text" name="productScore" value="<%= productToEdit.productScore%>">
+                            Estrellas</input>
                         </div>
                         <div class="productDetail-container2">
-                            <label for="nombre" name="nombre">Nombre </label>
-                            <input type="text" name="nombre" value="<%= productToEdit.productName%>">
-
-                            <p class="productDetail-container-Detail">
-                                <%= productToEdit.productDetail%>
-                            </p>
-                            <p class="productDetail-container-price">$<%= productToEdit.productPrice%>
-                            </p>
+                            <input type="text" name="productName" value="<%= productToEdit.productName%>">
+                            <textarea name="productDetail" value=""><%= productToEdit.productDetail%></textarea>
+                            <input type="number" name="productPrice" value="<%= productToEdit.productPrice%>">
+                            <input type="number" name="productDiscount" value="<%= productToEdit.productDiscount%>">
+                            <input type="text" name="productCategory" value="<%= productToEdit.productCategory%>">
                             <p class="productDetail-container-unitsPerProduct">Caja de 6 unidades</p>
-                            <button class="cart-btn5 type=" submit">Editar</button>
+                            <button class="cart-btn5 type" submit">Editar</button>
                         </div>
                     </form>
 

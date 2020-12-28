@@ -642,7 +642,30 @@ footer h4{
   font-size: 12px;
   text-align: center;
   border: none;
+  text-decoration: none;
+}
+.productDetail-container-btn{
+  display: flex;
+  width: 100%;
+}
+.cart-btn51{
+  display: flex;
+  color: white;
+  background-color:rgb(37, 65, 223);
+  width: 50%;
+  height: 50px;
+  font-size: 12px;
 
+}
+
+.cart-btn52{
+  color: white;
+  background-color:rgb(233, 20, 20);
+  width: 50%;
+  height: 50px;
+  font-size: 12px;
+  text-align: center;
+  border: none;
   text-decoration: none;
 }
 .productDetail-container-addToCart{
