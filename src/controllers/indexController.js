@@ -1,9 +1,10 @@
 const path = require('path')
-const fs = require ("fs")
+const fileController = require(path.join('..', 'controllers', 'fileController'))
+//variable en la que se declara el archivo producto.
+let productsJson = path.join('src','data','products.json')
 const indexController = {
     home:  function(req, res) {
-        let productJSON = fs.readFileSync("products.json", {encoding: 'utf-8'})
-        let products = JSON.parse(productJSON)
+        let products = fileController.openFile(productsJson)
         if (products.length <4) {
          for (let index = products.length; index < 4; index++){
           let nuevoProducto = {
