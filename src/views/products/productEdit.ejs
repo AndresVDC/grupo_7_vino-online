@@ -15,7 +15,10 @@
                             <textarea name="productDetail" value=""><%= productToEdit.productDetail%></textarea>
                             <input type="number" name="productPrice" value="<%= productToEdit.productPrice%>">
                             <input type="number" name="productDiscount" value="<%= productToEdit.productDiscount%>">
-                            <input type="text" name="productCategory" value="<%= productToEdit.productCategory%>">
+                            <input type="radio" name="productCategory" value="Tinto"> Tinto
+                            <input type="radio" name="productCategory" value="Espumante"> Espumante
+                            <input type="radio" name="productCategory" value="Blanco"> Blanco
+                            <input type="radio" name="productCategory" value="Espirituoso"> Espirituoso
                             <input type="text" name="productPresentation" value="<%= productToEdit.productPresentation%>">
                             <button class="cart-btn5 type" submit">Editar</button>
                         </div>
