@@ -128,6 +128,18 @@ const productController = {
         });
         products = results
         res.render(path.join('products', 'productList'), { products: products })
+    },
+    category: (req, res) => {
+        let products = fileController.openFile(productsJson)
+        let Category = req.params.category
+        let results = []
+        products.forEach(element => {
+            if (element.productCategory.includes(Category)) {
+                results.push(element)
+            }
+        });
+        products = results
+        res.render(path.join('products', 'productList'), { products: products })
     }
 
 }

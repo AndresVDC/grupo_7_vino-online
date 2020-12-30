@@ -16,6 +16,7 @@ var upload = multer({ storage: storage })
 
 router.get("/", productController.productList)
 router.get('/search', productController.search)
+router.get('/category/:category', productController.category)
 router.get("/create", productController.create)
 router.post("/create",upload.any(), productController.save)
 router.get("/productCart", productController.cart)
