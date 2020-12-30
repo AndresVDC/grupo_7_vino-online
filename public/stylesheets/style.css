@@ -679,6 +679,12 @@ footer h4{
   margin-top: 20px;
   text-decoration: none;
 }
+.form-product-category{
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
+  margin-left: 5%;
+}
 
 /*productos similares*/
 

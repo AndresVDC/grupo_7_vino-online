@@ -119,10 +119,10 @@ const productController = {
     },
     search: (req, res) => {
         let products = fileController.openFile(productsJson)
-        let busqueda = req.query.search
+        let busqueda = req.query.search.toLowerCase()
         let results = []
         products.forEach(element => {
-            if (element.productName.includes(busqueda)) {
+            if (element.productName.toLowerCase().includes(busqueda)) {
                 results.push(element)
             }
         });
