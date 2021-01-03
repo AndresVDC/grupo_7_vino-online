@@ -55,6 +55,7 @@ const productController = {
     detail: (req, res) => {
         let products = fileController.openFile(productsJson)
         let produtId = req.params.id
+        let productsRel = []
 
         //Busca y devuelve el indice del producto
         function findProductIndex(array) {
@@ -67,14 +68,33 @@ const productController = {
             return result;
         }
         let product = findProductIndex(products)
-
+        products.forEach(element => {
+            if (element.productCategory == products[product].productCategory) {
+                productsRel.push(element)
+            }
+        });
+        if (productsRel.length < 4) {
+            for (let index = productsRel.length; index < 4; index++) {
+                let nuevoProducto = {
+                    id: 999999,
+                    productName: "Sin datos",
+                    productScore: "Sin datos",
+                    productPrice: 0,
+                    productDetail: "Sin datos",
+                    img: "/images/botella-vino.webp",
+                    productDiscount: 0,
+                    productCategory: "Sin datos"
+                }
+                productsRel.push(nuevoProducto)
+            }
+        }
         //Este IF se encarga de evitar el acceso a productos inexistentes.
         if (product == -1) {
             res.send("Producto inexistente!")
         }
         else {
             product = products[findProductIndex(products)]
-            res.render(path.join('products', 'productDetail'), { product: product })
+            res.render(path.join('products', 'productDetail'), { product: product, productsRel: productsRel })
         }
     },
     edit: (req, res) => {
