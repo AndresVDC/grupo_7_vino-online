@@ -1,7 +1,7 @@
 let path = require('path');
 let fs = require('fs');
 let bcrypt = require('bcrypt')
-let filePath= path.join(__dirname, '..', 'data', 'users.json')
+let filePath= path.join('src', 'data', 'users.json')
 let users= fs.readFileSync(filePath, {encoding:"utf-8"})
 
 //combierto el archivo en objeto
@@ -47,7 +47,7 @@ const usersController= {
     //acá empieza todo lo que tiene que ver con el login
 
     indexLogin: (req,res) => {
-      res.render(path.join('..','views', 'users', 'login.ejs'));
+      res.render(path.join('users' ,'login.ejs'));
     },
 
     ingreso: (req,res) => {
@@ -56,7 +56,7 @@ const usersController= {
 
       for (let i= 0; i < users.length; i++){
         if(req.body.first_name == users[i].first_name && req.body.email == users[i].email && bcrypt.compareSync(req.body.password, users[i].password)){
-          res.render(path.join('..', 'views', 'users', 'buttom'), {user: users[i]})
+          res.render(path.join('users', 'buttom'), {user: users[i]})
         }
       }
         res.send('Error al comparar datos')
@@ -70,7 +70,7 @@ const usersController= {
 
       for (let i= 0; i< users.length; i++){
         if (id == users[i].id){
-          res.render(path.join('..', 'views', 'users', 'userProfile'), {user: users[i]})
+          res.render(path.join('users', 'userProfile'), {user: users[i]})
         }
       }
 
@@ -84,7 +84,7 @@ const usersController= {
 
       for (let i= 0; i < users.length; i++){
         if (id == users[i].id){
-          res.render(path.join('..', 'views', 'users', 'editProfile'), {user: users[i]})
+          res.render(path.join('users', 'editProfile'), {user: users[i]})
         }
       }
 
@@ -114,7 +114,7 @@ const usersController= {
         users= JSON.stringify(users)
         fs.writeFileSync(filePath, users)
 
-        res.redirect('/users/login')
+        res.redirect(path.join('users', 'login'))
 
       }else{
         res.send('No colocó bien su contraseña')
@@ -125,7 +125,7 @@ const usersController= {
       let id = req.params.id
 
       let user= users[id]
-      res.render(path.join('..', 'views', 'users', 'editAvatar'), {user: user})
+      res.render(path.join('users', 'editAvatar'), {user: user})
     },
 
     profileEditPatchAvatar: (req,res) => {
@@ -147,7 +147,7 @@ const usersController= {
           users= JSON.stringify(users)
           fs.writeFileSync(filePath, users)
 
-          res.redirect('/users/login')
+          res.redirect(path.join('users', 'login'))
         }else{
           res.send('no colocó bien su contraseña')
         }
@@ -157,7 +157,7 @@ const usersController= {
       let id = req.params.id
 
       let user= users[id]
-      res.render(path.join('..', 'views', 'users', 'editPassword'), {user: user})
+      res.render(path.join('users', 'editPassword'), {user: user})
     },
 
     profileEditPatchPassword: (req,res) => {
@@ -180,7 +180,7 @@ const usersController= {
           users= JSON.stringify(users)
           fs.writeFileSync(filePath, users)
 
-          res.redirect('/users/login')
+          res.redirect(path.join('users', 'login'))
         }else{
           res.send('Colocó mal su nueva contraseña')
         }
@@ -202,7 +202,7 @@ const usersController= {
           users= JSON.stringify(users)
           fs.writeFileSync(filePath, users)
 
-          res.redirect('/users/login')
+          res.redirect(path.join('users', 'login'))
         }
       }
 
