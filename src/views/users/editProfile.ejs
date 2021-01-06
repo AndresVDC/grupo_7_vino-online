@@ -1,0 +1,60 @@
+
+<%- include('../partials/head') %>
+
+<body>
+    <main>
+        <%- include('../partials/header') %>
+
+        <section class="container-edit">
+          <section class="container-colum">
+            <a href="/users/profile/<%= user.id %>">Perfil Principal</a>
+            <a href="/users/profile/<%= user.id %>/edit">Editar Datos</a>
+            <a href="/users/profile/<%= user.id %>/avatar">Editar Avatar</a>
+            <a href="/users/profile/<%= user.id %>/password">Editar Contraseña</a>
+          </section>
+
+          <section class="form-edit">
+            <h1 class="tittle-edit">Editar Usuario</h1>
+              <form  method="post" action="/users/profile/<%= user.id %>?_method=PATCH">
+
+                <div class="container-edit">
+                  <p>Tu Nombre/s</p>
+                  <input class="name" type="text" name="first_name" value= "<%= user.first_name%>">
+                </div>
+
+                <div class="container-edit">
+                  <p>Tu Apellido/s</p>
+                    <input class="surname" type="text" name="last_name" value= "<%= user.last_name%>">
+                </div>
+
+                <div class="container-edit">
+                  <p>Tu Categoria</p>
+                    <input class="category" type="text" name="category" value= "<%= user.category%>">
+                </div>
+
+                <div class="container-edit">
+                  <p> Coloque su contraseña</p>
+                    <input class="password" type="password" name="password">
+                </div>
+
+                <section class= "send-or-reset">
+                  <button class="btn-form-enter" type="submit">Guardar cambios</button>
+                </section>
+
+              </form>
+              <form  action="/users/profile/<%= user.id %>?_method=DELETE" method="post">
+                <section class= "send-or-reset">
+                  <button class="btn-form-delete" type="submit">Eliminar Usuario</button>
+                </section>
+              </form>
+          </section>
+        </section>
+
+
+
+
+
+        <%- include('../partials/footer') %>
+
+    </main>
+</body>

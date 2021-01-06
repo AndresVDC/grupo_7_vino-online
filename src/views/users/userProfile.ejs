@@ -1,0 +1,41 @@
+
+<%- include('../partials/head') %>
+
+<body>
+    <main>
+        <%- include('../partials/header') %>
+
+        <section class="container-login-dates">
+          <section class="container-colum">
+            <a href="/users/profile/<%= user.id %>">Perfil Principal</a>
+            <a href="/users/profile/<%= user.id %>/edit">Editar Datos</a>
+            <a href="/users/profile/<%= user.id %>/avatar">Editar Avatar</a>
+            <a href="/users/profile/<%= user.id %>/password">Editar Contraseña</a>
+          </section>
+
+          <section class="form-edit" >
+
+            <h1 class="tittle-edit">Mi perfil</h1>
+
+            <section>
+              <img class="avatar-edit" src="/uploadsAvatars/<%= user.avatar%>" height="200px" width="200px"/>
+            </section>
+
+                <sections class= "container-dates">
+                  <p> NOMBRE/S: <%= user.first_name %> </p>
+                  <p> APELLIDO/S: <%= user.last_name %> </p>
+                  <p> CORREO: <%= user.email %></p>
+                  <p> CATEGORIA: <%= user.category %></p>
+
+                </section>
+          </section>
+        </section>
+
+
+
+
+
+        <%- include('../partials/footer') %>
+
+    </main>
+</body>

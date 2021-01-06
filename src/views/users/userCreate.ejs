@@ -1,0 +1,17 @@
+
+<%- include('../partials/head') %>
+
+<body>
+    <main class= "main_user_created">
+        <%- include('../partials/header') %>
+
+        <section class= "user_created">
+          <h1>¡Bienvenido, <%= newUser.first_name%>!<br>Ya podés iniciar sesión en Vinos Online</h1>
+
+          <button class=go-to-login type="button" name="button"><a href="/users/login">Iniciar sesión</a></button>
+        </section>
+
+          <%- include('../partials/footer') %>
+
+    </main>
+</body>

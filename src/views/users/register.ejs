@@ -10,17 +10,26 @@
                 <button class="button-facebook1" name="facebook"><p>Regitrarse con facebook</p></button>
             </div>
 
-            <form class="register" action="validar.php" method="post">
+            <form class="register" method="post" enctype="multipart/form-data">
                 <div class="text">
                     <p>O DEJANOS LOS SIGUIENTES DATOS:</p>
                 </div>
 
                 <div class="container-dates">
-                  <input class="name" type="text" name="name" placeholder="Nombre">
+                    <label for="file">Avatar</label>
+                    <input class="file" type="file" name="avatar" accept="image/jpg, image/png">
                 </div>
 
                 <div class="container-dates">
-                    <input class="surname" type="text" name="surname" placeholder="Apellido">
+                  <input class="name" type="text" name="first_name" placeholder="Nombre">
+                </div>
+
+                <div class="container-dates">
+                    <input class="surname" type="text" name="last_name" placeholder="Apellido">
+                </div>
+
+                <div class="container-dates">
+                    <input class="category" type="text" name="category" placeholder="Categoria">
                 </div>
 
                 <div class="container-dates">
@@ -28,20 +37,16 @@
                 </div>
 
                 <div class="container-dates">
-                    <input class="years" type="number" name="years" placeholder="Edad">
-                </div>
-
-                <div class="container-dates">
                     <input class="password" type="password" name="password" placeholder="Cree una contraseña">
                 </div>
 
                 <div class="terms-and-conditions">
-                    <input type="checkbox" name="t-and-c">
+                    <input type="checkbox" name="t_and_c" >
                     <label for="t-and-c">Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></label>
                 </div>
 
                 <div class="send-or-reset">
-                    <button class="btn-form-enter" type="submit" name="create">Crear cuenta</button>
+                    <button class="btn-form-enter" type="submit">Crear cuenta</button>
                     <button class="btn-form-delete" type="reset" name="button">Borrar</button>
                 </div>
 

@@ -303,8 +303,12 @@ main {
   padding: 15px 30px 15px 0px;
   width: 100%;
   border: none;
-  color: #999999;
   border-bottom: 2px solid #999999;
+}
+
+.container-dates label{
+  font-size: 26px;
+  color: #999999;
 }
 
 /*tetrminos y condiciones*/
@@ -325,7 +329,7 @@ main {
 
 /*enviar o resetear*/
 
-.send-or-reset button {
+.send-or-reset button, .go-to-login{
   cursor: pointer;
   width: 100%;
   color: #ffff;
@@ -333,12 +337,12 @@ main {
   border: none;
 }
 
-.btn-form-enter {
+.btn-form-enter, .go-to-login{
   background-color: #00A055;
   margin-top: 10px;
 }
 
-.btn-form-enter:hover {
+.btn-form-enter:hover, .go-to-login:hover{
   background-color: #2AC27B;
 }
 
@@ -353,7 +357,7 @@ main {
   border: none;
 }
 
-.btn-form:focus {
+.btn-form:focus, .go-to-login:focus{
   outline: none;
   border: none;
 }
@@ -382,6 +386,135 @@ main {
 
 /*Register and Login end*/
 
+/*Users created*/
+
+.main_user_created{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.user_created{
+  align-self: center;
+  align-items: center;
+  background-color: white;
+  margin: 17vh;
+  font-size: 25px;
+  padding: 10vh;
+}
+
+@media(max-width:640px){
+  .user_created {
+    margin: 10vh;
+  }
+
+  .user_created{
+    font-size: 25px;
+    padding: 10vh;
+  }
+}
+
+/*fin de users created*/
+
+/*inicio de editUsers*/
+
+.container-edit, .container-login-dates{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container-colum{
+  background-color: white;
+  display: flex;
+  width: 100%;
+  border-bottom: 2px solid #5D6D7E;
+  margin-bottom: 1vh;
+  padding: 1vw;
+  justify-content: space-around;
+}
+
+
+.container-colum a{
+  font-size: 3vh;
+  color: #2874A6;
+  font-weight: bolder;
+  margin: 1vh 0px;
+}
+
+.form-edit, .form-edit-avatar{
+  padding: 2vh 3vw;
+  margin: 2vh 2vw;
+  background-color: white;
+}
+
+.tittle-edit{
+  font-size: 5vh;
+}
+
+.avatar-edit{
+  margin: 10px 26px;
+  border-radius: 100px;
+}
+
+.container-edit p, .container-login-dates p{
+  font-size: 22px;
+  margin: 1vh 0px;
+  color: #2C3E50;
+  font-weight: bolder;
+}
+
+.container-edit label, .container-edit input{
+    font-size: 22px;
+    color: #2C3E50;
+    font-weight: bolder;
+    margin: 1vh 0px;
+}
+
+.container-edit input{
+  display: flex;
+  flex-direction: column;
+}
+
+.file-edit .input-file{
+  font-size: 2.7vh;
+}
+
+.container-login-dates{
+  justify-content: center;
+  
+}
+
+/*media Querie*/
+
+@media(min-width:560px){
+  .container-edit, .container-login-dates{
+    margin: 0px 1vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container-edit p, .container-login-dates p{
+    font-size: 30px;
+
+  }
+
+  .container-edit input{
+      font-size: 22px;
+      color: #2C3E50;
+      font-weight: bolder;
+      margin: 1vh 2vw;
+  }
+
+  .form-edit{
+    padding: 100px 3vw;
+  }
+}
+
+
+/*Fin de editUsers*/
 
 footer{
   background-color: rgb(170, 168, 168);
