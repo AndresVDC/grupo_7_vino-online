@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const express = require('express');
 const router = express.Router();
 const path = require('path');
@@ -13,15 +12,6 @@ var storage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname) )
   }
 })
-=======
-var express = require('express');
-const usersController = require('../controllers/usersController');
-var router = express.Router();
-
-router.get("/register", usersController.vista);
-router.post("/register", usersController.create);
->>>>>>> 106af870a081ae6fd57d3a036f3c85afe6274bc3
-
 var uploads = multer({ storage: storage })
 //REGISTER
 router.get('/register', usersController.indexRegister)

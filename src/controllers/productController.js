@@ -47,7 +47,6 @@ const productController = {
             productCategory: req.body.categoria
         }
         //Falta ver como ordenar el array de objetos antes de guardar.
-        console.log(nuevoProducto)
         products.push(nuevoProducto)
         fileController.saveFile(products, productsJson)
         res.redirect('/products')

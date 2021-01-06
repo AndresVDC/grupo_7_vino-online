@@ -8,21 +8,21 @@ var storage = multer.diskStorage({
     cb(null, path.join('public', 'images'));
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now()+path.extname(file.originalname));
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
   }
 })
- 
+
 var upload = multer({ storage: storage })
 
 router.get("/", productController.productList)
 router.get('/search', productController.search)
 router.get('/category/:category', productController.category)
 router.get("/create", productController.create)
-router.post("/create",upload.any(), productController.save)
+router.post("/create", upload.any(), productController.save)
 router.get("/productCart", productController.cart)
 router.get("/edit/:id", productController.edit)
 router.put("/edit/:id", productController.actualizar)
-router.delete("/delete/:id",productController.delete)
+router.delete("/delete/:id", productController.delete)
 router.get("/:id", productController.detail)
 
 

@@ -1,67 +1,66 @@
 <%- include('../partials/head') %>
 
-<body>
-    <main class="login-and-register">
-        <%- include('../partials/header') %>
+    <body>
+        <main class="login-and-register">
+            <%- include('../partials/header') %>
 
-        <section class="container-form">
-            <div class="register-with-facebook">
-                <button class="button-facebook" name="facebook"><span class="fab fa-facebook-f"></span></button>
-                <button class="button-facebook1" name="facebook"><p>Regitrarse con facebook</p></button>
-            </div>
+                <section class="container-form">
+                    <div class="register-with-facebook">
+                        <button class="button-facebook" name="facebook"><span class="fab fa-facebook-f"></span></button>
+                        <button class="button-facebook1" name="facebook">
+                            <p>Regitrarse con facebook</p>
+                        </button>
+                    </div>
 
-<<<<<<< HEAD
-            <form class="register" method="post" enctype="multipart/form-data">
-=======
-            <form class="register" action="" method="post">
->>>>>>> 106af870a081ae6fd57d3a036f3c85afe6274bc3
-                <div class="text">
-                    <p>O DEJANOS LOS SIGUIENTES DATOS:</p>
-                </div>
+                    <form class="register" method="post" enctype="multipart/form-data">
 
-                <div class="container-dates">
-                    <label for="file">Avatar</label>
-                    <input class="file" type="file" name="avatar" accept="image/jpg, image/png">
-                </div>
+                        <div class="text">
+                            <p>O DEJANOS LOS SIGUIENTES DATOS:</p>
+                        </div>
 
-                <div class="container-dates">
-                  <input class="name" type="text" name="first_name" placeholder="Nombre">
-                </div>
+                        <div class="container-dates">
+                            <label for="file">Avatar</label>
+                            <input class="file" type="file" name="avatar" accept="image/jpg, image/png">
+                        </div>
 
-                <div class="container-dates">
-                    <input class="surname" type="text" name="last_name" placeholder="Apellido">
-                </div>
+                        <div class="container-dates">
+                            <input class="name" type="text" name="first_name" placeholder="Nombre">
+                        </div>
 
-                <div class="container-dates">
-                    <input class="category" type="text" name="category" placeholder="Categoria">
-                </div>
+                        <div class="container-dates">
+                            <input class="surname" type="text" name="last_name" placeholder="Apellido">
+                        </div>
 
-                <div class="container-dates">
-                    <input class="email" type="email" name="email" placeholder="E-mail">
-                </div>
+                        <div class="container-dates">
+                            <input class="category" type="text" name="category" placeholder="Categoria">
+                        </div>
 
-                <div class="container-dates">
-                    <input class="password" type="password" name="password" placeholder="Cree una contraseña">
-                </div>
+                        <div class="container-dates">
+                            <input class="email" type="email" name="email" placeholder="E-mail">
+                        </div>
 
-                <div class="terms-and-conditions">
-                    <input type="checkbox" name="t_and_c" >
-                    <label for="t-and-c">Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></label>
-                </div>
+                        <div class="container-dates">
+                            <input class="password" type="password" name="password" placeholder="Cree una contraseña">
+                        </div>
 
-                <div class="send-or-reset">
-                    <button class="btn-form-enter" type="submit">Crear cuenta</button>
-                    <button class="btn-form-delete" type="reset" name="button">Borrar</button>
-                </div>
+                        <div class="terms-and-conditions">
+                            <input type="checkbox" name="t_and_c">
+                            <label for="t-and-c">Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></label>
+                        </div>
 
-                <div class="go-to-page">
-                    <a href="login">¿Ya tengo cuenta?</a>
-                </div>
-            </form>
-        </section>
+                        <div class="send-or-reset">
+                            <button class="btn-form-enter" type="submit">Crear cuenta</button>
+                            <button class="btn-form-delete" type="reset" name="button">Borrar</button>
+                        </div>
 
-        <%- include('../partials/footer') %>
-    </main>
-</body>
+                        <div class="go-to-page">
+                            <a href="login">¿Ya tengo cuenta?</a>
+                        </div>
+                    </form>
+                </section>
 
-</html>
+                <%- include('../partials/footer') %>
+        </main>
+    </body>
+
+    </html>
