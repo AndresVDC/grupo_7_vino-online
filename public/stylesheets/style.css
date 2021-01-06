@@ -725,6 +725,14 @@ footer h4{
   margin: 0px 10px;
   padding: 5px 10px;
 }
+.productDetail-container2 input{
+  margin: 0px 10px;
+  border: none;
+}
+.productDetail-container2 textarea{
+  width: 60%;
+  margin: 0px 10px;
+}
 .productDetail-container3{
   display: flex;
   margin: 0px 10px;
@@ -811,6 +819,12 @@ footer h4{
   border: none;
   margin-top: 20px;
   text-decoration: none;
+}
+.form-product-category{
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
+  margin-left: 5%;
 }
 
 /*productos similares*/
