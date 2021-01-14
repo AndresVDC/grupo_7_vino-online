@@ -1,8 +1,8 @@
 let path = require('path');
 let fs = require('fs');
-let bcrypt = require('bcrypt')
-let filePath= path.join('src', 'data', 'users.json')
-let users= fs.readFileSync(filePath, {encoding:"utf-8"})
+let bcrypt = require('bcrypt');
+let filePath= path.join('src', 'data', 'users.json');
+let users= fs.readFileSync(filePath, {encoding:"utf-8"});
 
 //combierto el archivo en objeto
 users= JSON.parse(users)
@@ -25,7 +25,7 @@ const usersController= {
           category: req.body.category,
           email: req.body.email,
           password: bcrypt.hashSync(req.body.password, 10),
-          avatar: req.file.filename
+          avatar: 'avatar-default.png'
         };
 
         if(newUser.first_name == '' || newUser.last_name == '' || newUser.category == '' || newUser.email == '' || newUser.password == ''){
