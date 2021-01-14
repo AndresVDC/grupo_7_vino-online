@@ -55,7 +55,7 @@ const usersController= {
       users= JSON.parse(users);
 
       for (let i= 0; i < users.length; i++){
-        if(req.body.first_name == users[i].first_name && req.body.email == users[i].email && bcrypt.compareSync(req.body.password, users[i].password)){
+        if(req.body.email == users[i].email && bcrypt.compareSync(req.body.password, users[i].password)){
           res.render(path.join('users', 'buttom'), {user: users[i]})
         }
       }
