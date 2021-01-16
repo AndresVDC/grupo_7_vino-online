@@ -790,13 +790,13 @@ footer h4{
   width: 100%;
 }
 .cart-btn51{
-  display: flex;
   color: white;
   background-color:rgb(37, 65, 223);
   width: 50%;
   height: 50px;
   font-size: 12px;
-
+  text-align: center;
+  padding: 12px 0;
 }
 
 .cart-btn52{
