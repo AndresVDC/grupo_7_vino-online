@@ -820,12 +820,6 @@ footer h4{
   margin-top: 20px;
   text-decoration: none;
 }
-.form-product-category{
-  display: flex;
-  width: 400px;
-  justify-content: space-between;
-  margin-left: 5%;
-}
 
 /*productos similares*/
 
@@ -896,12 +890,9 @@ color: green;
 .form-product-label{
   font-family:'PT Sans Narrow', sans-serif ;
   font-size: 20px;
-  margin-left: 40px;
-
 }
 .form-product-input{
   width: 90%;
-  padding: 10px;
   align-self: center;
 }
 
@@ -951,6 +942,13 @@ color: green;
 
 
 @media(min-width:768px){
+
+  .background-blue{
+    background: rgb(61, 155, 218);
+  }
+  .main-margin{
+  margin: 0% 5%;
+  }
 
   .dropbtn {
     display: none;

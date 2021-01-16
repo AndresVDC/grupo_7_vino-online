@@ -3,6 +3,7 @@
   <body>
     <main>
       <%- include('../partials/header') %>
+      <section class="main-margin">
         <%products.forEach(element=> { %>
           <a href="/products/<%= element.id %>">
             <section class="container-productList">
@@ -31,6 +32,7 @@
             </section>
           </a>
           <%}); %>
+      </section>
     </main>
     <%- include('../partials/footer') %>
   </body>

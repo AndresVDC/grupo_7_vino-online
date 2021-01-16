@@ -1,151 +1,162 @@
 <%- include('./partials/head') %>
-<body>
-    <main>
-        <%- include('./partials/header') %>
-        <section>
-            <div class="slideshow-container">
-                <div class="mySlides fade">
-                    <img src="/images/banner.png" style="width:100%">
-                </div>
 
-                <div class="mySlides fade">
-                    <img src="/images/pago.jpg" style="width:100%">
-                </div>
+    <body>
+        <main>
+            <%- include('./partials/header') %>
+                <section>
+                    <div class="slideshow-container">
+                        <div class="mySlides fade">
+                            <img src="/images/banner.png" style="width:100%">
+                        </div>
 
-                <div class="mySlides fade">
-                    <img src="/images/envio.jpg" style="width:100%">
-                </div>
-            </div>
-        </section>
-        <div class="category-container-title">
-            <h2>Categorías</h2>
-        </div>
-        <section class="category-container">
-            <div class="category-container-card">
-                <a href="/products/category/Tinto">
-                    <img class="category-container-img" src="/images/VINO_TINTO.svg" alt="">
-                </a>
-                <p class="category-container-paragraph">Vinos Tintos</p>
-            </div>
-            <div class="category-container-card">
-                <a href="/products/category/Espumante">
-                    <img class="category-container-img" src="/images/ESPUMANTES.svg" alt="">
-                </a>
-                <p class="category-container-paragraph">Espumantes</p>
-            </div>
-            <div class="category-container-card">
-                <a href="/products/category/Blanco">
-                    <img class="category-container-img" src="/images/VINO_TINTO.svg" alt="">
-                </a>
-                <p class="category-container-paragraph">Vinos Blancos</p>
-            </div>
-            <div class="category-container-card">
-                <a href="/products/category/Espirituoso">
-                    <img class="category-container-img" src="/images/ESPIRITUOSOS.svg" alt="">
-                </a>
-                <p class="category-container-paragraph">Espirituosos</p>
-            </div>
-            <div class="category-container-card">
-                <a href="/products">
-                    <img class="category-container-img" src="/images/VINO_TINTO.svg" alt="">
-                </a>
-                <p class="category-container-paragraph">Todos los productos</p>
-            </div>
-        </section>
-        <section class="offers-container">
-            <div>
-                <h2>Ofertas Destacadas</h2>
-            </div>
-            <div class="offers-container-grid">
-                <%for (let index = 0; index < 4; index++) { %>
-                    <%const element = products[index];%>
-                <div class="offers-container-card">
-                    <a href="products/<%= element.id %>">
+                        <div class="mySlides fade">
+                            <img src="/images/pago.jpg" style="width:100%">
+                        </div>
+
+                        <div class="mySlides fade">
+                            <img src="/images/envio.jpg" style="width:100%">
+                        </div>
+                    </div>
+                </section>
+                <section class="main-margin">
+                    <div class="category-container-title">
+                        <h2>Categorías</h2>
+                    </div>
+                    <section class="category-container">
+                        <div class="category-container-card">
+                            <a href="/products/category/Tinto">
+                                <img class="category-container-img" src="/images/VINO_TINTO.svg" alt="">
+                            </a>
+                            <p class="category-container-paragraph">Vinos Tintos</p>
+                        </div>
+                        <div class="category-container-card">
+                            <a href="/products/category/Espumante">
+                                <img class="category-container-img" src="/images/ESPUMANTES.svg" alt="">
+                            </a>
+                            <p class="category-container-paragraph">Espumantes</p>
+                        </div>
+                        <div class="category-container-card">
+                            <a href="/products/category/Blanco">
+                                <img class="category-container-img" src="/images/VINO_TINTO.svg" alt="">
+                            </a>
+                            <p class="category-container-paragraph">Vinos Blancos</p>
+                        </div>
+                        <div class="category-container-card">
+                            <a href="/products/category/Espirituoso">
+                                <img class="category-container-img" src="/images/ESPIRITUOSOS.svg" alt="">
+                            </a>
+                            <p class="category-container-paragraph">Espirituosos</p>
+                        </div>
+                        <div class="category-container-card">
+                            <a href="/products">
+                                <img class="category-container-img" src="/images/VINO_TINTO.svg" alt="">
+                            </a>
+                            <p class="category-container-paragraph">Todos los productos</p>
+                        </div>
+                    </section>
+                    <section class="offers-container">
                         <div>
-                            <img src="<%= element.img%>" alt="Oferta<%= element.id %>">
+                            <h2>Ofertas Destacadas</h2>
                         </div>
-                        <div class="offers-container-card-text">
-                            <h3 class="offers-container-card-title"><%= element.productName %></h3>
-                            <h5 class="offers-container-card-price">$<%= (element.productPrice-element.productPrice*element.productDiscount/100).toFixed(2) %></h5>
-                            <span class="offers-container-card-realPrice">$<%= element.productPrice %></span>
-                            <span class="offers-container-card-discount"><%= element.productDiscount %>% off</span>
+                        <div class="offers-container-grid">
+                            <%for (let index=0; index < 4; index++) { %>
+                                <%const element=products[index];%>
+                                    <div class="offers-container-card">
+                                        <a href="products/<%= element.id %>">
+                                            <div>
+                                                <img src="<%= element.img%>" alt="Oferta<%= element.id %>">
+                                            </div>
+                                            <div class="offers-container-card-text">
+                                                <h3 class="offers-container-card-title">
+                                                    <%= element.productName %>
+                                                </h3>
+                                                <h5 class="offers-container-card-price">$<%=
+                                                        (element.productPrice-element.productPrice*element.productDiscount/100).toFixed(2)
+                                                        %>
+                                                </h5>
+                                                <span class="offers-container-card-realPrice">$<%= element.productPrice
+                                                        %></span>
+                                                <span class="offers-container-card-discount">
+                                                    <%= element.productDiscount %>% off
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <%}%>
                         </div>
-                    </a>
-                </div>
-                <%}%>
-            </div>
-        </section>
-        <section class="card-banner">
-            <div>
-                <a class="card-banner-shipping" href="#">
-                    <span class="text-icons-large">Opciones de envío</span>
-                    <span class="text-icons-small">Llegamos a todo el país</span>
-                    <i class="fas fa-chevron-right right-arrow"></i>
-                </a>
-            </div>
-            <div>
-                <a class="card-banner-payment" href="#">
-                    <span class="text-icons-large">Opciones de pago</span>
-                    <span class="text-icons-small">¡Pagá en cuotas sin interés!</span>
-                    <i class="fas fa-chevron-right right-arrow"></i>
-                </a>
-            </div>
-        </section>
-        <section class="imageblock">
-            <div class="row">
-                <a class="double-height" href="#">
-                    <div>
-                        <img alt="" src="/images/image-block-malbec.jpg">
-                    </div>
-                </a>
-                <div class="imageblock-small-container">
-                    <div class="imageblock-small">
-                        <a class="single-height" href="#">
-                            <div class="single-height-img">
-                                <img alt="" src="/images/image-block-vinospremiados.jpg">
+                    </section>
+                    <section class="card-banner">
+                        <div>
+                            <a class="card-banner-shipping" href="#">
+                                <span class="text-icons-large">Opciones de envío</span>
+                                <span class="text-icons-small">Llegamos a todo el país</span>
+                                <i class="fas fa-chevron-right right-arrow"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a class="card-banner-payment" href="#">
+                                <span class="text-icons-large">Opciones de pago</span>
+                                <span class="text-icons-small">¡Pagá en cuotas sin interés!</span>
+                                <i class="fas fa-chevron-right right-arrow"></i>
+                            </a>
+                        </div>
+                    </section>
+                    <section class="imageblock">
+                        <div class="row">
+                            <a class="double-height" href="#">
+                                <div>
+                                    <img alt="" src="/images/image-block-malbec.jpg">
+                                </div>
+                            </a>
+                            <div class="imageblock-small-container">
+                                <div class="imageblock-small">
+                                    <a class="single-height" href="#">
+                                        <div class="single-height-img">
+                                            <img alt="" src="/images/image-block-vinospremiados.jpg">
+                                        </div>
+                                    </a>
+                                    <a class="single-height" href="#">
+                                        <div class="single-height-img">
+                                            <img alt="" src="/images/image-block-descuentos.jpg">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="imageblock-small2">
+                                    <a class="single-height" href="#">
+                                        <div class="single-height-img">
+                                            <img alt="" src="/images/image-block-pararegalar.jpg">
+                                        </div>
+                                    </a>
+                                    <a class="single-height" href="#">
+                                        <div class="single-height-img">
+                                            <img alt="" src="/images/image-block-baginbox.jpg">
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </a>
-                        <a class="single-height" href="#">
-                            <div class="single-height-img">
-                                <img alt="" src="/images/image-block-descuentos.jpg">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="imageblock-small2">
-                        <a class="single-height" href="#">
-                            <div class="single-height-img">
-                                <img alt="" src="/images/image-block-pararegalar.jpg">
-                            </div>
-                        </a>
-                        <a class="single-height" href="#">
-                            <div class="single-height-img">
-                                <img alt="" src="/images/image-block-baginbox.jpg">
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <%- include('./partials/footer') %>
-        
-    </main>
-    <script>
-        //Scritp de animación en el banner
-        var slideIndex = 0;
-        showSlides();
+                        </div>
+                    </section>
+                </section>
+                <%- include('./partials/footer') %>
 
-        function showSlides() {
-            var i;
-            var slides = document.getElementsByClassName("mySlides");
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
+        </main>
+        <script>
+            //Scritp de animación en el banner
+            var slideIndex = 0;
+            showSlides();
+
+            function showSlides() {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1 }
+                slides[slideIndex - 1].style.display = "block";
+                setTimeout(showSlides, 2000); // Cambia de imagen cada 2 segundos
             }
-            slideIndex++;
-            if (slideIndex > slides.length) { slideIndex = 1 }
-            slides[slideIndex - 1].style.display = "block";
-            setTimeout(showSlides, 2000); // Cambia de imagen cada 2 segundos
-        }
-    </script>
-</body>
+        </script>
+    </body>
 
-</html>
+    </html>

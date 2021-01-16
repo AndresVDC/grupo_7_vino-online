@@ -3,40 +3,50 @@
 
     <body>
         <%- include('../partials/header') %>
-            <h1 class="form-product-title">Formulario de productos</h1>
-            <form class="form-product" method="POST" action="/products/create" enctype="multipart/form-data">
-                <label class="form-product-label" for="producto">Producto</label>
-                <input class="form-product-input" type="text" name="producto" id="producto">
-                <br>
-                <label class="form-product-label" for="precio">Precio</label>
-                <input class="form-product-input" type="number" name="precio" id="precio">
-                <br>
-                <label class="form-product-label" for="categoria">Categoria</label>
-                <div class="form-product-category">
-                    <input type="radio" value="Tinto" name="categoria">Tinto  
-                    <input type="radio" value="Espumante" name="categoria">Espumante  
-                    <input type="radio" value="Blanco" name="categoria">Blanco  
-                    <input type="radio" value="Espirituoso" name="categoria">Espirituoso  
-                </div>
-                <br>
-                <label class="form-product-label" for="descripcion">Descripción</label>
-                <textarea class="form-product-input" type="text" name="descripcion" id="descripcion"> </textarea>
-                <br>
-                <label class="form-product-label" for="descuento">Descuento</label>
-                <input class="form-product-input" type="number" name="descuento" id="descuento">
-                <br>
-                <label class="form-product-label" for="score">Score</label>
-                <input class="form-product-input" type="number" name="score" id="score">
-                <br>
-                <label class="form-product-label" for="presentacion">Presentación</label>
-                <input class="form-product-input" type="text" name="presentacion" id="presentacion">
-                <br>
-                <label class="form-product-label" for="imagen">Imagen</label>
-                <input class="form-product-input" type="file" name="imagen" id="imagen" accept="image/jpg,image/png">
-                <br>
-                <button class="form-product-btn" type="submit">Crear</button>
-                <input class="form-product-btn-reset" type="reset" value="Borrar">
-            </form>
+            <section class="main-margin">
+                <h1 class="form-product-title">Formulario de productos</h1>
+                <form class="form-product" method="POST" action="/products/create" enctype="multipart/form-data">
+                    <label class="form-product-label" for="producto">Producto</label>
+                    <input class="form-product-input" type="text" name="producto" id="producto">
+                    <br>
+                    <label class="form-product-label" for="precio">Precio</label>
+                    <input class="form-product-input" type="number" name="precio" id="precio">
+                    <br>
+                    <label class="form-product-label" for="categoria">Categoria</label>
+                        <div class="form-product-input">
+                            <select name="categoria" id="categoria">
+                                <option value="Tinto">Tinto</option>
+                                <option value="Espumante">Espumante</option>
+                                <option value="Blanco">Blanco</option>
+                                <option value="Espirituoso">Espirituoso</option>
+                              </select>
+                    <!--<div class="form-product-category">
+                        <input type="radio" value="Tinto" name="categoria">Tinto
+                        <input type="radio" value="Espumante" name="categoria">Espumante
+                        <input type="radio" value="Blanco" name="categoria">Blanco
+                        <input type="radio" value="Espirituoso" name="categoria">Espirituoso-->
+                    </div>
+                    <br>
+                    <label class="form-product-label" for="descripcion">Descripción</label>
+                    <textarea class="form-product-input" type="text" name="descripcion" id="descripcion"> </textarea>
+                    <br>
+                    <label class="form-product-label" for="descuento">Descuento</label>
+                    <input class="form-product-input" type="number" name="descuento" id="descuento">
+                    <br>
+                    <label class="form-product-label" for="score">Score</label>
+                    <input class="form-product-input" type="number" name="score" id="score">
+                    <br>
+                    <label class="form-product-label" for="presentacion">Presentación</label>
+                    <input class="form-product-input" type="text" name="presentacion" id="presentacion">
+                    <br>
+                    <label class="form-product-label" for="imagen">Imagen</label>
+                    <input class="form-product-input" type="file" name="imagen" id="imagen"
+                        accept="image/jpg,image/png">
+                    <br>
+                    <button class="form-product-btn" type="submit">Crear</button>
+                    <input class="form-product-btn-reset" type="reset" value="Borrar">
+                </form>
+            </section>
             <%- include('../partials/footer') %>
     </body>
 

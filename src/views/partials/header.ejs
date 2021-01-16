@@ -1,26 +1,28 @@
 <Header>
-    <div class="nav-bar">
-        <div class="nav-bar--logo">
-            <a href="/">
-                <img src="/images/logo.png" alt="Logo" width="100%" height="100%" id="logo">
-            </a>
-        </div>
-        <div class="nav-bar--search">
-            <form action="/products/search" method="GET">
-                <input type="search" name="search" id="search" placeholder="Buscar">
-                <label for="search"><i class="fas fa-search"></i></label>
-            </form>
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="/../products/create">Vender</a>
-                <a href="/../products/productCart">Carrito</a>
-                <a href="/../users/register">Registro</a>
-                <a href="/../users/login">Login</a>
+    <section class="background-blue">
+        <div class="nav-bar main-margin">
+            <div class="nav-bar--logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="Logo" width="100%" height="100%" id="logo">
+                </a>
+            </div>
+            <div class="nav-bar--search">
+                <form action="/products/search" method="GET">
+                    <input type="search" name="search" id="search" placeholder="Buscar">
+                    <label for="search"><i class="fas fa-search"></i></label>
+                </form>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/../products/create">Vender</a>
+                    <a href="/../products/productCart">Carrito</a>
+                    <a href="/../users/register">Registro</a>
+                    <a href="/../users/login">Login</a>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 </Header>
