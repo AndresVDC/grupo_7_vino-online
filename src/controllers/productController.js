@@ -37,14 +37,14 @@ const productController = {
         //crea el nuevo producto que luego se agrega en el Array.
         let nuevoProducto = {
             id: findFreeId(products),
-            productName: req.body.producto,
-            productScore: req.body.score,
-            productPrice: req.body.precio,
-            productDetail: req.body.descripcion,
+            productName: req.body.productName,
+            productScore: req.body.productScore,
+            productPrice: req.body.productPrice,
+            productDetail: req.body.productDetail,
             img: "/images/" + req.files[0].filename,
-            productDiscount: req.body.descuento,
-            productPresentation: req.body.presentacion,
-            productCategory: req.body.categoria
+            productDiscount: req.body.productDiscount,
+            productPresentation: req.body.productPresentation,
+            productCategory: req.body.productCategory
         }
         //Falta ver como ordenar el array de objetos antes de guardar.
         products.push(nuevoProducto)
@@ -104,6 +104,7 @@ const productController = {
     },
     actualizar: (req, res) => {
         let products = fileController.openFile(productsJson)
+        console.log(req.body)
         products.forEach(element => {
             if (element.id == req.params.id) {
                 element.productName = req.body.productName

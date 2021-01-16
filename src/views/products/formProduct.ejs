@@ -6,41 +6,36 @@
             <section class="main-margin">
                 <h1 class="form-product-title">Formulario de productos</h1>
                 <form class="form-product" method="POST" action="/products/create" enctype="multipart/form-data">
-                    <label class="form-product-label" for="producto">Producto</label>
-                    <input class="form-product-input" type="text" name="producto" id="producto">
+                    <label class="form-product-label" for="productName">Producto</label>
+                    <input class="form-product-input" type="text" name="productName" id="productName">
                     <br>
-                    <label class="form-product-label" for="precio">Precio</label>
-                    <input class="form-product-input" type="number" name="precio" id="precio">
+                    <label class="form-product-label" for="productPrice">Precio</label>
+                    <input class="form-product-input" type="number" name="productPrice" id="productPrice">
                     <br>
-                    <label class="form-product-label" for="categoria">Categoria</label>
-                        <div class="form-product-input">
-                            <select name="categoria" id="categoria">
-                                <option value="Tinto">Tinto</option>
-                                <option value="Espumante">Espumante</option>
-                                <option value="Blanco">Blanco</option>
-                                <option value="Espirituoso">Espirituoso</option>
-                              </select>
-                    <!--<div class="form-product-category">
-                        <input type="radio" value="Tinto" name="categoria">Tinto
-                        <input type="radio" value="Espumante" name="categoria">Espumante
-                        <input type="radio" value="Blanco" name="categoria">Blanco
-                        <input type="radio" value="Espirituoso" name="categoria">Espirituoso-->
+                    <label class="form-product-label" for="productCategory">Categoria</label>
+                    <div class="form-product-input">
+                        <select name="productCategory" id="productCategory">
+                            <option value="Tinto">Tinto</option>
+                            <option value="Espumante">Espumante</option>
+                            <option value="Blanco">Blanco</option>
+                            <option value="Espirituoso">Espirituoso</option>
+                        </select>
                     </div>
                     <br>
-                    <label class="form-product-label" for="descripcion">Descripción</label>
-                    <textarea class="form-product-input" type="text" name="descripcion" id="descripcion"> </textarea>
+                    <label class="form-product-label" for="productDetail">Descripción</label>
+                    <textarea class="form-product-input" type="text" name="productDetail" id="productDetail"> </textarea>
                     <br>
-                    <label class="form-product-label" for="descuento">Descuento</label>
-                    <input class="form-product-input" type="number" name="descuento" id="descuento">
+                    <label class="form-product-label" for="productDiscount">Descuento</label>
+                    <input class="form-product-input" type="number" name="productDiscount" id="productDiscount">
                     <br>
-                    <label class="form-product-label" for="score">Score</label>
-                    <input class="form-product-input" type="number" name="score" id="score">
+                    <label class="form-product-label" for="productScore">Score</label>
+                    <input class="form-product-input" type="number" name="productScore" id="productScore">
                     <br>
-                    <label class="form-product-label" for="presentacion">Presentación</label>
-                    <input class="form-product-input" type="text" name="presentacion" id="presentacion">
+                    <label class="form-product-label" for="productPresentation">Presentación</label>
+                    <input class="form-product-input" type="text" name="productPresentation" id="productPresentation">
                     <br>
-                    <label class="form-product-label" for="imagen">Imagen</label>
-                    <input class="form-product-input" type="file" name="imagen" id="imagen"
+                    <label class="form-product-label" for="image">Imagen</label>
+                    <input class="form-product-input" type="file" name="image" id="image"
                         accept="image/jpg,image/png">
                     <br>
                     <button class="form-product-btn" type="submit">Crear</button>

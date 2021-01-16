@@ -1,57 +1,57 @@
+<html>
 <%- include('../partials/head') %>
 
     <body>
-        <main>
-            <%- include('../partials/header') %>
-                <section class="main-margin">
-                    <section class="productDetail">
-                        <div class="productDetail-container1">
-                            <img class="productDetail-container-image" src="<%= productToEdit.img%>" alt="">
-                        </div>
-                        <div class="productDetail-container2">
-                            <form action="/products/edit/<%= productToEdit.id%>?_method=PUT" method="POST">
-                                <label class="form-product-label" for="productName">Producto:</label>
-                                <input type="text" name="productName" id="productName"
-                                    value="<%= productToEdit.productName%>">
-                                <br>
-                                <label class="form-product-label" for="productPrice">Precio:</label>
-                                <input type="number" name="productPrice" id="productPrice"
-                                    value="<%= productToEdit.productPrice%>">
-                                <br>
-                                <label class="form-product-label" for="productDiscount">Descuento:</label>
-                                <input type="number" name="productDiscount" id="productDiscount"
-                                    value="<%= productToEdit.productDiscount%>">
-                                <br>
-                                <label class="form-product-label" for="productCategory">Categoría:</label>
-                                <input type="radio" name="productCategory" value="Tinto"
-                                    <%=productToEdit.productCategory=="Tinto" ? 'checked' : '' %> > Tinto
-                                <input type="radio" name="productCategory" value="Espumante"
-                                    <%=productToEdit.productCategory=="Espumante" ? 'checked' : '' %> > Espumante
-                                <input type="radio" name="productCategory" value="Blanco"
-                                    <%=productToEdit.productCategory=="Blanco" ? 'checked' : '' %> > Blanco
-                                <input type="radio" name="productCategory" value="Espirituoso"
-                                    <%=productToEdit.productCategory=="Espirituoso" ? 'checked' : '' %> > Espirituoso
-                                <br>
-                                <label class="form-product-label" for="productScore">Estrellas:</label>
-                                <input type="number" name="productScore" id="productScore"
-                                    value="<%= productToEdit.productScore%>">
-                                <br>
-                                <label class="form-product-label" for="productPresentation">Presentación:</label>
-                                <input type="text" name="productPresentation" id="productPresentation"
-                                    value="<%= productToEdit.productPresentation%>">
-                                <br>
-                                <br>
-                                <label class="form-product-label" for="productDetail">Detalle:</label>
-                                <textarea name="productDetail"
-                                    id="productDetail"><%= productToEdit.productDetail%></textarea>
-                                <br>
-                                <button class="cart-btn5" type="submit">Editar</button>
-                            </form>
-                        </div>
-                    </section>
-                </section>
-                <%- include('../partials/footer') %>
-        </main>
+        <%- include('../partials/header') %>
+            <section class="main-margin">
+                <h1 class="form-product-title">Formulario de productos</h1>
+                <form class="form-product" action="/products/edit/<%= productToEdit.id%>?_method=PUT" method="POST">
+                    <label class="form-product-label" for="productName">Producto</label>
+                    <input class="form-product-input" type="text" name="productName" id="productName"
+                        value="<%= productToEdit.productName %>">
+                    <br>
+                    <label class="form-product-label" for="productPrice">Precio</label>
+                    <input class="form-product-input" type="number" name="productPrice" id="productPrice"
+                        value="<%= productToEdit.productPrice %>">
+                    <br>
+                    <label class="form-product-label" for="productCategory">Categoria</label>
+                    <div class="form-product-input">
+                        <select name="productCategory" id="productCategory">
+                            <option value="<%= productToEdit.productCategory %>">
+                                <%= productToEdit.productCategory %>
+                            </option>
+                            <option value="Tinto">Tinto</option>
+                            <option value="Espumante">Espumante</option>
+                            <option value="Blanco">Blanco</option>
+                            <option value="Espirituoso">Espirituoso</option>
+                        </select>
+                    </div>
+                    <br>
+                    <label class="form-product-label" for="productDetail">Descripción</label>
+                    <textarea class="form-product-input" type="text" name="productDetail"
+                        id="productDetail"> <%= productToEdit.productDetail %> </textarea>
+                    <br>
+                    <label class="form-product-label" for="productDiscount">Descuento</label>
+                    <input class="form-product-input" type="number" name="productDiscount" id="productDiscount"
+                        value="<%= productToEdit.productDiscount %>">
+                    <br>
+                    <label class="form-product-label" for="productScore">Score</label>
+                    <input class="form-product-input" type="number" name="productScore" id="productScore"
+                        value="<%= productToEdit.productScore %>">
+                    <br>
+                    <label class="form-product-label" for="productPresentation">Presentación</label>
+                    <input class="form-product-input" type="text" name="productPresentation" id="productPresentation"
+                        value="<%= productToEdit.productPresentation %>">
+                    <br>
+                    <!--<label class="form-product-label" for="imagen">Imagen</label>
+                    <input class="form-product-input" type="file" name="imagen" id="imagen"
+                        accept="image/jpg,image/png">-->
+                    <br>
+                    <button class="form-product-btn" type="submit">Editar</button>
+                    <input class="form-product-btn-reset" type="reset" value="Borrar">
+                </form>
+            </section>
+            <%- include('../partials/footer') %>
     </body>
 
-    </html>
+</html>
