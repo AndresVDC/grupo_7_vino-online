@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const usersController = require(path.join('..', 'controllers','usersController'));
 const multer= require('multer');
+const {check, validatorResult, body} = require('express-validator');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -22,7 +23,10 @@ router.post('/register', uploads.single('avatar'), usersController.save)
 
 router.get('/login', usersController.indexLogin)
 
-router.post('/login', usersController.ingreso)
+router.post('/login', [
+  check('email').isEmail().withMessage('El formato es invalido'),
+  check('password').isEmpty().withMessage('Debe completar la password')
+],usersController.ingreso)
 
 router.get('/profile/:id', usersController.profile)
 

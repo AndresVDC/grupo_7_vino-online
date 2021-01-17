@@ -9,18 +9,20 @@
                 <button class="button-facebook" name="facebook"><span class="fab fa-facebook-f"></span></button>
                 <button class="button-facebook1" name="facebook"><p>Ingresar con facebook</p></button>
             </div>
-
-            <form class="register"  method="post">
+            
+            <form class="register"  action='' method="post" novalidate>
                 <div class="text">
                     <p>O INGRESA TUS DATOS:</p>
                 </div>
 
                 <div class="container-dates">
-                    <input class="email" type="email" name="email" placeholder="E-mail">
+                    <input class="email" type="email" name="email" placeholder="E-mail" value='<%= data.email %>'>
+                    <p><%= typeof errors.email == 'undefined' ? "" : errors.email.msg %></p>
                 </div>
 
                 <div class="container-dates">
-                    <input class="password" type="password" name="password" placeholder="Ingrese su contraseña">
+                    <input class="password" type="password" name="password" placeholder="Ingrese su contraseña" value='<%= data.password %>'>
+                    <p><%= typeof errors.password == 'undefined' ? "" : errors.password.msg %></p>
                 </div>
 
                 <div class="send-or-reset">

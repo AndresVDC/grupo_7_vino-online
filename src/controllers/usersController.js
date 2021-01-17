@@ -3,6 +3,7 @@ let fs = require('fs');
 let bcrypt = require('bcrypt');
 let filePath= path.join('src', 'data', 'users.json');
 let users= fs.readFileSync(filePath, {encoding:"utf-8"});
+const {check, validationResult, body} = require('express-validator');
 
 //combierto el archivo en objeto
 users= JSON.parse(users)
@@ -47,19 +48,32 @@ const usersController= {
     //acá empieza todo lo que tiene que ver con el login
 
     indexLogin: (req,res) => {
-      res.render(path.join('users' ,'login.ejs'));
+      res.render(path.join('users' ,'login.ejs'),{
+        data: {},
+        errors: []
+      });
     },
 
     ingreso: (req,res) => {
-      let users= fs.readFileSync(filePath, {encoding:"utf-8"});
-      users= JSON.parse(users);
+      
+      let validator = validationResult(req);
+      if(!validator.isEmpty()) {
+        
+        let users= fs.readFileSync(filePath, {encoding:"utf-8"});
+        users= JSON.parse(users);
+
 
       for (let i= 0; i < users.length; i++){
         if(req.body.email == users[i].email && bcrypt.compareSync(req.body.password, users[i].password)){
           res.render(path.join('users', 'buttom'), {user: users[i]})
         }
       }
-        res.send('Error al comparar datos')
+        res.render(path.join('users' ,'login.ejs'),{
+          errors: validator.mapped(),
+          data: req.body
+        })
+      }
+    
     },
 
 
