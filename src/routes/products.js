@@ -44,8 +44,4 @@ router.get('/:id', productController.detail)
 
 
 
-router.get("/productCart-empty", (req, res) => {
-  res.render('products/productCart-empty',)
-})
-
 module.exports = router;

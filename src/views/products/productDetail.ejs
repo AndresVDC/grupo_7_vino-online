@@ -7,9 +7,6 @@
                     <section class="productDetail">
                         <div class="productDetail-container1">
                             <img class="productDetail-container-image" src="<%= product.img %>" alt="">
-                            <p class="productDetail-container-score">
-                                <%= product.productScore %> Estrellas
-                            </p>
                         </div>
                         <div class="productDetail-container2">
                             <h4 class="productDetail-container-productName">
@@ -28,6 +25,9 @@
                                     <%=product.productDiscount%>%off
                                 </span>
                             </div>
+                            <span class="productDetail-container-unitsPerProduct">
+                                <%= product.productScore %> Estrellas
+                            </span>
                             <span class="productDetail-container-unitsPerProduct">
                                 <%= product.productPresentation %>
                             </span>

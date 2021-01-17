@@ -605,7 +605,7 @@ footer h4{
 }
 .cart-article-container-img{
   display: block;
-  width: 100%;
+  max-width: 120px;
   padding: 0px;
 
 }
