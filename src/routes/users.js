@@ -25,7 +25,7 @@ router.get('/login', usersController.indexLogin)
 
 router.post('/login', [
   check('email').isEmail(),
-  check('password').isLength({min:8})
+  check('password').isEmpty()
 ],usersController.ingreso)
 
 router.get('/profile/:id', usersController.profile)
