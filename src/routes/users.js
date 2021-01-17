@@ -24,8 +24,8 @@ router.post('/register', uploads.single('avatar'), usersController.save)
 router.get('/login', usersController.indexLogin)
 
 router.post('/login', [
-  check('email').isEmail(),
-  check('password').isEmpty()
+  check('email').isEmail().withMessage('El formato es invalido'),
+  check('password').isEmpty().withMessage('Debe completar la password')
 ],usersController.ingreso)
 
 router.get('/profile/:id', usersController.profile)
