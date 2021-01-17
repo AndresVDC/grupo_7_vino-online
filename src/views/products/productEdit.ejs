@@ -9,11 +9,15 @@
                     <label class="form-product-label" for="productName">Producto</label>
                     <input class="form-product-input" type="text" name="productName" id="productName"
                         value="<%= productToEdit.productName %>">
-                    <br>
+                    <p class="form-error">
+                        <%= typeof errors.productName=='undefined' ? '' : errors.productName.msg%>
+                    </p>
                     <label class="form-product-label" for="productPrice">Precio</label>
-                    <input class="form-product-input" type="number" name="productPrice" id="productPrice"
+                    <input class="form-product-input" type="text" name="productPrice" id="productPrice"
                         value="<%= productToEdit.productPrice %>">
-                    <br>
+                    <p class="form-error">
+                        <%= typeof errors.productPrice=='undefined' ? '' : errors.productPrice.msg%>
+                    </p>
                     <label class="form-product-label" for="productCategory">Categoria</label>
                     <div class="form-product-input">
                         <select name="productCategory" id="productCategory">
@@ -29,20 +33,28 @@
                     <br>
                     <label class="form-product-label" for="productDetail">Descripción</label>
                     <textarea class="form-product-input" type="text" name="productDetail"
-                        id="productDetail"> <%= productToEdit.productDetail %> </textarea>
-                    <br>
+                        id="productDetail"><%= productToEdit.productDetail %></textarea>
+                    <p class="form-error">
+                        <%= typeof errors.productDetail=='undefined' ? '' : errors.productDetail.msg%>
+                    </p>
                     <label class="form-product-label" for="productDiscount">Descuento</label>
-                    <input class="form-product-input" type="number" name="productDiscount" id="productDiscount"
+                    <input class="form-product-input" type="text" name="productDiscount" id="productDiscount"
                         value="<%= productToEdit.productDiscount %>">
-                    <br>
+                    <p class="form-error">
+                        <%= typeof errors.productDiscount=='undefined' ? '' : errors.productDiscount.msg%>
+                    </p>
                     <label class="form-product-label" for="productScore">Score</label>
-                    <input class="form-product-input" type="number" name="productScore" id="productScore"
+                    <input class="form-product-input" type="text" name="productScore" id="productScore"
                         value="<%= productToEdit.productScore %>">
-                    <br>
+                    <p class="form-error">
+                        <%= typeof errors.productScore=='undefined' ? '' : errors.productScore.msg%>
+                    </p>
                     <label class="form-product-label" for="productPresentation">Presentación</label>
                     <input class="form-product-input" type="text" name="productPresentation" id="productPresentation"
                         value="<%= productToEdit.productPresentation %>">
-                    <br>
+                    <p class="form-error">
+                        <%= typeof errors.productPresentation=='undefined' ? '' : errors.productPresentation.msg%>
+                    </p>
                     <!--<label class="form-product-label" for="imagen">Imagen</label>
                     <input class="form-product-input" type="file" name="imagen" id="imagen"
                         accept="image/jpg,image/png">-->

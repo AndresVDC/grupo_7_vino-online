@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator')
 const path = require('path')
 const fileController = require(path.join('..', 'controllers', 'fileController'))
 //variable en la que se declara el archivo producto.
@@ -8,8 +9,7 @@ const productController = {
         res.render(path.join('products', 'productList'), { products: products })
     },
     create: (req, res) => {
-
-        res.render(path.join('products', 'formProduct'))
+        res.render(path.join('products', 'formProduct'), { errors: {}, nuevoProducto: {} })
     },
     save: (req, res) => {
         let products = fileController.openFile(productsJson)
@@ -46,7 +46,13 @@ const productController = {
             productPresentation: req.body.productPresentation,
             productCategory: req.body.productCategory
         }
-        //Falta ver como ordenar el array de objetos antes de guardar.
+
+        //Detección de errores
+        let errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.render(path.join('products', 'formProduct'), { errors: errors.mapped(), nuevoProducto: nuevoProducto })
+        }
+
         products.push(nuevoProducto)
         fileController.saveFile(products, productsJson)
         res.redirect('/products')
@@ -100,11 +106,13 @@ const productController = {
         let products = fileController.openFile(productsJson)
         let produtId = req.params.id
         let productToEdit = products[produtId - 1]
-        res.render(path.join('products', 'productEdit'), { productToEdit: productToEdit })
+        let errors = {}
+        res.render(path.join('products', 'productEdit'), { productToEdit: productToEdit, errors: errors })
     },
     actualizar: (req, res) => {
         let products = fileController.openFile(productsJson)
-        console.log(req.body)
+        //Se lee el archivo para encotrar el objeto y poder mostrar los datos en caso de error.
+        let produtId = req.params.id
         products.forEach(element => {
             if (element.id == req.params.id) {
                 element.productName = req.body.productName
@@ -116,6 +124,13 @@ const productController = {
                 element.productPresentation = req.body.productPresentation
             }
         });
+        let productToEdit = products[produtId - 1]
+        //Detección de errores
+        let errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.render(path.join('products', 'productEdit'), { errors: errors.mapped(), productToEdit: productToEdit })
+        }
+
         fileController.saveFile(products, productsJson)
         res.redirect('/products')
     },
