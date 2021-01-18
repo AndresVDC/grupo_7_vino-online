@@ -65,7 +65,7 @@ const usersController= {
 
       for (let i= 0; i < users.length; i++){
         if(req.body.email == users[i].email && bcrypt.compareSync(req.body.password, users[i].password)){
-          res.render(path.join('users', 'buttom'), {user: users[i]})
+          res.redirect('/');
         }
       }
         res.render(path.join('users' ,'login.ejs'),{
