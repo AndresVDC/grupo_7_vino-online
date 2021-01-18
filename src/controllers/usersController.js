@@ -65,6 +65,13 @@ const usersController= {
 
       for (let i= 0; i < users.length; i++){
         if(req.body.email == users[i].email && bcrypt.compareSync(req.body.password, users[i].password)){
+          delete users.password; // borramos la password del objeto.
+          req.session.users = users //creamos la session.users con los datos de users menos la pass.
+
+          if(req.body.remember){
+            res.cookie('usuario', users.email, { maxAge:1000 * 60 * 60})
+            res.locals.usuario = req.session.users
+          }
           res.redirect('/');
         }
       }
