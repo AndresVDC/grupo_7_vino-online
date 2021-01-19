@@ -227,14 +227,6 @@ const usersController= {
     profileEditDelete: (req,res) => {
       let id= req.params.id;
       let user = users[id];
-      //let eliminar;
-
-      //for (let i= 0; i < users.length; i++){
-        //if (id == users[i].id){
-          //eliminar = users.splice(id, 1)
-
-          //users= JSON.stringify(users)
-          //fs.writeFileSync(filePath, users)
 
           res.render(path.join('users', 'userDelete'), {user: user})
     },
