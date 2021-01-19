@@ -226,8 +226,21 @@ const usersController= {
 
     profileEditDelete: (req,res) => {
       let id= req.params.id;
-      let users= fs.readFileSync(filePath, {encoding:"utf-8"});
-      users= JSON.parse(users);
+      let user = users[id];
+      //let eliminar;
+
+      //for (let i= 0; i < users.length; i++){
+        //if (id == users[i].id){
+          //eliminar = users.splice(id, 1)
+
+          //users= JSON.stringify(users)
+          //fs.writeFileSync(filePath, users)
+
+          res.render(path.join('users', 'userDelete'), {user: user})
+    },
+
+    profileConfirmDelete: (req,res) => {
+      let id= req.params.id;
       let eliminar;
 
       for (let i= 0; i < users.length; i++){
@@ -237,10 +250,9 @@ const usersController= {
           users= JSON.stringify(users)
           fs.writeFileSync(filePath, users)
 
-          res.redirect(path.join('users', 'login'))
+          res.redirect('/')
         }
       }
-
     },
 
 }
