@@ -54,12 +54,13 @@ const usersController= {
       });
     },
 
+
     ingreso: (req,res) => {
-      
+
       let validator = validationResult(req);
       if(!validator.isEmpty()) {
-        
-      let user = {...users.find(user => user.email === req.body.email)}  
+
+      let user = {...users.find(user => user.email === req.body.email)}
 
       if (user != undefined){
         if(req.body.email == user.email && bcrypt.compareSync(req.body.password, user.password)){
@@ -78,7 +79,22 @@ const usersController= {
           data: req.body
         })
       }
-    
+
+    },
+
+
+    changePassword: (req,res) =>{
+      res.render(path.join('..', 'views', 'users', 'changePassword.ejs'))
+    },
+
+    changePasswordSave: (req,res) =>{
+      let email= req.body.email
+
+      for (let i= 0; i< users.length; i++){
+        if (email == users[i].email){
+          res.render(path.join('users', 'changePasswordSave'), {user: users[i]})
+        }
+      }
     },
 
 

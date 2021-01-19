@@ -23,6 +23,10 @@ router.post('/register', uploads.single('avatar'), usersController.save)
 
 router.get('/login', usersController.indexLogin)
 
+router.get('/changePassword', usersController.changePassword)
+
+router.post('/changePassword', usersController.changePasswordSave)
+
 router.post('/login', [
   check('email').isEmail().withMessage('El formato es invalido'),
   check('password').isEmpty().withMessage('Debe completar la password')
