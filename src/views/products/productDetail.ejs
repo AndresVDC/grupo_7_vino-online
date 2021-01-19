@@ -40,11 +40,13 @@
                                 <div class="productDetail-container-addToCart">
                                     <button class="cart-btn5">Agregar al carrito</button>
                                 </div>
+                                <% if (locals.user.category == 'Administrador') { %>
                                 <form class="productDetail-container-btn" action="delete/<%=product.id%>?_method=DELETE"
                                     method="POST">
                                     <a class="cart-btn51" href="edit/<%=product.id%>"><span>Editar producto</span></a>
                                     <button class="cart-btn52" type="submit">Borrar producto</button>
                                 </form>
+                                <% } %>
                             </div>
                         </div>
                     </section>
