@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 
 app.use(session({
   secret: "Amiga-UCO",
-  revase: false,
+  resave: false,
   saveUninitialized: true 
 }))
 app.use(logger('dev'));
