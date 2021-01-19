@@ -59,14 +59,12 @@ const usersController= {
       let validator = validationResult(req);
       if(!validator.isEmpty()) {
         
-        let users= fs.readFileSync(filePath, {encoding:"utf-8"});
-        users= JSON.parse(users);
+      let user = {...users.find(user => user.email === req.body.email)}  
 
-
-      for (let i= 0; i < users.length; i++){
-        if(req.body.email == users[i].email && bcrypt.compareSync(req.body.password, users[i].password)){
-          delete users.password; // borramos la password del objeto.
-          req.session.users = users //creamos la session.users con los datos de users menos la pass.
+      if (user != undefined){
+        if(req.body.email == user.email && bcrypt.compareSync(req.body.password, user.password)){
+          delete user.password; // borramos la password del objeto.
+          req.session.users = user //creamos la session.users con los datos de users menos la pass.
 
           if(req.body.remember){
             res.cookie('usuario', users.email, { maxAge:1000 * 60 * 60})
