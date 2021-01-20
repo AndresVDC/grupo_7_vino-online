@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const usersController = require(path.join('..', 'controllers','usersController'));
+const routeMiddleware = require (path.join('..','midlleware', 'routeMiddleware'));
 const multer= require('multer');
 const {check, validatorResult, body} = require('express-validator');
 
@@ -15,13 +16,13 @@ var storage = multer.diskStorage({
 })
 var uploads = multer({ storage: storage })
 //REGISTER
-router.get('/register', usersController.indexRegister)
+router.get('/register', routeMiddleware.logueado ,usersController.indexRegister)
 
 router.post('/register', uploads.single('avatar'), usersController.save)
 
 //LOGIN
 
-router.get('/login', usersController.indexLogin)
+router.get('/login', routeMiddleware.logueado, usersController.indexLogin)
 
 router.get('/changePassword', usersController.changePassword)
 
