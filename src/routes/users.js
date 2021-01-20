@@ -18,7 +18,7 @@ var uploads = multer({ storage: storage })
 //REGISTER
 router.get('/register', routeMiddleware.logueado ,usersController.indexRegister)
 
-router.post('/register', uploads.single('avatar'), usersController.save)
+router.post('/register' usersController.save)
 
 //LOGIN
 
