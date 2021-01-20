@@ -137,6 +137,12 @@ const productController = {
     cart: (req, res) => {
         res.render(path.join('products', 'productCart'))
     },
+    addToCart: (req, res) => {
+        var cart = req.body
+        req.session.cart = cart
+        console.log(req.session.cart);
+        res.render(path.join('..', 'views', 'products', 'productCart'))
+    },
     delete: (req, res) => {
         let products = fileController.openFile(productsJson)
         let filtrados

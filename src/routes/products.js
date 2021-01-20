@@ -41,6 +41,7 @@ router.put('/edit/:id',[
 ], productController.actualizar)
 router.delete('/delete/:id', productController.delete)
 router.get('/:id', productController.detail)
+router.post('/addToCart',productController.addToCart)
 
 
 
