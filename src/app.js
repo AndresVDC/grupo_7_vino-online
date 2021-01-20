@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var methodOverride = require('method-override');
 var session = require('express-session')
+var authentication = require('./midlleware/authentication');
 
 var app = express();
 
@@ -19,14 +20,20 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
-app.use(session({secret: "Amiga-UCO"}))
+app.use(session({
+  secret: "Amiga-UCO",
+  resave: false,
+  saveUninitialized: true 
+}))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, 'uploads')));
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
+app.use(authentication);
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);

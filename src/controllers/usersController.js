@@ -54,18 +54,24 @@ const usersController= {
       });
     },
 
+
     ingreso: (req,res) => {
-      
+
       let validator = validationResult(req);
       if(!validator.isEmpty()) {
-        
-        let users= fs.readFileSync(filePath, {encoding:"utf-8"});
-        users= JSON.parse(users);
 
+      let user = {...users.find(user => user.email === req.body.email)}
 
-      for (let i= 0; i < users.length; i++){
-        if(req.body.email == users[i].email && bcrypt.compareSync(req.body.password, users[i].password)){
-          res.render(path.join('users', 'buttom'), {user: users[i]})
+      if (user != undefined){
+        if(req.body.email == user.email && bcrypt.compareSync(req.body.password, user.password)){
+          delete user.password; // borramos la password del objeto.
+          req.session.users = user //creamos la session.users con los datos de users menos la pass.
+
+          if(req.body.remember){
+            res.cookie('usuario', users.email, { maxAge:1000 * 60 * 60})
+            res.locals.usuario = req.session.users
+          }
+          res.redirect('/');
         }
       }
         res.render(path.join('users' ,'login.ejs'),{
@@ -73,7 +79,22 @@ const usersController= {
           data: req.body
         })
       }
-    
+
+    },
+
+
+    changePassword: (req,res) =>{
+      res.render(path.join('..', 'views', 'users', 'changePassword.ejs'))
+    },
+
+    changePasswordSave: (req,res) =>{
+      let email= req.body.email
+
+      for (let i= 0; i< users.length; i++){
+        if (email == users[i].email){
+          res.render(path.join('users', 'changePasswordSave'), {user: users[i]})
+        }
+      }
     },
 
 
@@ -205,8 +226,13 @@ const usersController= {
 
     profileEditDelete: (req,res) => {
       let id= req.params.id;
-      let users= fs.readFileSync(filePath, {encoding:"utf-8"});
-      users= JSON.parse(users);
+      let user = users[id];
+
+          res.render(path.join('users', 'userDelete'), {user: user})
+    },
+
+    profileConfirmDelete: (req,res) => {
+      let id= req.params.id;
       let eliminar;
 
       for (let i= 0; i < users.length; i++){
@@ -216,10 +242,9 @@ const usersController= {
           users= JSON.stringify(users)
           fs.writeFileSync(filePath, users)
 
-          res.redirect(path.join('users', 'login'))
+          res.redirect('/')
         }
       }
-
     },
 
 }

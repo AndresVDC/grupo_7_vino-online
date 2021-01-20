@@ -17,10 +17,17 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="dropdown-content">
+                    <% if (locals.user.category == 'Administrador') { %>
                     <a href="/../products/create">Vender</a>
+                    <% } %>
+                    <% if (locals.user.category == 'Administrador' || locals.user.category == 'Usuario') { %>
+                    <a href="/users/profile/<%= locals.user.id%>"> Perfil</a>
+                    <% } %>
                     <a href="/../products/productCart">Carrito</a>
+                    <% if (locals.user == false) { %>
                     <a href="/../users/register">Registro</a>
                     <a href="/../users/login">Login</a>
+                    <% } %>
                 </div>
             </div>
         </div>

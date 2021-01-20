@@ -5,14 +5,17 @@
         <%- include('../partials/header') %>
 
         <section class="container-form">
-            <div class="register-with-facebook">
-                <button class="button-facebook" name="facebook"><span class="fab fa-facebook-f"></span></button>
-                <button class="button-facebook1" name="facebook"><p>Ingresar con facebook</p></button>
-            </div>
+
+          <div class="register-with-facebook">
+              <a href="https://es-la.facebook.com/"><button class="button-facebook" name="facebook"><span class="fab fa-facebook-f"></span></button></a>
+              <a href="https://es-la.facebook.com/"><button class="button-facebook1" name="facebook">
+                  <p>Ingresar con facebook</p>
+              </button></a>
+          </div>
             
             <form class="register"  action='' method="post" novalidate>
                 <div class="text">
-                    <p>O INGRESA TUS DATOS:</p>
+                    <p>INGRESA TUS DATOS:</p>
                 </div>
 
                 <div class="container-dates">
@@ -24,7 +27,9 @@
                     <input class="password" type="password" name="password" placeholder="Ingrese su contraseña" value='<%= data.password %>'>
                     <p><%= typeof errors.password == 'undefined' ? "" : errors.password.msg %></p>
                 </div>
-
+                <div class="">
+                    <input type="checkbox" name="remember" id="remember" class="remember"><label for="remember">Recordarme</label>
+                </div>
                 <div class="send-or-reset">
                     <button class="btn-form-enter" type="submit" name="send">Ingresar</button>
                     <button class="btn-form-delete" type="reset" name="reset">Borrar contenido</button>
@@ -33,10 +38,13 @@
 
 
                 <div class="go-to-page">
-                    <a href="#">Olvidé mi contraseña</a>
+                    <a href="changePassword">Olvidé mi contraseña</a>
                     <a href="register">¿No tengo cuenta?</a>
                 </div>
             </form>
+            <br>
+            <br>
+            <br>
         </section>
 
         <%- include('../partials/footer') %>

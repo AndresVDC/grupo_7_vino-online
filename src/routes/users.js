@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const usersController = require(path.join('..', 'controllers','usersController'));
+const routeMiddleware = require (path.join('..','midlleware', 'routeMiddleware'));
 const multer= require('multer');
 const {check, validatorResult, body} = require('express-validator');
 
@@ -15,13 +16,17 @@ var storage = multer.diskStorage({
 })
 var uploads = multer({ storage: storage })
 //REGISTER
-router.get('/register', usersController.indexRegister)
+router.get('/register', routeMiddleware.logueado ,usersController.indexRegister)
 
 router.post('/register', uploads.single('avatar'), usersController.save)
 
 //LOGIN
 
-router.get('/login', usersController.indexLogin)
+router.get('/login', routeMiddleware.logueado, usersController.indexLogin)
+
+router.get('/changePassword', usersController.changePassword)
+
+router.post('/changePassword', usersController.changePasswordSave)
 
 router.post('/login', [
   check('email').isEmail().withMessage('El formato es invalido'),
@@ -31,6 +36,8 @@ router.post('/login', [
 router.get('/profile/:id', usersController.profile)
 
 router.get('/profile/:id/edit', usersController.profileEdit)
+
+router.get('/profile/:id/delete', usersController.profileConfirmDelete)
 
 router.patch('/profile/:id', usersController.profileEditPatch)
 

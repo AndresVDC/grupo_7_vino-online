@@ -1,0 +1,18 @@
+
+<%- include('../partials/head') %>
+
+<body>
+    <main class= "main_user_created">
+        <%- include('../partials/header') %>
+
+        <section class= "user_created">
+          <h1>¡<%= user.first_name%>!<br>Estás seguro de querer continuar con la operación</h1>
+
+            <a href="/users/profile/<%= user.id%>/delete"><button class=go-to-login type="button" name="button">Continuar</button></a>
+
+        </section>
+
+          <%- include('../partials/footer') %>
+
+    </main>
+</body>
