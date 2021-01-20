@@ -24,14 +24,15 @@ router.post('/register', usersController.save)
 
 router.get('/login', routeMiddleware.logueado, usersController.indexLogin)
 
-router.get('/changePassword', usersController.changePassword)
-
-router.post('/changePassword', usersController.changePasswordSave)
-
 router.post('/login', [
   check('email').isEmail().withMessage('El formato es invalido'),
   check('password').isEmpty().withMessage('Debe completar la password')
 ],usersController.ingreso)
+
+router.get('/changePassword', usersController.changePassword)
+
+router.post('/changePassword', usersController.changePasswordSave)
+
 
 router.get('/profile/:id', usersController.profile)
 
