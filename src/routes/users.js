@@ -26,7 +26,7 @@ router.get('/login', routeMiddleware.logueado, usersController.indexLogin)
 
 router.post('/login', [
   check('email').isEmail().withMessage('El formato de email es invalido'),
-  check('password').isLength({min:6}).withMessage('La password debe tener 6 caracteres como minimo')
+  check('password').isLength({min:4}).withMessage('La password debe tener 6 caracteres como minimo')
 ],usersController.ingreso)
 
 router.get('/changePassword', usersController.changePassword)
