@@ -1,6 +1,6 @@
 let path = require('path');
 let fs = require('fs');
-let bcrypt = require('bcrypt');
+let bcrypt = require('bcryptjs');//usar siempre BCRYPTJS
 let filePath= path.join('src', 'data', 'users.json');
 let users= fs.readFileSync(filePath, {encoding:"utf-8"});
 const {check, validationResult, body} = require('express-validator');
@@ -15,6 +15,7 @@ const usersController= {
     },
 
     save: (req,res) => {
+      
       let id = null
         for (let i= 0; i < users.length; i++){
           id = id+1;
@@ -28,7 +29,7 @@ const usersController= {
           password: bcrypt.hashSync(req.body.password, 10),
           avatar: 'avatar-default.png'
         };
-
+        
         if(newUser.first_name == '' || newUser.last_name == '' || newUser.category == '' || newUser.email == '' || newUser.password == ''){
             res.send('No completo bien los campos')
         }else{
@@ -56,10 +57,10 @@ const usersController= {
 
 
     ingreso: (req,res) => {
-
+      
       let validator = validationResult(req);
-      if(!validator.isEmpty()) {
-
+      if(validator.isEmpty()) { // en el IF pregunta si validator está vacia.  
+        console.log(validator.mapped())
       let user = {...users.find(user => user.email === req.body.email)}
 
       if (user != undefined){
@@ -74,11 +75,12 @@ const usersController= {
           res.redirect('/');
         }
       }
-        res.render(path.join('users' ,'login.ejs'),{
+    }
+        res.render('users/login',{
           errors: validator.mapped(),
           data: req.body
         })
-      }
+      
 
     },
 
