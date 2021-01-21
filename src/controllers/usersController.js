@@ -10,7 +10,7 @@ const {check, validationResult, body} = require('express-validator');
 
 const usersController= {
     indexRegister: (req, res) => {
-        res.render(path.join('..', 'views', 'users', 'register.ejs'))
+        res.render('users/register')
     },
 
     save: (req,res) => {
@@ -40,7 +40,7 @@ const usersController= {
             //sobreescribo el archivo con todos los usuarios mas el nuevo
             fs.writeFileSync(filePath, users)
 
-            res.render(path.join('..', 'views', 'users', 'userCreate.ejs'), {newUser: newUser})
+            res.render('users/userCreate', {newUser: newUser})
         }
 
     },
@@ -48,7 +48,7 @@ const usersController= {
     //acá empieza todo lo que tiene que ver con el login
 
     indexLogin: (req,res) => {
-      res.render(path.join('users' ,'login.ejs'),{
+      res.render('users/login',{
         data: {},
         errors: []
       });
@@ -85,7 +85,7 @@ const usersController= {
 
 
     changePassword: (req,res) =>{
-      res.render(path.join('..', 'views', 'users', 'changePassword.ejs'))
+      res.render('users/changePassword')
     },
 
     changePasswordSave: (req,res) =>{
@@ -93,7 +93,7 @@ const usersController= {
 
       for (let i= 0; i< users.length; i++){
         if (email == users[i].email){
-          res.render(path.join('users', 'changePasswordSave'), {user: users[i]})
+          res.render('users/changePasswordSave', {user: users[i]})
         }
       }
     },
@@ -106,7 +106,7 @@ const usersController= {
 
       for (let i= 0; i< users.length; i++){
         if (id == users[i].id){
-          res.render(path.join('users', 'userProfile'), {user: users[i]})
+          res.render('users/userProfile', {user: users[i]})
         }
       }
 
@@ -120,7 +120,7 @@ const usersController= {
 
       for (let i= 0; i < users.length; i++){
         if (id == users[i].id){
-          res.render(path.join('users', 'editProfile'), {user: users[i]})
+          res.render('users/editProfile', {user: users[i]})
         }
       }
 
@@ -150,7 +150,7 @@ const usersController= {
         users= JSON.stringify(users)
         fs.writeFileSync(filePath, users)
 
-        res.redirect(path.join('users', 'login'))
+        res.redirect('users/login')
 
       }else{
         res.send('No colocó bien su contraseña')
@@ -161,7 +161,7 @@ const usersController= {
       let id = req.params.id
 
       let user= users[id]
-      res.render(path.join('users', 'editAvatar'), {user: user})
+      res.render('users/editAvatar', {user: user})
     },
 
     profileEditPatchAvatar: (req,res) => {
@@ -183,7 +183,7 @@ const usersController= {
           users= JSON.stringify(users)
           fs.writeFileSync(filePath, users)
 
-          res.redirect(path.join('users', 'login'))
+          res.redirect('users/login')
         }else{
           res.send('no colocó bien su contraseña')
         }
@@ -193,7 +193,7 @@ const usersController= {
       let id = req.params.id
 
       let user= users[id]
-      res.render(path.join('users', 'editPassword'), {user: user})
+      res.render('users/editPassword', {user: user})
     },
 
     profileEditPatchPassword: (req,res) => {
@@ -216,7 +216,7 @@ const usersController= {
           users= JSON.stringify(users)
           fs.writeFileSync(filePath, users)
 
-          res.redirect(path.join('users', 'login'))
+          res.redirect('users/login')
         }else{
           res.send('Colocó mal su nueva contraseña')
         }
@@ -229,7 +229,7 @@ const usersController= {
       let id= req.params.id;
       let user = users[id];
 
-          res.render(path.join('users', 'userDelete'), {user: user})
+          res.render('users/userDelete', {user: user})
     },
 
     profileConfirmDelete: (req,res) => {
