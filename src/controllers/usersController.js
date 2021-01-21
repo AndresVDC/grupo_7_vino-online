@@ -2,11 +2,10 @@ let path = require('path');
 let fs = require('fs');
 let bcrypt = require('bcryptjs');//usar siempre BCRYPTJS
 let filePath= path.join('src', 'data', 'users.json');
-let users= fs.readFileSync(filePath, {encoding:"utf-8"});
+let users= JSON.parse(fs.readFileSync(filePath, {encoding:"utf-8"}));
 const {check, validationResult, body} = require('express-validator');
 
-//combierto el archivo en objeto
-users= JSON.parse(users)
+
 
 
 const usersController= {
@@ -60,7 +59,7 @@ const usersController= {
       
       let validator = validationResult(req);
       if(validator.isEmpty()) { // en el IF pregunta si validator está vacia.  
-        console.log(validator.mapped())
+        
       let user = {...users.find(user => user.email === req.body.email)}
 
       if (user != undefined){
