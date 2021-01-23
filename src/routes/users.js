@@ -18,20 +18,21 @@ var uploads = multer({ storage: storage })
 //REGISTER
 router.get('/register', routeMiddleware.logueado ,usersController.indexRegister)
 
-router.post('/register', uploads.single('avatar'), usersController.save)
+router.post('/register', usersController.save)
 
 //LOGIN
 
 router.get('/login', routeMiddleware.logueado, usersController.indexLogin)
 
+router.post('/login', [
+  check('email').isEmail().withMessage('El formato de email es invalido'),
+  check('password').isLength({min:4}).withMessage('La password debe tener 6 caracteres como minimo')
+],usersController.ingreso)
+
 router.get('/changePassword', usersController.changePassword)
 
 router.post('/changePassword', usersController.changePasswordSave)
 
-router.post('/login', [
-  check('email').isEmail().withMessage('El formato es invalido'),
-  check('password').isEmpty().withMessage('Debe completar la password')
-],usersController.ingreso)
 
 router.get('/profile/:id', usersController.profile)
 

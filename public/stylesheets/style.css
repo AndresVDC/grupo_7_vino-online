@@ -13,6 +13,9 @@ main {
 }
 
 /* Barra de navegación */
+.flex{
+  display: flex;
+}
 .nav-bar{
     font-size: 17px;
     background: rgb(61, 155, 218);

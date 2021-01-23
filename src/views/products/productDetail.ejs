@@ -33,23 +33,23 @@
                             </span>
                             <div class="productDetail-container-containerUnit">
                                 <form action="addToCart" method="POST">
-                                <div class="cart-container-btn">
-                                    <button class="cart-button"><i class="fas fa-minus-circle cart-icon"></i></button>
+                                    <i class="fas fa-minus-circle cart-icon"></i>
                                     <input class="cart-counter" type="text" id="counter" name="counter" value="1">
-                                    <input hidden value="<%=product.id%>" name="id"
-                                    <button class="cart-button"><i class="fas fa-plus-circle cart-icon"></i></button>
-                                </div>
-                                <div class="productDetail-container-addToCart">
+                                    <input hidden value="<%=product.id%>" name="id">
+                                    <i class="fas fa-plus-circle cart-icon"></i>
                                     <button class="cart-btn5">Agregar al carrito</button>
-                                </div>
-                                <% if (locals.user.category == 'Administrador') { %>
-                                <form class="productDetail-container-btn" action="delete/<%=product.id%>?_method=DELETE"
-                                    method="POST">
-                                    <a class="cart-btn51" href="edit/<%=product.id%>"><span>Editar producto</span></a>
-                                    <button class="cart-btn52" type="submit">Borrar producto</button>
-                                </form>
-                                <% } %>
                             </div>
+                            <div class="flex">
+                                <% if (locals.user.category=='Administrador' ) { %>
+                                    <form class="productDetail-container-btn"
+                                        action="delete/<%=product.id%>?_method=DELETE" method="POST">
+                                        <a class="cart-btn51" href="edit/<%=product.id%>"><span>Editar
+                                                producto</span></a>
+                                        <button class="cart-btn52" type="submit">Borrar producto</button>
+                                    </form>
+                                    <% } %>
+                            </div>
+
                         </div>
                     </section>
                     <section class="card-banner">
