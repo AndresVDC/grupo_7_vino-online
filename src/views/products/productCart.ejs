@@ -1,58 +1,89 @@
 <%- include('../partials/head') %>
+
     <body>
         <%- include('../partials/header') %>
             <main class="productCart">
                 <section class="main-margin">
-                    <section class="cart-article-container-empty">
-                        <i class="fas fa-shopping-cart"></i>
-                        <div class="cart-empty-cart">
-                            Tu carrito esta vacio
-                        </div>
-                        <button class="cart-return" type="submit"><a class="cart-return" href="/">Volver a la
-                                tienda</a></button>
-                    </section>
-                    <div class="container-sections">
-                        <section class="cart-article-container">
-                            <article class="cart-article-container-left">
-                                <img class="cart-article-container-img" src="/images/vino-productcart.jpg" alt="">
-                            </article>
-                            <article class="cart-article-container-right">
-                                <h1 class="cart-article-container-title">Lorem, ipsum dolor.</h1>
-                                <div class="cart-article-container-price">$4650,00</div>
-                                <div class="cart-article-container-offer">$3720,00 (20% off)</div>
-                                <div class="cart-container-btn">
-                                    <button class="cart-button"><i class="fas fa-minus-circle cart-icon"></i></button>
-                                    <input class="cart-counter" type="text" id="counter" class="form-control" value="1">
-                                    <button class="cart-button"><i class="fas fa-plus-circle cart-icon"></i></button>
-                                    <span class="cart-delete-product">Eliminar producto</span>
-                            </article>
-                        </section>
-                        <section>
-                            <div class="cart-description">
-                                <div class="cart-item-a">SUBTOTAL(#items)</div>
-                                <div class="cart-item-b">$3720,00</div>
+                    <% if (empty) { %>
+                        <section class="cart-article-container-empty">
+                            <i class="fas fa-shopping-cart"></i>
+                            <div class="cart-empty-cart">
+                                Tu carrito esta vacio
                             </div>
+                            <button class="cart-return" type="submit"><a class="cart-return" href="/">Volver a la
+                                    tienda</a></button>
                         </section>
-                        <section>
-                            <div class="cart-description">
-                                <div class="cart-item-a">ENVIO</div>
-                                <div class="cart-item-b">CODIGO POSTAL</div>
-                            </div>
-                        </section>
-                        <section>
-                            <div class="cart-description">
-                                <div class="cart-item-a">TOTAL</div>
-                                <div class="cart-item-b">$3720,00</div>
-                            </div>
-                        </section>
-                        <section>
-                            <div>
-                                <button class="cart-btn3"><a class=cart-btn3 href="/">Seguir
-                                        comprando</a></button><button class="cart-btn4" type="submit">Finalizar
-                                    compra</button>
-                            </div>
-                        </section>
-                    </div>
+                        <% } else{ %>
+                            <%productsToShow.forEach(element=> { %>
+                                <section class="container-productList">
+                                    <a href="/products/<%= element.id %>">
+                                        <div class="container-productList-img">
+                                            <img src="<%= element.img%>" alt="">
+                                        </div>
+                                    </a>
+                                    <div class="container-productList-info">
+                                        <h4 class="productDetail-container-productName">
+                                            <%= element.productName %>
+                                        </h4>
+                                        <span class="productDetail-container-price">$
+                                            <%=(element.productPrice-element.productPrice*element.productDiscount
+                                                /100).toFixed(2) %>
+                                        </span>
+                                        <div class="productDetail-container3">
+                                            <span class="offers-container-card-realPrice">$
+                                                <%=element.productPrice%>
+                                            </span>
+                                            <span class="offers-container-card-discount">
+                                                <%=element.productDiscount%>%off
+                                            </span>
+                                        </div>
+                                        <p class="productDetail-container-unitsPerProduct">
+                                            <%= element.productPresentation %>
+                                        </p>
+                                        <div class="cart-container-btn">
+                                            <i class="fas fa-minus-circle cart-icon"></i>
+                                            <input class="cart-counter" type="text" id="counter" class="form-control"
+                                                value="1">
+                                            <i class="fas fa-plus-circle cart-icon"></i>
+                                            <span class="cart-delete-product">Eliminar producto</span>
+                                        </div>
+                                    </div>
+                                </section>
+                                </a>
+                                <%}); %>
+                                    <% } %>
+                                        <div class="container-sections">
+                                            <section>
+                                                <div class="cart-description">
+                                                    <div class="cart-item-a">SUBTOTAL(#items)</div>
+                                                    <div class="cart-item-b">
+                                                        <%= total %>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                            <section>
+                                                <div class="cart-description">
+                                                    <div class="cart-item-a">ENVIO</div>
+                                                    <div class="cart-item-b">CODIGO POSTAL</div>
+                                                </div>
+                                            </section>
+                                            <section>
+                                                <div class="cart-description">
+                                                    <div class="cart-item-a">TOTAL</div>
+                                                    <div class="cart-item-b">
+                                                        <%= total %>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                            <section>
+                                                <div>
+                                                    <button class="cart-btn3"><a class=cart-btn3 href="/">Seguir
+                                                            comprando</a></button><button class="cart-btn4"
+                                                        type="submit">Finalizar
+                                                        compra</button>
+                                                </div>
+                                            </section>
+                                        </div>
                 </section>
             </main>
             <%- include('../partials/footer') %>

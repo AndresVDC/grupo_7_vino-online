@@ -1,3 +1,5 @@
+const { log } = require('console')
+const session = require('express-session')
 const { validationResult } = require('express-validator')
 const path = require('path')
 const fileController = require(path.join('..', 'controllers', 'fileController'))
@@ -135,13 +137,49 @@ const productController = {
         res.redirect('/products')
     },
     cart: (req, res) => {
-        res.render(path.join('products', 'productCart'))
+        let empty = true
+        let total = req.session.total
+        if (req.session.cart) {
+            empty = false
+        } 
+        res.render(path.join('products', 'productCart'),{empty, total})
     },
     addToCart: (req, res) => {
-        var cart = req.body
+        let empty
+        var exist = false;
+        let products = fileController.openFile(productsJson)
+        if (req.session.cart == undefined) {
+            req.session.cart = [];
+            req.session.total = 0;
+            req.session.cartIDs =[]
+        }
+        req.session.cart.forEach(element => {
+            if (element.id == req.body.id){
+                exist = true;
+                element.counter+= Number(req.body.counter);
+                req.session.total += req.body.counter * element.price
+            }
+        });
+        if (!exist){
+            req.session.cartIDs.push(Number(req.body.id))
+            req.session.cart.push({
+                id: Number(req.body.id),
+                counter: Number(req.body.counter),
+                price: Number(req.body.price)
+            })
+            req.session.total += req.body.counter * req.body.price
+        }
+        let cart = req.session.cart
+        let total = req.session.total
         req.session.cart = cart
-        console.log(req.session.cart);
-        res.render(path.join('..', 'views', 'products', 'productCart'))
+        productsToShow=[]
+        for (let index = 0; index < products.length; index++) {
+            const element = products[index];
+            if (req.session.cartIDs.includes(element.id)) {
+                productsToShow.push(element)
+            }
+        } 
+        res.render(path.join('..', 'views', 'products', 'productCart'),{productsToShow, cart, total, empty})
     },
     delete: (req, res) => {
         let products = fileController.openFile(productsJson)
