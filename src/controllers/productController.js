@@ -90,7 +90,7 @@ const productController = {
                     productDetail: "Sin datos",
                     img: "/images/botella-vino.webp",
                     productDiscount: 0,
-                    productCategory: "Sin datos"
+                    productCategory: "Tinto"
                 }
                 productsRel.push(nuevoProducto)
             }
