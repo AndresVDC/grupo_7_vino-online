@@ -10,7 +10,10 @@ module.exports = (sequelize, dataTypes) => {
         varietal: {
             type: dataTypes.STRING(150),
             allowNull: false
-        } 
+        }, 
+    },
+    {
+        timestamps: false
     })
     Varietal.associate = function(models){
         Varietal.hasMany(models.Products,{

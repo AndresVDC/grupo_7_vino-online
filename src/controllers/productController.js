@@ -1,4 +1,3 @@
-const { log } = require('console')
 const session = require('express-session')
 const { validationResult } = require('express-validator')
 const path = require('path')
@@ -8,45 +7,17 @@ let productsJson = path.join('src', 'data', 'products.json')
 let db = require(path.join('..', 'database', 'models'))
 const productController = {
     productList: (req, res) => {
-        //let products = fileController.openFile(productsJson)
         db.Products.findAll()
-        .then(function(products){
-            console.log(products)
-            res.render(path.join('products', 'productList'), { products: products })
-        })        
-        .catch()
+            .then(function (products) {
+                res.render(path.join('products', 'productList'), { products: products })
+            })
+            .catch()
     },
     create: (req, res) => {
         res.render(path.join('products', 'formProduct'), { errors: {}, nuevoProducto: {} })
     },
     save: (req, res) => {
-        //let products = fileController.openFile(productsJson)
-
-        
-        //función que busca y asigna el primer ID libre.
-        //function findFreeId(products) {
-        //    let freeId = "";
-        //    let counter = 1;
-        //    if (products[0] == undefined) {
-        //        freeId = counter;
-        //    }
-        //    else {
-        //        products.forEach(element => {
-        //            if (element.id == counter) {
-        //                counter++;
-        //                freeId = counter;
-        //            }
-        //            else {
-        //                freeId = counter;
-        //            }
-        //        });
-//
-        //    }
-        //    return freeId;
-        //}
-        //crea el nuevo producto que luego se agrega en el Array.
         let nuevoProducto = {
-            //id: findFreeId(products),
             productName: req.body.productName,
             productScore: req.body.productScore,
             productPrice: req.body.productPrice,
@@ -70,59 +41,49 @@ const productController = {
             image: "/images/" + req.files[0].filename,
             discount: req.body.productDiscount,
             presentation: req.body.productPresentation,
-            idVarietal: 1,
+            idVarietal: req.body.productCategory,
             idWinery: 1
         }).then(
             res.redirect('/products')
         ).catch()
-        //products.push(nuevoProducto)
-        //fileController.saveFile(products, productsJson)
-        
     },
     detail: (req, res) => {
-        let products = fileController.openFile(productsJson)
-        let produtId = req.params.id
-        let productsRel = []
+        //let product = findProductIndex(products)
+        //products.forEach(element => {
+        //    if (element.productCategory == products[product].productCategory) {
+        //        productsRel.push(element)
+        //    }
+        //});
+        //if (productsRel.length < 4) {
+        //    for (let index = productsRel.length; index < 4; index++) {
+        //        let nuevoProducto = {
+        //            id: 999999,
+        //            productName: "Sin datos",
+        //            productScore: "Sin datos",
+        //            productPrice: 0,
+        //            productDetail: "Sin datos",
+        //            img: "/images/botella-vino.webp",
+        //            productDiscount: 0,
+        //            productCategory: "Tinto"
+        //        }
+        //        productsRel.push(nuevoProducto)
+        //    }
+        //}
+        db.Products.findByPk(req.params.id)
+            .then(function (product) {
+                res.render(path.join('products', 'productDetail'), { product: product })
+            })
+            .catch()
 
-        //Busca y devuelve el indice del producto
-        function findProductIndex(array) {
-            let result = -1
-            array.forEach(element => {
-                if (element.id == produtId) {
-                    result = array.indexOf(element)
-                }
-            });
-            return result;
-        }
-        let product = findProductIndex(products)
-        products.forEach(element => {
-            if (element.productCategory == products[product].productCategory) {
-                productsRel.push(element)
-            }
-        });
-        if (productsRel.length < 4) {
-            for (let index = productsRel.length; index < 4; index++) {
-                let nuevoProducto = {
-                    id: 999999,
-                    productName: "Sin datos",
-                    productScore: "Sin datos",
-                    productPrice: 0,
-                    productDetail: "Sin datos",
-                    img: "/images/botella-vino.webp",
-                    productDiscount: 0,
-                    productCategory: "Tinto"
-                }
-                productsRel.push(nuevoProducto)
-            }
-        }
+
         //Este IF se encarga de evitar el acceso a productos inexistentes.
-        if (product == -1) {
-            res.send("Producto inexistente!")
-        }
-        else {
-            product = products[findProductIndex(products)]
-            res.render(path.join('products', 'productDetail'), { product: product, productsRel: productsRel })
-        }
+        //if (product == -1) {
+        //    res.send("Producto inexistente!")
+        //}
+        //else {
+        //    product = products[findProductIndex(products)]
+        //    res.render(path.join('products', 'productDetail'), { product: product, productsRel: productsRel })
+        //}
     },
     edit: (req, res) => {
         let products = fileController.openFile(productsJson)
@@ -161,8 +122,8 @@ const productController = {
         let total = req.session.total
         if (req.session.cart) {
             empty = false
-        } 
-        res.render(path.join('products', 'productCart'),{empty, total})
+        }
+        res.render(path.join('products', 'productCart'), { empty, total })
     },
     addToCart: (req, res) => {
         let empty
@@ -171,16 +132,16 @@ const productController = {
         if (req.session.cart == undefined) {
             req.session.cart = [];
             req.session.total = 0;
-            req.session.cartIDs =[]
+            req.session.cartIDs = []
         }
         req.session.cart.forEach(element => {
-            if (element.id == req.body.id){
+            if (element.id == req.body.id) {
                 exist = true;
-                element.counter+= Number(req.body.counter);
+                element.counter += Number(req.body.counter);
                 req.session.total += req.body.counter * element.price
             }
         });
-        if (!exist){
+        if (!exist) {
             req.session.cartIDs.push(Number(req.body.id))
             req.session.cart.push({
                 id: Number(req.body.id),
@@ -192,14 +153,14 @@ const productController = {
         let cart = req.session.cart
         let total = req.session.total
         req.session.cart = cart
-        productsToShow=[]
+        productsToShow = []
         for (let index = 0; index < products.length; index++) {
             const element = products[index];
             if (req.session.cartIDs.includes(element.id)) {
                 productsToShow.push(element)
             }
-        } 
-        res.render(path.join('..', 'views', 'products', 'productCart'),{productsToShow, cart, total, empty})
+        }
+        res.render(path.join('..', 'views', 'products', 'productCart'), { productsToShow, cart, total, empty })
     },
     delete: (req, res) => {
         let products = fileController.openFile(productsJson)
@@ -217,28 +178,28 @@ const productController = {
         res.redirect('/products')
     },
     search: (req, res) => {
-        let products = fileController.openFile(productsJson)
-        let busqueda = req.query.search.toLowerCase()
-        let results = []
-        products.forEach(element => {
-            if (element.productName.toLowerCase().includes(busqueda)) {
-                results.push(element)
+        db.Products.findAll({
+            where: {
+                name: { [db.Sequelize.Op.like]: '%' + req.query.search + '%' }
             }
-        });
-        products = results
-        res.render(path.join('products', 'productList'), { products: products })
+        })
+            .then(function (products) {
+                res.render(path.join('products', 'productList'), { products: products })
+
+            })
+            .catch()
     },
     category: (req, res) => {
-        let products = fileController.openFile(productsJson)
-        let Category = req.params.category
-        let results = []
-        products.forEach(element => {
-            if (element.productCategory.includes(Category)) {
-                results.push(element)
+        db.Products.findAll({
+            where: {
+                idVarietal: req.params.category
             }
-        });
-        products = results
-        res.render(path.join('products', 'productList'), { products: products })
+        })
+            .then(function (products) {
+                res.render(path.join('products', 'productList'), { products: products })
+
+            })
+            .catch()
     }
 
 }

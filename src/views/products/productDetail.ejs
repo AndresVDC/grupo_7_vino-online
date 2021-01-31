@@ -6,38 +6,37 @@
                 <section class="main-margin">
                     <section class="productDetail">
                         <div class="productDetail-container1">
-                            <img class="productDetail-container-image" src="<%= product.img %>" alt="">
+                            <img class="productDetail-container-image" src="<%= product.image %>" alt="">
                         </div>
                         <div class="productDetail-container2">
                             <h4 class="productDetail-container-productName">
-                                <%= product.productName %>
+                                <%= product.name %>
                             </h4>
                             <span class="productDetail-container-Detail">
-                                <%= product.productDetail %>
+                                <%= product.detail %>
                             </span>
                             <span class="productDetail-container-price">$
-                                <%=(product.productPrice-product.productPrice*product.productDiscount /100).toFixed(2)
+                                <%=(product.price-product.price*product.discount /100).toFixed(2)
                                     %>
                             </span>
                             <div class="productDetail-container3"><span class="offers-container-card-realPrice">$
-                                    <%=product.productPrice%>
+                                    <%=product.price%>
                                 </span> <span class="offers-container-card-discount">
-                                    <%=product.productDiscount%>%off
+                                    <%=product.discount%>%off
                                 </span>
                             </div>
                             <span class="productDetail-container-unitsPerProduct">
-                                <%= product.productScore %> Estrellas
+                                <%= product.score %> Estrellas
                             </span>
                             <span class="productDetail-container-unitsPerProduct">
-                                <%= product.productPresentation %>
+                                <%= product.presentation %>
                             </span>
                             <div class="productDetail-container-containerUnit">
                                 <form action="addToCart" method="POST">
                                     <i class="fas fa-minus-circle cart-icon"></i>
                                     <input class="cart-counter" type="text" id="counter" name="counter" value="1">
                                     <input hidden value="<%=product.id%>" name="id">
-                                    <input hidden value="<%=(product.productPrice-product.productPrice*product.productDiscount /100).toFixed(2)
-                                    %>" name="price">
+                                    <input hidden value="<%=(product.price-product.price*product.discount /100).toFixed(2)%>" name="price">
                                     <i class="fas fa-plus-circle cart-icon"></i>
                                     <button class="cart-btn5">Agregar al carrito</button>
                             </div>
@@ -70,38 +69,7 @@
                             </a>
                         </div>
                     </section>
-                    <section class="offers-container">
-                        <div>
-                            <h2>Productos Relacionados</h2>
-                        </div>
-                        <div class="offers-container-grid">
-                            <%for (let index=0; index < 4; index++) { %>
-                                <%const element=productsRel[index];%>
-                                    <div class="offers-container-card">
-                                        <a href="/products/<%= element.id %>">
-                                            <div>
-                                                <img src="<%= element.img%>" alt="Oferta<%= element.id %>">
-                                            </div>
-                                            <div class="offers-container-card-text">
-                                                <h3 class="offers-container-card-title">
-                                                    <%= element.productName %>
-                                                </h3>
-                                                <h5 class="offers-container-card-price">$<%=
-                                                        (element.productPrice-element.productPrice*element.productDiscount/100).toFixed(2)
-                                                        %>
-                                                </h5>
-                                                <span class="offers-container-card-realPrice">$<%= element.productPrice
-                                                        %>
-                                                </span>
-                                                <span class="offers-container-card-discount">
-                                                    <%= element.productDiscount %>% off
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <%}%>
-                        </div>
-                    </section>
+                    <!-- Aqui va la sección de Relacionados extraida.-->
                 </section>
                 <%- include('../partials/footer') %>
         </main>

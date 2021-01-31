@@ -24,25 +24,25 @@
                     </div>
                     <section class="category-container">
                         <div class="category-container-card">
-                            <a href="/products/category/Tinto">
+                            <a href="/products/category/1">
                                 <img class="category-container-img" src="/images/VINO_TINTO.svg" alt="">
                             </a>
                             <p class="category-container-paragraph">Vinos Tintos</p>
                         </div>
                         <div class="category-container-card">
-                            <a href="/products/category/Espumante">
+                            <a href="/products/category/2">
                                 <img class="category-container-img" src="/images/ESPUMANTES.svg" alt="">
                             </a>
                             <p class="category-container-paragraph">Espumantes</p>
                         </div>
                         <div class="category-container-card">
-                            <a href="/products/category/Blanco">
+                            <a href="/products/category/3">
                                 <img class="category-container-img" src="/images/VINO_TINTO.svg" alt="">
                             </a>
                             <p class="category-container-paragraph">Vinos Blancos</p>
                         </div>
                         <div class="category-container-card">
-                            <a href="/products/category/Espirituoso">
+                            <a href="/products/category/4">
                                 <img class="category-container-img" src="/images/ESPIRITUOSOS.svg" alt="">
                             </a>
                             <p class="category-container-paragraph">Espirituosos</p>
@@ -64,20 +64,20 @@
                                     <div class="offers-container-card">
                                         <a href="products/<%= element.id %>">
                                             <div>
-                                                <img src="<%= element.img%>" alt="Oferta<%= element.id %>">
+                                                <img src="<%= element.image%>" alt="Oferta<%= element.id %>">
                                             </div>
                                             <div class="offers-container-card-text">
                                                 <h3 class="offers-container-card-title">
-                                                    <%= element.productName %>
+                                                    <%= element.name %>
                                                 </h3>
                                                 <h5 class="offers-container-card-price">$<%=
-                                                        (element.productPrice-element.productPrice*element.productDiscount/100).toFixed(2)
+                                                        (element.price-element.price*element.discount/100).toFixed(2)
                                                         %>
                                                 </h5>
-                                                <span class="offers-container-card-realPrice">$<%= element.productPrice
+                                                <span class="offers-container-card-realPrice">$<%= element.price
                                                         %></span>
                                                 <span class="offers-container-card-discount">
-                                                    <%= element.productDiscount %>% off
+                                                    <%= element.discount %>% off
                                                 </span>
                                             </div>
                                         </a>
