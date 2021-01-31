@@ -9,7 +9,6 @@ const indexController = {
         res.render('index', { products: products });
       })
       .catch()
-
   }
 }
 module.exports = indexController

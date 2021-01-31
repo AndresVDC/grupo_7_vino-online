@@ -25,7 +25,8 @@ const productController = {
             img: "/images/" + req.files[0].filename,
             productDiscount: req.body.productDiscount,
             productPresentation: req.body.productPresentation,
-            productCategory: req.body.productCategory
+            productCategory: req.body.productCategory,
+            //idVarietal: req.body.idVarietal
         }
 
         //Detección de errores
@@ -41,7 +42,8 @@ const productController = {
             image: "/images/" + req.files[0].filename,
             discount: req.body.productDiscount,
             presentation: req.body.productPresentation,
-            idVarietal: req.body.productCategory,
+            category: req.body.productCategory,
+            idVarietal: req.body.productVarietal,
             idWinery: 1
         }).then(
             res.redirect('/products')
@@ -192,7 +194,7 @@ const productController = {
     category: (req, res) => {
         db.Products.findAll({
             where: {
-                idVarietal: req.params.category
+                category: req.params.category
             }
         })
             .then(function (products) {
