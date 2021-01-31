@@ -8,25 +8,25 @@
           <a href="/products/<%= element.id %>">
             <section class="container-productList">
               <div class="container-productList-img">
-                <img src="<%= element.img%>" alt="">
+                <img src="<%= element.image%>" alt="">
               </div>
               <div class="container-productList-info">
                 <h4 class="productDetail-container-productName">
-                  <%= element.productName %>
+                  <%= element.name %>
                 </h4>
 
                 <span class="productDetail-container-price">$
-                  <%=(element.productPrice-element.productPrice*element.productDiscount /100).toFixed(2) %>
+                  <%=(element.price-element.price*element.discount /100).toFixed(2) %>
                 </span>
                 <div class="productDetail-container3">
                   <span class="offers-container-card-realPrice">$
-                    <%=element.productPrice%>
+                    <%=element.price%>
                   </span>
                   <span class="offers-container-card-discount">
-                    <%=element.productDiscount%>%off
+                    <%=element.discount%>%off
                   </span>
                 </div>
-                <p class="productDetail-container-unitsPerProduct"><%= element.productPresentation %></p>
+                <p class="productDetail-container-unitsPerProduct"><%= element.presentation %></p>
                 
               </div>
             </section>

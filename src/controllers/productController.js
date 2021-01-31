@@ -5,40 +5,48 @@ const path = require('path')
 const fileController = require(path.join('..', 'controllers', 'fileController'))
 //variable en la que se declara el archivo producto.
 let productsJson = path.join('src', 'data', 'products.json')
+let db = require(path.join('..', 'database', 'models'))
 const productController = {
     productList: (req, res) => {
-        let products = fileController.openFile(productsJson)
-        res.render(path.join('products', 'productList'), { products: products })
+        //let products = fileController.openFile(productsJson)
+        db.Products.findAll()
+        .then(function(products){
+            console.log(products)
+            res.render(path.join('products', 'productList'), { products: products })
+        })        
+        .catch()
     },
     create: (req, res) => {
         res.render(path.join('products', 'formProduct'), { errors: {}, nuevoProducto: {} })
     },
     save: (req, res) => {
-        let products = fileController.openFile(productsJson)
-        //función que busca y asigna el primer ID libre.
-        function findFreeId(products) {
-            let freeId = "";
-            let counter = 1;
-            if (products[0] == undefined) {
-                freeId = counter;
-            }
-            else {
-                products.forEach(element => {
-                    if (element.id == counter) {
-                        counter++;
-                        freeId = counter;
-                    }
-                    else {
-                        freeId = counter;
-                    }
-                });
+        //let products = fileController.openFile(productsJson)
 
-            }
-            return freeId;
-        }
+        
+        //función que busca y asigna el primer ID libre.
+        //function findFreeId(products) {
+        //    let freeId = "";
+        //    let counter = 1;
+        //    if (products[0] == undefined) {
+        //        freeId = counter;
+        //    }
+        //    else {
+        //        products.forEach(element => {
+        //            if (element.id == counter) {
+        //                counter++;
+        //                freeId = counter;
+        //            }
+        //            else {
+        //                freeId = counter;
+        //            }
+        //        });
+//
+        //    }
+        //    return freeId;
+        //}
         //crea el nuevo producto que luego se agrega en el Array.
         let nuevoProducto = {
-            id: findFreeId(products),
+            //id: findFreeId(products),
             productName: req.body.productName,
             productScore: req.body.productScore,
             productPrice: req.body.productPrice,
@@ -54,10 +62,22 @@ const productController = {
         if (!errors.isEmpty()) {
             return res.render(path.join('products', 'formProduct'), { errors: errors.mapped(), nuevoProducto: nuevoProducto })
         }
-
-        products.push(nuevoProducto)
-        fileController.saveFile(products, productsJson)
-        res.redirect('/products')
+        db.Products.create({
+            name: req.body.productName,
+            score: req.body.productScore,
+            price: req.body.productPrice,
+            detail: req.body.productDetail,
+            image: "/images/" + req.files[0].filename,
+            discount: req.body.productDiscount,
+            presentation: req.body.productPresentation,
+            idVarietal: 1,
+            idWinery: 1
+        }).then(
+            res.redirect('/products')
+        ).catch()
+        //products.push(nuevoProducto)
+        //fileController.saveFile(products, productsJson)
+        
     },
     detail: (req, res) => {
         let products = fileController.openFile(productsJson)
