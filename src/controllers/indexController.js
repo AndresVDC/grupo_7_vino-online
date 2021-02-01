@@ -11,7 +11,9 @@ const indexController = {
       .then(function (products) {
         res.render('index', { products: products });
       })
-      .catch()
+      .catch((error) => {
+        res.send(error)
+      })
   }
 }
 module.exports = indexController

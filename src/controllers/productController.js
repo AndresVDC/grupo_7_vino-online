@@ -11,7 +11,7 @@ const productController = {
             .then(function (products) {
                 res.render(path.join('products', 'productList'), { products: products })
             })
-            .catch((error)=>{
+            .catch((error) => {
                 res.send(error)
             })
     },
@@ -20,7 +20,9 @@ const productController = {
             .then(function (varietals) {
                 res.render(path.join('products', 'formProduct'), { errors: {}, nuevoProducto: {}, varietals: varietals })
             })
-            .catch()
+            .catch((error) => {
+                res.send(error)
+            })
     },
     save: (req, res) => {
         let nuevoProducto = {
@@ -38,7 +40,7 @@ const productController = {
         //Detección de errores
         let errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.render(path.join('products', 'formProduct'), { errors: errors.mapped(), nuevoProducto: nuevoProducto, varietals:{} })
+            return res.render(path.join('products', 'formProduct'), { errors: errors.mapped(), nuevoProducto: nuevoProducto, varietals: {} })
         }
         db.Products.create({
             name: req.body.productName,
@@ -53,7 +55,9 @@ const productController = {
             idWinery: 1
         }).then(
             res.redirect('/products')
-        ).catch()
+        ).catch((error) => {
+            res.send(error)
+        })
     },
     detail: (req, res) => {
         //let product = findProductIndex(products)
@@ -81,7 +85,9 @@ const productController = {
             .then(function (product) {
                 res.render(path.join('products', 'productDetail'), { product: product })
             })
-            .catch()
+            .catch((error) => {
+                res.send(error)
+            })
 
 
         //Este IF se encarga de evitar el acceso a productos inexistentes.
@@ -94,36 +100,52 @@ const productController = {
         //}
     },
     edit: (req, res) => {
-        let products = fileController.openFile(productsJson)
-        let produtId = req.params.id
-        let productToEdit = products[produtId - 1]
-        let errors = {}
-        res.render(path.join('products', 'productEdit'), { productToEdit: productToEdit, errors: errors })
+        db.Products.findByPk(req.params.id)
+            .then(function (product) {
+                res.render(path.join('products', 'productEdit'), { product: product, errors: {} })
+            })
+            .catch((error) => {
+                res.send(error)
+            })
     },
     actualizar: (req, res) => {
-        let products = fileController.openFile(productsJson)
-        //Se lee el archivo para encotrar el objeto y poder mostrar los datos en caso de error.
-        let produtId = req.params.id
-        products.forEach(element => {
-            if (element.id == req.params.id) {
-                element.productName = req.body.productName
-                element.productScore = req.body.productScore
-                element.productPrice = req.body.productPrice
-                element.productDetail = req.body.productDetail
-                element.productDiscount = req.body.productDiscount
-                element.productCategory = req.body.productCategory
-                element.productPresentation = req.body.productPresentation
-            }
-        });
-        let productToEdit = products[produtId - 1]
-        //Detección de errores
-        let errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.render(path.join('products', 'productEdit'), { errors: errors.mapped(), productToEdit: productToEdit })
-        }
-
-        fileController.saveFile(products, productsJson)
-        res.redirect('/products')
+        //Obetener el producto de la DB
+        db.Products.findByPk(req.params.id)
+            .then(function (product) {
+                //Detección de errores
+                let errors = validationResult(req);
+                //Si existen errores evitar edición y mostrarlos en HTML.
+                if (!errors.isEmpty()) {
+                    return res.render(path.join('products', 'productEdit'), { errors: errors.mapped(), product: product })
+                }
+                //Si no hay errores se procede con la edición del producto en la DB
+                else {
+                    db.Products.update({
+                        name: req.body.productName,
+                        score: req.body.productScore,
+                        price: req.body.productPrice,
+                        detail: req.body.productDetail,
+                        //image: "/images/" + req.files[0].filename,
+                        discount: req.body.productDiscount,
+                        presentation: req.body.productPresentation,
+                        category: req.body.productCategory,
+                        idVarietal: req.body.productVarietal,
+                        idWinery: 1
+                    },
+                        {
+                            where: { id: req.params.id }
+                        })
+                        .then(
+                            res.redirect('/products')
+                        )
+                        .catch((error) => {
+                            res.send("Error en update a la DB " + error)
+                        })
+                }
+            })
+            .catch((error) => {
+                res.send("Error en obtener el producto de la DB " + error)
+            })
     },
     cart: (req, res) => {
         let empty = true
