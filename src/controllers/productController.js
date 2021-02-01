@@ -11,10 +11,16 @@ const productController = {
             .then(function (products) {
                 res.render(path.join('products', 'productList'), { products: products })
             })
-            .catch()
+            .catch((error)=>{
+                res.send(error)
+            })
     },
     create: (req, res) => {
-        res.render(path.join('products', 'formProduct'), { errors: {}, nuevoProducto: {} })
+        db.Varietals.findAll()
+            .then(function (varietals) {
+                res.render(path.join('products', 'formProduct'), { errors: {}, nuevoProducto: {}, varietals: varietals })
+            })
+            .catch()
     },
     save: (req, res) => {
         let nuevoProducto = {
@@ -26,13 +32,13 @@ const productController = {
             productDiscount: req.body.productDiscount,
             productPresentation: req.body.productPresentation,
             productCategory: req.body.productCategory,
-            //idVarietal: req.body.idVarietal
+            idVarietal: req.body.productVarietal
         }
 
         //Detección de errores
         let errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.render(path.join('products', 'formProduct'), { errors: errors.mapped(), nuevoProducto: nuevoProducto })
+            return res.render(path.join('products', 'formProduct'), { errors: errors.mapped(), nuevoProducto: nuevoProducto, varietals:{} })
         }
         db.Products.create({
             name: req.body.productName,

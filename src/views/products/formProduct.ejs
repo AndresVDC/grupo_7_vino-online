@@ -28,8 +28,10 @@
                     </div>
                     <label class="form-product-label" for="productVarietal">Varietal</label>
                     <div class="form-product-input flex">
-                        <input type="radio" name="productVarietal" id="productVarietal" value="1">Malbec 
-                        <input type="radio" name="productVarietal" id="productVarietal" value="2">Cabernet 
+                        <% for( let index = 0; index < varietals.length; index++ ) { %>
+                            <%const element=varietals[index];%>
+                            <input type="radio" name="productVarietal" id="productVarietal" value="<%= element.id%>"><%= element.varietal%>
+                        <% } %>
                     </div>
                     <label class="form-product-label" for="productDetail">Descripción</label>
                     <textarea class="form-product-input" type="text" name="productDetail"
