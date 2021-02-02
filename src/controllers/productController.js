@@ -1,4 +1,3 @@
-const session = require('express-session')
 const { validationResult } = require('express-validator')
 const path = require('path')
 const fileController = require(path.join('..', 'controllers', 'fileController'))
@@ -9,7 +8,7 @@ const productController = {
     productList: (req, res) => {
         db.Products.findAll()
             .then(function (products) {
-                res.render(path.join('products', 'productList'), { products: products })
+                res.render('../views/products/productList', { products: products })
             })
             .catch((error) => {
                 res.send(error)
@@ -18,7 +17,7 @@ const productController = {
     create: (req, res) => {
         db.Varietals.findAll()
             .then(function (varietals) {
-                res.render(path.join('products', 'formProduct'), { errors: {}, nuevoProducto: {}, varietals: varietals })
+                res.render('../views/products/formProduct', { errors: {}, nuevoProducto: {}, varietals: varietals })
             })
             .catch((error) => {
                 res.send(error)
@@ -40,7 +39,7 @@ const productController = {
         //Detección de errores
         let errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.render(path.join('products', 'formProduct'), { errors: errors.mapped(), nuevoProducto: nuevoProducto, varietals: {} })
+            return res.render('../views/products/formProduct', { errors: errors.mapped(), nuevoProducto: nuevoProducto, varietals: {} })
         }
         db.Products.create({
             name: req.body.productName,
@@ -53,58 +52,53 @@ const productController = {
             category: req.body.productCategory,
             idVarietal: req.body.productVarietal,
             idWinery: 1
-        }).then(
-            res.redirect('/products')
-        ).catch((error) => {
-            res.send(error)
         })
-    },
-    detail: (req, res) => {
-        //let product = findProductIndex(products)
-        //products.forEach(element => {
-        //    if (element.productCategory == products[product].productCategory) {
-        //        productsRel.push(element)
-        //    }
-        //});
-        //if (productsRel.length < 4) {
-        //    for (let index = productsRel.length; index < 4; index++) {
-        //        let nuevoProducto = {
-        //            id: 999999,
-        //            productName: "Sin datos",
-        //            productScore: "Sin datos",
-        //            productPrice: 0,
-        //            productDetail: "Sin datos",
-        //            img: "/images/botella-vino.webp",
-        //            productDiscount: 0,
-        //            productCategory: "Tinto"
-        //        }
-        //        productsRel.push(nuevoProducto)
-        //    }
-        //}
-        db.Products.findByPk(req.params.id)
-            .then(function (product) {
-                res.render(path.join('products', 'productDetail'), { product: product })
-            })
+            .then(
+                res.redirect('/products')
+            )
             .catch((error) => {
                 res.send(error)
             })
+    },
+    detail: (req, res) => {
+        db.Products.findByPk(req.params.id)
+            .then((product) => {
+                if (product != null) {
+                    let relatedProduct =
+                        db.Products.findAll({
+                            limit: 4,
+                            order: db.sequelize.random()
+                        })
+                            .then((related) => {
+                                res.render('../views/products/productDetail', { product: product, related: related })
+                            })
+                            .catch((error) => {
+                                res.send(error)
+                            })
 
+                }
+                else {
+                    res.send("El detalle del producto al que intenta acceder no existe.")
+                }
+            }
+            )
 
-        //Este IF se encarga de evitar el acceso a productos inexistentes.
-        //if (product == -1) {
-        //    res.send("Producto inexistente!")
-        //}
-        //else {
-        //    product = products[findProductIndex(products)]
-        //    res.render(path.join('products', 'productDetail'), { product: product, productsRel: productsRel })
-        //}
+            .catch((error) => {
+                res.send(error)
+            })
     },
     edit: (req, res) => {
         db.Products.findByPk(req.params.id)
             .then(function (product) {
-                res.render(path.join('products', 'productEdit'), { product: product, errors: {} })
+                if (product != null) {
+                    res.render('../views/products/productEdit', { product: product, errors: {} })
+                }
+                else {
+                    res.send("El producto que intenta modificar es inexistente.")
+                }
             })
             .catch((error) => {
+                console.log(error)
                 res.send(error)
             })
     },
@@ -116,7 +110,7 @@ const productController = {
                 let errors = validationResult(req);
                 //Si existen errores evitar edición y mostrarlos en HTML.
                 if (!errors.isEmpty()) {
-                    return res.render(path.join('products', 'productEdit'), { errors: errors.mapped(), product: product })
+                    return res.render('../views/products/productEdit', { errors: errors.mapped(), product: product })
                 }
                 //Si no hay errores se procede con la edición del producto en la DB
                 else {
@@ -136,7 +130,7 @@ const productController = {
                             where: { id: req.params.id }
                         })
                         .then(
-                            res.redirect('/products')
+                            res.redirect('/products/' + req.params.id)
                         )
                         .catch((error) => {
                             res.send("Error en update a la DB " + error)
@@ -153,7 +147,7 @@ const productController = {
         if (req.session.cart) {
             empty = false
         }
-        res.render(path.join('products', 'productCart'), { empty, total })
+        res.render('../views/products/productCart', { empty, total })
     },
     addToCart: (req, res) => {
         let empty
@@ -190,21 +184,14 @@ const productController = {
                 productsToShow.push(element)
             }
         }
-        res.render(path.join('..', 'views', 'products', 'productCart'), { productsToShow, cart, total, empty })
+        res.render('../views/products/productCart', { productsToShow, cart, total, empty })
     },
     delete: (req, res) => {
-        let products = fileController.openFile(productsJson)
-        let filtrados
-
-        for (let index = 0; index < products.length; index++) {
-            let element = products[index];
-            if (element.id == req.params.id) {
-                filtrados = products.filter(function (i) {
-                    return i != element
-                })
+        db.Products.destroy({
+            where:{
+                id: req.params.id
             }
-        }
-        fileController.saveFile(filtrados, productsJson)
+        })
         res.redirect('/products')
     },
     search: (req, res) => {
@@ -214,7 +201,7 @@ const productController = {
             }
         })
             .then(function (products) {
-                res.render(path.join('products', 'productList'), { products: products })
+                res.render('../views/products/productList', { products: products })
 
             })
             .catch()
@@ -226,7 +213,7 @@ const productController = {
             }
         })
             .then(function (products) {
-                res.render(path.join('products', 'productList'), { products: products })
+                res.render('../views/products/productList', { products: products })
 
             })
             .catch()
