@@ -64,8 +64,8 @@ const productController = {
         db.Products.findByPk(req.params.id)
             .then((product) => {
                 if (product != null) {
-                    let relatedProduct =
                         db.Products.findAll({
+                            where:{category: product.category},
                             limit: 4,
                             order: db.sequelize.random()
                         })

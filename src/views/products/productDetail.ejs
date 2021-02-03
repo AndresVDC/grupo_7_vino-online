@@ -71,7 +71,37 @@
                             </a>
                         </div>
                     </section>
-                    <!-- Aqui va la sección de Relacionados extraida.-->
+                    <section class="offers-container">
+                        <div>
+                            <h2>Productos Relacionados</h2>
+                        </div>
+                        <div class="offers-container-grid">
+                            <%for (let index=0; index < 4; index++) { %>
+                                <%const element=related[index];%>
+                                    <div class="offers-container-card">
+                                        <a href="products/<%= element.id %>">
+                                            <div>
+                                                <img src="<%= element.image%>" alt="Oferta<%= element.id %>">
+                                            </div>
+                                            <div class="offers-container-card-text">
+                                                <h3 class="offers-container-card-title">
+                                                    <%= element.name %>
+                                                </h3>
+                                                <h5 class="offers-container-card-price">$<%=
+                                                        (element.price-element.price*element.discount/100).toFixed(2)
+                                                        %>
+                                                </h5>
+                                                <span class="offers-container-card-realPrice">$<%= element.price
+                                                        %></span>
+                                                <span class="offers-container-card-discount">
+                                                    <%= element.discount %>% off
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <%}%>
+                        </div>
+                    </section>
                 </section>
                 <%- include('../partials/footer') %>
         </main>
