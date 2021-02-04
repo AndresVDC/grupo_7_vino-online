@@ -79,7 +79,7 @@
                             <%for (let index=0; index < 4; index++) { %>
                                 <%const element=related[index];%>
                                     <div class="offers-container-card">
-                                        <a href="products/<%= element.id %>">
+                                        <a href="<%= element.id %>">
                                             <div>
                                                 <img src="<%= element.image%>" alt="Oferta<%= element.id %>">
                                             </div>
@@ -88,11 +88,10 @@
                                                     <%= element.name %>
                                                 </h3>
                                                 <h5 class="offers-container-card-price">$<%=
-                                                        (element.price-element.price*element.discount/100).toFixed(2)
-                                                        %>
+                                                        (element.price-element.price*element.discount/100).toFixed(2) %>
                                                 </h5>
-                                                <span class="offers-container-card-realPrice">$<%= element.price
-                                                        %></span>
+                                                <span class="offers-container-card-realPrice">$<%= element.price %>
+                                                </span>
                                                 <span class="offers-container-card-discount">
                                                     <%= element.discount %>% off
                                                 </span>
