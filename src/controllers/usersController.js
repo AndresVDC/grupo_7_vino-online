@@ -74,30 +74,19 @@ const usersController= {
 
     ingreso: (req,res) => {
       
-      let validator = validationResult(req);
-      if(validator.isEmpty()) { // en el IF pregunta si validator está vacia.  
-        
-      let user = {...users.find(user => user.email === req.body.email)}
-
-      if (user != undefined){
-        if(req.body.email == user.email && bcrypt.compareSync(req.body.password, user.password)){
-          delete user.password; // borramos la password del objeto.
-          req.session.users = user //creamos la session.users con los datos de users menos la pass.
-
+      db.users.findOne({where:{email: req.body.email}})
+      .then((user)=> {
+       const pass =bcrypt.compareSync(req.body.password, user.password)
+        if(pass){
+          req.session.users = user
           if(req.body.remember){
-            res.cookie('usuario', users.email, { maxAge:1000 * 60 * 60})
-            res.locals.usuario = req.session.users
+            res.cookie('remember', req.session.users, {maxAge: 1000 * 60 * 60})
           }
-          res.redirect('/');
+          res.redirect('/')
+        }else{
+          res.render('users/login')
         }
-      }
-    }
-        res.render('users/login',{
-          errors: validator.mapped(),
-          data: req.body
-        })
-      
-
+      })
     },
 
 
