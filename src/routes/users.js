@@ -50,4 +50,6 @@ router.get('/profile/:id/password', usersController.profileEditPassword)
 
 router.patch('/profile/:id/password', usersController.profileEditPatchPassword)
 
+router.get('/logout', usersController.logout)
+
 module.exports = router;
