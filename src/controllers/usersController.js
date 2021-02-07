@@ -73,7 +73,7 @@ const usersController= {
 
 
     ingreso: (req,res) => {
-      
+      // SEQUELIZE MODELS
       db.users.findOne({where:{email: req.body.email}})
       .then((user)=> {
        const pass =bcrypt.compareSync(req.body.password, user.password)
