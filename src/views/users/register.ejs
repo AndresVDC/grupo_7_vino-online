@@ -12,18 +12,18 @@
                         </button></a>
                     </div>
 
-                    <form class="register" method="post">
+                    <form class="register" method="post" >
 
                         <div class="text">
                             <p>O DEJANOS LOS SIGUIENTES DATOS:</p>
                         </div>
 
                         <div class="container-dates">
-                            <input class="name" type="text" name="first_name" placeholder="Nombre">
+                            <input class="name" type="text" name="first_name" placeholder="Nombre" value='<%= data.first_name %>'>
                         </div>
 
                         <div class="container-dates">
-                            <input class="surname" type="text" name="last_name" placeholder="Apellido">
+                            <input class="surname" type="text" name="last_name" placeholder="Apellido" value='<%= data.last_name %>'>
                         </div>
 
                         <div class="container-dates">
@@ -35,11 +35,13 @@
                         </div>
 
                         <div class="container-dates">
-                            <input class="email" type="email" name="email" placeholder="E-mail">
+                            <input class="email" type="email" name="email" placeholder="E-mail" value='<%= data.email %>'>
+                            <p><%= typeof errors.email == 'undefined' ? "" : errors.email.msg %></p>
                         </div>
 
                         <div class="container-dates">
-                            <input class="password" type="password" name="password" placeholder="Cree una contraseña">
+                            <input class="password" type="password" name="password" placeholder="Cree una contraseña" value='<%= data.password %>'>
+                            <p><%= typeof errors.password == 'undefined' ? "" : errors.password.msg %></p>
                         </div>
 
                         <div class="terms-and-conditions">
