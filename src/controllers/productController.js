@@ -64,17 +64,17 @@ const productController = {
         db.Products.findByPk(req.params.id)
             .then((product) => {
                 if (product != null) {
-                        db.Products.findAll({
-                            where:{category: product.category},
-                            limit: 4,
-                            order: db.sequelize.random()
+                    db.Products.findAll({
+                        where: { category: product.category },
+                        limit: 4,
+                        order: db.sequelize.random()
+                    })
+                        .then((related) => {
+                            res.render('../views/products/productDetail', { product: product, related: related })
                         })
-                            .then((related) => {
-                                res.render('../views/products/productDetail', { product: product, related: related })
-                            })
-                            .catch((error) => {
-                                res.send(error)
-                            })
+                        .catch((error) => {
+                            res.send(error)
+                        })
 
                 }
                 else {
@@ -142,19 +142,31 @@ const productController = {
             })
     },
     cart: (req, res) => {
-        let empty = true
-        let total = req.session.total
-        if (req.session.cart) {
-            empty = false
+        if (!req.session.cart) {
+            let empty = true
+            let total = 0
+            res.render('../views/products/productCart', { empty, total })
         }
-        res.render('../views/products/productCart', { empty, total })
+        else {
+            db.Carts.findByPk(req.session.cartId,{include: [{association: "product"}]})
+                .then(products => {
+                    let empty = false
+                    total = req.session.total
+                    console.log(products.totalPrice)
+                    res.render('../views/products/productCart', { empty, total, products: products})
+                })
+                .catch((error) => {
+                    res.send("Error en leer productos de la DB para mostrar carrito " + error)
+                })
+        }
     },
     addToCart: (req, res) => {
         let empty
         var exist = false;
-        let products = fileController.openFile(productsJson)
+        //let products = fileController.openFile(productsJson)
         if (req.session.cart == undefined) {
             req.session.cart = [];
+            req.session.cartId = 1 //locals.user.id
             req.session.total = 0;
             req.session.cartIDs = []
         }
@@ -174,21 +186,27 @@ const productController = {
             })
             req.session.total += req.body.counter * req.body.price
         }
-        let cart = req.session.cart
-        let total = req.session.total
-        req.session.cart = cart
-        productsToShow = []
-        for (let index = 0; index < products.length; index++) {
-            const element = products[index];
-            if (req.session.cartIDs.includes(element.id)) {
-                productsToShow.push(element)
-            }
-        }
+        //let cart = req.session.cart
+        //let total = req.session.total
+        //req.session.cart = cart
+        console.log(req.session.cart)
+        //db.Carts.create({
+         //   quantityOfProducts: ,
+         //   totalPrice: ,
+         //   userId:
+       // })
+        //productsToShow = []
+        //for (let index = 0; index < products.length; index++) {
+        //    const element = products[index];
+        //    if (req.session.cartIDs.includes(element.id)) {
+        //        productsToShow.push(element)
+        //    }
+        //}
         res.render('../views/products/productCart', { productsToShow, cart, total, empty })
     },
     delete: (req, res) => {
         db.Products.destroy({
-            where:{
+            where: {
                 id: req.params.id
             }
         })

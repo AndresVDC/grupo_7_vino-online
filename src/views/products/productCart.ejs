@@ -14,31 +14,31 @@
                                     tienda</a></button>
                         </section>
                         <% } else{ %>
-                            <%productsToShow.forEach(element=> { %>
+                            <% products.product.forEach(element=> { %>
                                 <section class="container-productList">
                                     <a href="/products/<%= element.id %>">
                                         <div class="container-productList-img">
-                                            <img src="<%= element.img%>" alt="">
+                                            <img src="<%= element.image%>" alt="">
                                         </div>
                                     </a>
                                     <div class="container-productList-info">
                                         <h4 class="productDetail-container-productName">
-                                            <%= element.productName %>
+                                            <%= element.name %>
                                         </h4>
                                         <span class="productDetail-container-price">$
-                                            <%=(element.productPrice-element.productPrice*element.productDiscount
+                                            <%=(element.price-element.price*element.discount
                                                 /100).toFixed(2) %>
                                         </span>
                                         <div class="productDetail-container3">
                                             <span class="offers-container-card-realPrice">$
-                                                <%=element.productPrice%>
+                                                <%=element.price%>
                                             </span>
                                             <span class="offers-container-card-discount">
-                                                <%=element.productDiscount%>%off
+                                                <%=element.discount%>%off
                                             </span>
                                         </div>
                                         <p class="productDetail-container-unitsPerProduct">
-                                            <%= element.productPresentation %>
+                                            <%= element.presentation %>
                                         </p>
                                         <div class="cart-container-btn">
                                             <i class="fas fa-minus-circle cart-icon"></i>
