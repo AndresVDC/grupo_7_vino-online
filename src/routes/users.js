@@ -5,6 +5,7 @@ const usersController = require(path.join('..', 'controllers','usersController')
 const routeMiddleware = require (path.join('..','midlleware', 'routeMiddleware'));
 const multer= require('multer');
 const {check, validatorResult, body} = require('express-validator');
+const loginValidator = require('../midlleware/loginValidator');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -18,16 +19,13 @@ var uploads = multer({ storage: storage })
 //REGISTER
 router.get('/register', routeMiddleware.logueado ,usersController.indexRegister)
 
-router.post('/register', usersController.save)
+router.post('/register', loginValidator, usersController.save)
 
 //LOGIN
 
 router.get('/login', routeMiddleware.logueado, usersController.indexLogin)
 
-router.post('/login', [
-  check('email').isEmail().withMessage('El formato de email es invalido'),
-  check('password').isLength({min:4}).withMessage('La password debe tener 6 caracteres como minimo')
-],usersController.ingreso)
+router.post('/login', loginValidator,usersController.ingreso)
 
 router.get('/changePassword', usersController.changePassword)
 
@@ -51,5 +49,7 @@ router.patch('/profile/:id/avatar', uploads.single('avatar'), usersController.pr
 router.get('/profile/:id/password', usersController.profileEditPassword)
 
 router.patch('/profile/:id/password', usersController.profileEditPatchPassword)
+
+router.get('/logout', usersController.logout)
 
 module.exports = router;

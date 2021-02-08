@@ -4,7 +4,8 @@ let bcrypt = require('bcryptjs');//usar siempre BCRYPTJS
 let filePath= path.join('src', 'data', 'users.json');
 let users= JSON.parse(fs.readFileSync(filePath, {encoding:"utf-8"}));
 const {check, validationResult, body} = require('express-validator');
-
+// requerimos SEQUELIZE MODELS
+const db = require('../database/models');
 
 
 
@@ -14,34 +15,50 @@ const usersController= {
     },
 
     save: (req,res) => {
+      let errors = validationResult(req);
+
+      if(errors.isEmpty()){
+      //SEQUELIZE MODELS
+      db.users.findOne( {where:{email:req.body.email}})
+        .then((data)=>{
+                  if(data == null){
+                          db.users.create({
+                            firstName: req.body.first_name,
+                            lastName: req.body.last_name,
+                            email: req.body.email,
+                            password: bcrypt.hashSync(req.body.password, 10),
+                            category: req.body.category,
+                            avatar: 'avatar-default.png'
+                          })
+                        .then((datos)=>{
+                          req.session.users= {
+                            firstName: req.body.first_name,
+                            lastName: req.body.last_name,
+                            email: req.body.email,
+                            password: bcrypt.hashSync(req.body.password, 10),
+                            category: req.body.category,
+                          }
+                          res.locals.user = req.session.users
+                          /*console.log(data)
+                          res.send('entro en el if')*/
+                          res.redirect('/') 
+                        })
+                        .catch((err)=>{
+                          res.send(err)
+                        })
+                  }else{
+                    /*console.log(data)    
+                    res.send('fue al else')*/
+                        res.render('users/register',{errors:errors.mapped(), data: req.body})
+                  }
+        })
+        .catch((err)=>{
+          res.send(err)
+        })
+      }else{
+        res.render('users/register', {errors:errors.mapped(), data: req.body})
+      }
       
-      let id = null
-        for (let i= 0; i < users.length; i++){
-          id = id+1;
-        }
-        var newUser= {
-          id:id,
-          first_name: req.body.first_name,
-          last_name: req.body.last_name,
-          category: req.body.category,
-          email: req.body.email,
-          password: bcrypt.hashSync(req.body.password, 10),
-          avatar: 'avatar-default.png'
-        };
-        
-        if(newUser.first_name == '' || newUser.last_name == '' || newUser.category == '' || newUser.email == '' || newUser.password == ''){
-            res.send('No completo bien los campos')
-        }else{
-
-            //agrego el nuevo usuario en usuarios
-            users.push(newUser)
-            //combierto la variable users a string
-            users= JSON.stringify(users)
-            //sobreescribo el archivo con todos los usuarios mas el nuevo
-            fs.writeFileSync(filePath, users)
-
-            res.render('users/userCreate', {newUser: newUser})
-        }
 
     },
 
@@ -56,31 +73,20 @@ const usersController= {
 
 
     ingreso: (req,res) => {
-      
-      let validator = validationResult(req);
-      if(validator.isEmpty()) { // en el IF pregunta si validator está vacia.  
-        
-      let user = {...users.find(user => user.email === req.body.email)}
-
-      if (user != undefined){
-        if(req.body.email == user.email && bcrypt.compareSync(req.body.password, user.password)){
-          delete user.password; // borramos la password del objeto.
-          req.session.users = user //creamos la session.users con los datos de users menos la pass.
-
+      // SEQUELIZE MODELS
+      db.users.findOne({where:{email: req.body.email}})
+      .then((user)=> {
+       const pass =bcrypt.compareSync(req.body.password, user.password)
+        if(pass){
+          req.session.users = user
           if(req.body.remember){
-            res.cookie('usuario', users.email, { maxAge:1000 * 60 * 60})
-            res.locals.usuario = req.session.users
+            res.cookie('remember', req.session.users, {maxAge: 1000 * 60 * 60})
           }
-          res.redirect('/');
+          res.redirect('/')
+        }else{
+          res.render('users/login')
         }
-      }
-    }
-        res.render('users/login',{
-          errors: validator.mapped(),
-          data: req.body
-        })
-      
-
+      })
     },
 
 
@@ -247,7 +253,10 @@ const usersController= {
         }
       }
     },
-
+    logout: (req, res) => {
+      req.session.destroy();
+      res.redirect('/')
+  }
 }
 
 
