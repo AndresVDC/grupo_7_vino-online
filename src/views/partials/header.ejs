@@ -21,9 +21,9 @@
                     <a href="/../products/create">Vender</a>
                     <% } %>
                     <% if (locals.user.category == 'Administrador' || locals.user.category == 'Usuario') { %>
-                    <a href="/users/profile/<%= locals.user.id%>"> Perfil de <%= locals.user.firstName %></a>
-                    <a href="/users//logout"> Cerrar</a>
-                    <% } %>
+                        <a href="/users/profile/<%= locals.user.id %>"> Perfil de <%= locals.user.firstName %></a>
+                        <a href="/users//logout"> Cerrar</a>
+                        <% } %>
                     <a href="/../products/productCart">Carrito</a>
                     <% if (locals.user == false) { %>
                     <a href="/../users/register">Registro</a>

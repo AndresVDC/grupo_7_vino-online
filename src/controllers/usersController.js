@@ -39,17 +39,17 @@ const usersController= {
                             category: req.body.category,
                           }
                           res.locals.user = req.session.users
-                          /*console.log(data)
-                          res.send('entro en el if')*/
-                          res.redirect('/') 
+                          console.log(data)
+                          /*res.send('entro en el if')*/
+                            return res.redirect('/')
                         })
                         .catch((err)=>{
                           res.send(err)
                         })
                   }else{
-                    /*console.log(data)    
-                    res.send('fue al else')*/
-                        res.render('users/register',{errors:errors.mapped(), data: req.body})
+                    /*console.log(data)*/    
+                    /* res.send('fue al else')*/
+                       res.render('users/register',{errors:errors.mapped(), data: req.body})
                   }
         })
         .catch((err)=>{
@@ -82,8 +82,10 @@ const usersController= {
           if(req.body.remember){
             res.cookie('remember', req.session.users, {maxAge: 1000 * 60 * 60})
           }
+          console.log(user)
           res.redirect('/')
         }else{
+          console.log(user)
           res.render('users/login')
         }
       })
@@ -106,61 +108,44 @@ const usersController= {
 
 
     profile:(req,res) => {
-      let id= req.params.id
-      let users= fs.readFileSync(filePath, {encoding:"utf-8"});
-      users= JSON.parse(users);
-
-      for (let i= 0; i< users.length; i++){
-        if (id == users[i].id){
-          res.render('users/userProfile', {user: users[i]})
+      db.users.findOne({
+        where: {
+            email: req.session.users.email
         }
-      }
+    })
+    .then( user => {
+        
+        res.render('users/editProfile', {user:user})
+    })
 
     },
 
     profileEdit: (req,res) => {
-      let id= req.params.id;
-      let users= fs.readFileSync(filePath, {encoding:"utf-8"});
-      users= JSON.parse(users);
-
-
-      for (let i= 0; i < users.length; i++){
-        if (id == users[i].id){
-          res.render('users/editProfile', {user: users[i]})
+      db.users.findOne({
+        where: {
+            email: req.session.users.email
         }
-      }
+    })
+    .then( user => {
+        
+        res.render('users/editProfile', {user:user})
+    })
 
     },
 
     profileEditPatch: (req,res) => {
-      let id= req.params.id;
-
-      let users= fs.readFileSync(filePath, {encoding:"utf-8"});
-      users= JSON.parse(users);
-
-      let user= users[id]
-      let cambio;
-
-
-      if (bcrypt.compareSync(req.body.password, user.password)){
-        cambio= users.splice(user.id, 1, {
-          id:user.id,
-          first_name: req.body.first_name,
-          last_name: req.body.last_name,
-          category: req.body.category,
-          email: user.email,
-          password: bcrypt.hashSync(req.body.password, 10),
-          avatar: user.avatar
-        })
-
-        users= JSON.stringify(users)
-        fs.writeFileSync(filePath, users)
-
-        res.redirect('users/login')
-
-      }else{
-        res.send('No colocó bien su contraseña')
-      }
+      db.users.update({
+        firstName: req.body.first_name,
+        lastName: req.body.last_name,
+        category: req.body.category,
+    }, {
+        where: {
+            id: req.session.id
+        }
+    }).then(user=>{
+      /*falta algo ya que no impacta el cambio en la base*/ 
+        res.render('users/editProfile', {user:user})
+      })
     },
 
     profileEditAvatar: (req,res) => {
