@@ -31,9 +31,9 @@ module.exports = (sequelize, dataTypes) => {
         idWinery: {type: dataTypes.BIGINT.UNSIGNED,},
         createdAt: {type: dataTypes.DATE, defaultValue: dataTypes.NOW},
         updatedAt: {type: dataTypes.DATE, defaultValue: dataTypes.NOW},
-        deletedAt:{type: dataTypes.DATE, defaultValue: dataTypes.NULL} ,
+        deletedAt:{type: dataTypes.DATE, defaultValue: dataTypes.NULL, paranoid: true} ,
     },{
-
+        
     })
 
     Product.associate = function(models){
