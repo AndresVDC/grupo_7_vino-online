@@ -47,7 +47,7 @@ const usersController= {
                           res.send(err)
                         })
                   }else{
-                    /*console.log(data)*/    
+                    /*console.log(data)*/
                     /* res.send('fue al else')*/
                        res.render('users/register',{errors:errors.mapped(), data: req.body})
                   }
@@ -58,7 +58,7 @@ const usersController= {
       }else{
         res.render('users/register', {errors:errors.mapped(), data: req.body})
       }
-      
+
 
     },
 
@@ -97,13 +97,17 @@ const usersController= {
     },
 
     changePasswordSave: (req,res) =>{
-      let email= req.body.email
-
-      for (let i= 0; i< users.length; i++){
-        if (email == users[i].email){
-          res.render('users/changePasswordSave', {user: users[i]})
+      db.users.findOne(
+        {where:{
+          email: req.body.email
         }
-      }
+      })
+      .then(user => {
+        res.render('users/changePasswordSave', {user: user})
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
     },
 
 
@@ -114,7 +118,7 @@ const usersController= {
         }
     })
     .then( user => {
-        
+
         res.render('users/editProfile', {user:user})
     })
 
@@ -127,7 +131,7 @@ const usersController= {
         }
     })
     .then( user => {
-        
+
         res.render('users/editProfile', {user:user})
     })
 
@@ -143,7 +147,7 @@ const usersController= {
             id: req.session.id
         }
     }).then(user=>{
-      /*falta algo ya que no impacta el cambio en la base*/ 
+      /*falta algo ya que no impacta el cambio en la base*/
         res.render('users/editProfile', {user:user})
       })
     },
