@@ -54,5 +54,14 @@ let config = {
 }
 let user = sequelize.define(alias, cols, config);
 
+/*
+User.associate = function(models){
+    User.belongsTo(models.Cart,{
+        as: 'Carts',
+        foreignKey: "userId",
+    })
+}
+*/
+
 return user;
 }
