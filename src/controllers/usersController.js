@@ -31,25 +31,25 @@ const usersController= {
                             avatar: 'avatar-default.png'
                           })
                         .then((datos)=>{
-                          req.session.users= {
+                          // se quita la session para que se tenga que loguear luego de registrado
+                          /*req.session.users*/ datos= { 
                             firstName: req.body.first_name,
                             lastName: req.body.last_name,
                             email: req.body.email,
                             password: bcrypt.hashSync(req.body.password, 10),
                             category: req.body.category,
                           }
-                          res.locals.user = req.session.users
-                          console.log(data)
+                         /* res.locals.user = req.session.users */
                           /*res.send('entro en el if')*/
-                            return res.redirect('/')
+                          res.redirect('/')
                         })
                         .catch((err)=>{
                           res.send(err)
                         })
                   }else{
-                    /*console.log(data)*/    
-                    /* res.send('fue al else')*/
-                       res.render('users/register',{errors:errors.mapped(), data: req.body})
+                        
+                     /* res.send('fue al else')*/
+                    return res.render('users/register',{errors:errors.mapped(), data: req.body}) 
                   }
         })
         .catch((err)=>{
@@ -81,6 +81,7 @@ const usersController= {
           req.session.users = user
           if(req.body.remember){
             res.cookie('remember', req.session.users, {maxAge: 1000 * 60 * 60})
+            res.locals.user = req.session.users
           }
           console.log(user)
           res.redirect('/')
