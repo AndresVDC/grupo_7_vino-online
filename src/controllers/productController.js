@@ -146,7 +146,7 @@ const productController = {
             res.render('../views/products/productCart', { empty, total })
         }
         //Si el usuario agrego algo al carrito pero no esta logueado se redirige a login.
-        else if (!req.session.cartId){
+        else if (!req.session.cartId) {
             res.redirect('../users/login')
         }
         else {
@@ -156,26 +156,27 @@ const productController = {
                     userId: req.session.cartId
                 }
             }).then(returnedCart => {
-            //En segundo lugar se efectua una query para traer ese carrito con sus asociaciones.
-            db.Carts.findByPk(returnedCart.id, { include: [{ association: "product" }] })
-                .then(products => {
-                    let empty = false
-                    total = req.session.total
-                    console.log(products.totalPrice)
-                    res.render('../views/products/productCart', { empty, total, products: products })
-                })
-                .catch((error) => {
-                    res.send("Error en leer productos de la DB para mostrar carrito " + error)
-                })
-        })
-    }
+                //En segundo lugar se efectua una query para traer ese carrito con sus asociaciones.
+                db.Carts.findByPk(returnedCart.id, { include: [{ association: "product" }] })
+                    .then(products => {
+                        res.render('../views/products/productCart', {
+                            empty : products.quantityOfProducts == 0, 
+                            total : products.totalPrice, 
+                            products    
+                    })
+                    })
+                    .catch((error) => {
+                        res.send("Error en leer productos de la DB para mostrar carrito " + error)
+                    })
+            })
+        }
     },
     addToCart: (req, res) => {
         let empty
         var exist = false;
         if (req.session.cart == undefined) {
             req.session.cart = [];
-            req.session.cartId = locals.user.id
+            req.session.cartId = req.session.users.id
             req.session.total = 0;
             req.session.cartIDs = []
         }
