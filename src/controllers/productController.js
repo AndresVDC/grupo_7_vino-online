@@ -1,8 +1,5 @@
 const { validationResult } = require('express-validator')
 const path = require('path')
-const fileController = require(path.join('..', 'controllers', 'fileController'))
-//variable en la que se declara el archivo producto.
-let productsJson = path.join('src', 'data', 'products.json')
 let db = require(path.join('..', 'database', 'models'))
 const productController = {
     productList: (req, res) => {
@@ -142,31 +139,43 @@ const productController = {
             })
     },
     cart: (req, res) => {
+        //si el carrito esta vacio se muestra el aviso.
         if (!req.session.cart) {
             let empty = true
             let total = 0
             res.render('../views/products/productCart', { empty, total })
         }
+        //Si el usuario agrego algo al carrito pero no esta logueado se redirige a login.
+        else if (!req.session.cartId){
+            res.redirect('../users/login')
+        }
         else {
-            db.Carts.findByPk(req.session.cartId,{include: [{association: "product"}]})
+            //En primer lugar se busca cual es el ID del carrito que pertenece al usuario.
+            db.Carts.findOne({
+                where: {
+                    userId: req.session.cartId
+                }
+            }).then(returnedCart => {
+            //En segundo lugar se efectua una query para traer ese carrito con sus asociaciones.
+            db.Carts.findByPk(returnedCart.id, { include: [{ association: "product" }] })
                 .then(products => {
                     let empty = false
                     total = req.session.total
                     console.log(products.totalPrice)
-                    res.render('../views/products/productCart', { empty, total, products: products})
+                    res.render('../views/products/productCart', { empty, total, products: products })
                 })
                 .catch((error) => {
                     res.send("Error en leer productos de la DB para mostrar carrito " + error)
                 })
-        }
+        })
+    }
     },
     addToCart: (req, res) => {
         let empty
         var exist = false;
-        //let products = fileController.openFile(productsJson)
         if (req.session.cart == undefined) {
             req.session.cart = [];
-            req.session.cartId = 1 //locals.user.id
+            req.session.cartId = locals.user.id
             req.session.total = 0;
             req.session.cartIDs = []
         }
@@ -191,10 +200,10 @@ const productController = {
         //req.session.cart = cart
         console.log(req.session.cart)
         //db.Carts.create({
-         //   quantityOfProducts: ,
-         //   totalPrice: ,
-         //   userId:
-       // })
+        //   quantityOfProducts: ,
+        //   totalPrice: ,
+        //   userId:
+        // })
         //productsToShow = []
         //for (let index = 0; index < products.length; index++) {
         //    const element = products[index];
