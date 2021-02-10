@@ -39,9 +39,11 @@ router.put('/edit/:id',[
   check('productPresentation').isLength({min:6}).withMessage('El nombre no debe estar vacio y requiere como mínimo 6 caracteres.'),
   check('image')
 ], productController.actualizar)
+router.delete('/delete/fromCart/:id',productController.removeFromCart)
 router.delete('/delete/:id', productController.delete)
 router.get('/:id', productController.detail)
 router.post('/addToCart',productController.addToCart)
+
 
 
 
