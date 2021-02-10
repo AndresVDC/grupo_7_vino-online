@@ -32,7 +32,7 @@ const usersController= {
                           })
                         .then((datos)=>{
                           // se quita la session para que se tenga que loguear luego de registrado
-                          /*req.session.users*/ datos= { 
+                          /*req.session.users*/ datos= {
                             firstName: req.body.first_name,
                             lastName: req.body.last_name,
                             email: req.body.email,
@@ -47,9 +47,9 @@ const usersController= {
                           res.send(err)
                         })
                   }else{
-                        
+
                      /* res.send('fue al else')*/
-                    return res.render('users/register',{errors:errors.mapped(), data: req.body}) 
+                    return res.render('users/register',{errors:errors.mapped(), data: req.body})
                   }
         })
         .catch((err)=>{
@@ -148,16 +148,26 @@ const usersController= {
             id: req.session.id
         }
     }).then(user=>{
+
       /*falta algo ya que no impacta el cambio en la base*/
         res.render('users/editProfile', {user:user})
       })
     },
 
     profileEditAvatar: (req,res) => {
-      let id = req.params.id
-
-      let user= users[id]
-      res.render('users/editAvatar', {user: user})
+      db.users.findOne(
+        {
+          where:{
+            id: req.params.id
+          }
+        }
+      )
+      .then(user => {
+        res.render('users/editAvatar', {user: user})
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
     },
 
     profileEditPatchAvatar: (req,res) => {
