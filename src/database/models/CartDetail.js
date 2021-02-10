@@ -4,21 +4,16 @@ module.exports = (sequelize, dataTypes) => {
             autoIncrement: true,
             primaryKey: true,
             type: dataTypes.BIGINT.UNSIGNED,
-            allowNull: false,
-
+            allowNull: false
         } ,
         productQuantity: {
             type: dataTypes.INTEGER(255).UNSIGNED,
-            allowNull: false
+            allowNull: true
         } ,
         productPrice: {type: dataTypes.DECIMAL(7,2)},
         createdAt: {type: dataTypes.DATE, defaultValue: dataTypes.NOW},
         updatedAt: {type: dataTypes.DATE, defaultValue: dataTypes.NOW},
         deletedAt:{type: dataTypes.DATE, defaultValue: dataTypes.NULL} ,
-    },{
-
     })
-
-    
-    return CartDetail;
+   return CartDetail;
 }

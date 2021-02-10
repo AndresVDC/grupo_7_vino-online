@@ -9,9 +9,13 @@ module.exports = (sequelize, dataTypes) => {
         } ,
         quantityOfProducts: {
             type: dataTypes.INTEGER(255).UNSIGNED,
-            allowNull: false
+            allowNull: false,
+            defaultValue: 0
         } ,
-        totalPrice: {type: dataTypes.DECIMAL(7,2)},
+        totalPrice: {
+            type: dataTypes.DECIMAL(7,2),
+            defaultValue: 0
+        },
         userId: {type: dataTypes.INTEGER.UNSIGNED},
         createdAt: {type: dataTypes.DATE, defaultValue: dataTypes.NOW},
         updatedAt: {type: dataTypes.DATE, defaultValue: dataTypes.NOW},

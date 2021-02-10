@@ -95,7 +95,6 @@ const productController = {
                 }
             })
             .catch((error) => {
-                console.log(error)
                 res.send(error)
             })
     },
@@ -139,31 +138,25 @@ const productController = {
             })
     },
     cart: (req, res) => {
-        //si el carrito esta vacio se muestra el aviso.
-        if (!req.session.cart) {
-            let empty = true
-            let total = 0
-            res.render('../views/products/productCart', { empty, total })
-        }
-        //Si el usuario agrego algo al carrito pero no esta logueado se redirige a login.
-        else if (!req.session.cartId) {
+        //Si el usuario no esta logueado se redirige a login.
+        if (!res.locals.user.id) {
             res.redirect('../users/login')
         }
         else {
             //En primer lugar se busca cual es el ID del carrito que pertenece al usuario.
             db.Carts.findOne({
                 where: {
-                    userId: req.session.cartId
+                    userId: res.locals.user.id
                 }
             }).then(returnedCart => {
-                //En segundo lugar se efectua una query para traer ese carrito con sus asociaciones.
+                //En segundo lugar se efectua una query para traer ese carrito con sus asociaciones
                 db.Carts.findByPk(returnedCart.id, { include: [{ association: "product" }] })
                     .then(products => {
                         res.render('../views/products/productCart', {
-                            empty : products.quantityOfProducts == 0, 
-                            total : products.totalPrice, 
-                            products    
-                    })
+                            empty: products.quantityOfProducts == 0,
+                            total: products.totalPrice,
+                            products
+                        })
                     })
                     .catch((error) => {
                         res.send("Error en leer productos de la DB para mostrar carrito " + error)
@@ -172,56 +165,51 @@ const productController = {
         }
     },
     addToCart: (req, res) => {
-        let empty
-        var exist = false;
-        if (req.session.cart == undefined) {
-            req.session.cart = [];
-            req.session.cartId = req.session.users.id
-            req.session.total = 0;
-            req.session.cartIDs = []
-        }
-        req.session.cart.forEach(element => {
-            if (element.id == req.body.id) {
-                exist = true;
-                element.counter += Number(req.body.counter);
-                req.session.total += req.body.counter * element.price
-            }
-        });
-        if (!exist) {
-            req.session.cartIDs.push(Number(req.body.id))
-            req.session.cart.push({
-                id: Number(req.body.id),
-                counter: Number(req.body.counter),
-                price: Number(req.body.price)
+        //En primer lugar se busca cual es el ID del carrito que pertenece al usuario.
+        if (res.locals.user.id) {
+            db.Carts.findOne({
+                where: {
+                    userId: res.locals.user.id
+                }
+            }).then(returnedCart => {
+                //En segundo lugar se efectua una query para traer ese carrito con sus asociaciones
+                db.Carts.findByPk(returnedCart.id)
+                    .then(products => {
+                        //Agregado del producto, cantidad y precio en la tabla cartDetails.
+                        products.addProduct(Number(req.body.id), {
+                            through: {
+                                productQuantity: req.body.counter,
+                                productPrice: req.body.price
+                            }
+                        })
+                        let quantityOfProducts = Number(products.quantityOfProducts) + Number(req.body.counter);
+                        let totalPrice = Number(products.totalPrice) + Number(req.body.price);
+                        db.Carts.update({
+                            quantityOfProducts: quantityOfProducts,
+                            totalPrice: totalPrice
+                        },
+                            {
+                                where: { id: products.id }
+                            })
+                    })
+                res.redirect('../products/productCart')
             })
-            req.session.total += req.body.counter * req.body.price
+                .catch((error) => {
+                    res.send("Error al agregar el producto al carrito: " + error)
+                })
         }
-        //let cart = req.session.cart
-        //let total = req.session.total
-        //req.session.cart = cart
-        console.log(req.session.cart)
-        //db.Carts.create({
-        //   quantityOfProducts: ,
-        //   totalPrice: ,
-        //   userId:
-        // })
-        //productsToShow = []
-        //for (let index = 0; index < products.length; index++) {
-        //    const element = products[index];
-        //    if (req.session.cartIDs.includes(element.id)) {
-        //        productsToShow.push(element)
-        //    }
-        //}
-        res.render('../views/products/productCart', { productsToShow, cart, total, empty })
-    },
-    delete: (req, res) => {
-        db.Products.destroy({
-            where: {
-                id: req.params.id
-            }
-        })
-        res.redirect('/products')
-    },
+        else{
+        res.redirect('../users/login')
+    }
+},
+delete: (req, res) => {
+    db.Products.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    res.redirect('/products')
+},
     search: (req, res) => {
         db.Products.findAll({
             where: {
@@ -234,18 +222,18 @@ const productController = {
             })
             .catch()
     },
-    category: (req, res) => {
-        db.Products.findAll({
-            where: {
-                category: req.params.category
-            }
-        })
-            .then(function (products) {
-                res.render('../views/products/productList', { products: products })
-
+        category: (req, res) => {
+            db.Products.findAll({
+                where: {
+                    category: req.params.category
+                }
             })
-            .catch()
-    }
+                .then(function (products) {
+                    res.render('../views/products/productList', { products: products })
+
+                })
+                .catch()
+        }
 
 }
 
