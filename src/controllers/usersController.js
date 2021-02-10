@@ -47,15 +47,9 @@ const usersController= {
                           res.send(err)
                         })
                   }else{
-<<<<<<< HEAD
                         
                      /* res.send('fue al else')*/
                     return res.render('users/register',{errors:errors.mapped(), data: req.body}) 
-=======
-                    /*console.log(data)*/
-                    /* res.send('fue al else')*/
-                       res.render('users/register',{errors:errors.mapped(), data: req.body})
->>>>>>> a725ea201aa0a28c813451dc8c248a8c9767e6d2
                   }
         })
         .catch((err)=>{
