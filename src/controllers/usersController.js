@@ -11,15 +11,18 @@ const db = require('../database/models');
 
 const usersController= {
     indexRegister: (req, res) => {
-        res.render('users/register')
+        res.render('users/register', {
+          data: {},
+          errors: []
+        })
     },
 
     save: (req,res) => {
       let errors = validationResult(req);
 
-      if(errors.isEmpty()){
-      //SEQUELIZE MODELS
-      db.users.findOne( {where:{email:req.body.email}})
+        if(errors.isEmpty()){
+        //SEQUELIZE MODELS
+        db.users.findOne( {where:{email:req.body.email}})
         .then((data)=>{
                   if(data == null){
                           db.users.create({
@@ -49,13 +52,13 @@ const usersController= {
                   }else{
 
                      /* res.send('fue al else')*/
-                    return res.render('users/register',{errors:errors.mapped(), data: req.body})
+                    return res.render('users/register')
                   }
-        })
-        .catch((err)=>{
-          res.send(err)
-        })
-      }else{
+            })
+            .catch((err)=>{
+              res.send(err)
+            })
+        }else{
         res.render('users/register', {errors:errors.mapped(), data: req.body})
       }
 
@@ -73,23 +76,30 @@ const usersController= {
 
 
     ingreso: (req,res) => {
+      let errors = validationResult(req);
+
+        if(errors.isEmpty()){
+
       // SEQUELIZE MODELS
       db.users.findOne({where:{email: req.body.email}})
-      .then((user)=> {
-       const pass =bcrypt.compareSync(req.body.password, user.password)
-        if(pass){
-          req.session.users = user
-          if(req.body.remember){
-            res.cookie('remember', req.session.users, {maxAge: 1000 * 60 * 60})
-            res.locals.user = req.session.users
-          }
-          console.log(user)
-          res.redirect('/')
-        }else{
+        .then((user)=> {
+            const pass =bcrypt.compareSync(req.body.password, user.password)
+              if(pass){
+                  req.session.users = user
+                    if(req.body.remember){
+                    res.cookie('remember', req.session.users, {maxAge: 1000 * 60 * 60})
+                    res.locals.user = req.session.users
+                    }
+                console.log(user)
+                res.redirect('/')
+              }else{
           console.log(user)
           res.render('users/login')
         }
       })
+    }else{
+      res.render('users/login', {errors:errors.mapped(), data: req.body})
+    }
     },
 
 
