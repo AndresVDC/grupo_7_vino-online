@@ -36,12 +36,12 @@
 
                         <div class="container-dates">
                             <input class="email" type="email" name="email" placeholder="E-mail" >
-                            
+                            <p><%= typeof errors.email == 'undefined' ? "" : errors.email.msg %></p>
                         </div>
 
                         <div class="container-dates">
                             <input class="password" type="password" name="password" placeholder="Cree una contraseña" >
-                            
+                            <p><%= typeof errors.password == 'undefined' ? "" : errors.password.msg %></p>
                         </div>
 
                         <div class="terms-and-conditions">
