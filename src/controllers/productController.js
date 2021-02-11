@@ -202,6 +202,33 @@ const productController = {
         res.redirect('../users/login')
     }
 },
+removeFromCart: (req, res) => {
+    db.Carts.findOne({
+        where: {
+            userId: res.locals.user.id
+        }
+    }).then(returnedCart => {
+        //En segundo lugar se efectua una query para traer ese carrito con sus asociaciones
+        db.Carts.findByPk(returnedCart.id)
+            .then(products => {
+                //Remueve el  producto, cantidad y precio en la tabla cartDetails.
+                products.removeProduct(Number(req.params.id))
+                let quantityOfProducts = Number(products.quantityOfProducts) - Number(req.body.removeFromCart);
+                let totalPrice = Number(products.totalPrice) - Number(req.body.removePrice);
+                db.Carts.update({
+                    quantityOfProducts: quantityOfProducts,
+                    totalPrice: totalPrice
+                },
+                    {
+                        where: { id: products.id }
+                    })
+            })
+        res.redirect('/products/productCart')
+    })
+        .catch((error) => {
+            res.send("Error al agregar el producto al carrito: " + error)
+        })
+},
 delete: (req, res) => {
     db.Products.destroy({
         where: {

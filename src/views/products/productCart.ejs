@@ -26,8 +26,7 @@
                                             <%= element.name %>
                                         </h4>
                                         <span class="productDetail-container-price">$
-                                            <%=(element.price-element.price*element.discount
-                                                /100).toFixed(2) %>
+                                            <%=(element.price-element.price*element.discount /100).toFixed(2) %>
                                         </span>
                                         <div class="productDetail-container3">
                                             <span class="offers-container-card-realPrice">$
@@ -45,7 +44,11 @@
                                             <input class="cart-counter" type="text" id="counter" class="form-control"
                                                 value="<%= element.CartDetail.productQuantity%>">
                                             <i class="fas fa-plus-circle cart-icon"></i>
-                                            <span class="cart-delete-product">Eliminar producto</span>
+                                            <form action="delete/fromCart/<%=element.id%>?_method=DELETE" method="POST">
+                                                <input type="text" hidden value="<%= element.CartDetail.productQuantity%>" name="removeFromCart">
+                                                <input type="text" hidden value="<%=(element.price-element.price*element.discount /100).toFixed(2) %>" name="removePrice">
+                                                <button type="submit">Eliminar producto</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </section>

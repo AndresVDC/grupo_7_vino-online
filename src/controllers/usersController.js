@@ -206,10 +206,14 @@ const usersController= {
     },
 
     profileEditPassword: (req,res) => {
-      let id = req.params.id
-
-      let user= users[id]
-      res.render('users/editPassword', {user: user})
+      db.users.findOne({
+        where:{
+          id: req.params.id
+        }
+      })
+      .then(user =>{
+        res.render('users/editPassword', {user: user})
+      })
     },
 
     profileEditPatchPassword: (req,res) => {
