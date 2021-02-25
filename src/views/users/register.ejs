@@ -11,8 +11,7 @@
                             <p>Regitrarse con facebook</p>
                         </button></a>
                     </div>
-
-                    <form class="register" method="post" >
+                   <form class="register" method="post" >
 
                         <div class="text">
                             <p>O DEJANOS LOS SIGUIENTES DATOS:</p>
@@ -38,7 +37,15 @@
                             <input class="email" type="email" name="email" placeholder="E-mail" >
                             <p><%= typeof errors.email == 'undefined' ? "" : errors.email.msg %></p>
                         </div>
-
+                        <div>
+                            <% if (typeof registeredUser != 'undefined') { %>
+                            <strong>
+                                <p><%= "El email " + registeredUser + " ya se encuentra registrado" %></p>
+                            </strong>
+                            <% } %>
+            
+                        </div>
+     
                         <div class="container-dates">
                             <input class="password" type="password" name="password" placeholder="Cree una contraseña" >
                             <p><%= typeof errors.password == 'undefined' ? "" : errors.password.msg %></p>
