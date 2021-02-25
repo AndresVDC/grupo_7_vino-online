@@ -19,7 +19,6 @@ const usersController= {
 
     save: (req,res) => {
       let errors = validationResult(req);
-
         if(errors.isEmpty()){
         //SEQUELIZE MODELS
         db.users.findOne( {where:{email:req.body.email}})
@@ -33,31 +32,14 @@ const usersController= {
                             category: req.body.category,
                             avatar: 'avatar-default.png'
                           })
-                        .then((datos)=>{
-                          // se quita la session para que se tenga que loguear luego de registrado
-                          /*req.session.users*/ datos= {
-                            firstName: req.body.first_name,
-                            lastName: req.body.last_name,
-                            email: req.body.email,
-                            password: bcrypt.hashSync(req.body.password, 10),
-                            category: req.body.category,
-                          }
-                         /* res.locals.user = req.session.users */
-                          /*res.send('entro en el if')*/
-                          res.redirect('/')
-                        })
-                        .catch((err)=>{
-                          res.send(err)
-                        })
+                        .then((datos)=>{res.redirect('/')})
+                        .catch((err)=>{res.send(err)})
                   }else{
-
-                     /* res.send('fue al else')*/
-                    return res.render('users/register')
+                    registeredUser = req.body.email // Para usar con errores cuando el usuario ya existe en BD 
+                    return res.render('users/register',{errors:errors.mapped(), data: req.body})
                   }
-            })
-            .catch((err)=>{
-              res.send(err)
-            })
+                  })
+                  .catch((err)=>{res.send(err)})
         }else{
         res.render('users/register', {errors:errors.mapped(), data: req.body})
       }
