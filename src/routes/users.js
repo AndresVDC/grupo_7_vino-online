@@ -16,40 +16,35 @@ var storage = multer.diskStorage({
   }
 })
 var uploads = multer({ storage: storage })
+
 //REGISTER
 router.get('/register', routeMiddleware.logueado ,usersController.indexRegister)
-
 router.post('/register', loginValidator, usersController.save)
 
 //LOGIN
-
 router.get('/login', routeMiddleware.logueado, usersController.indexLogin)
-
 router.post('/login', loginValidator,usersController.ingreso)
 
+//Change Pass
 router.get('/changePassword', usersController.changePassword)
-
 router.post('/changePassword', usersController.changePasswordSave)
 
-
+// Profile
 router.get('/profile/:id', usersController.profile)
-
 router.get('/profile/:id/edit', usersController.profileEdit)
-
 router.get('/profile/:id/delete', usersController.profileConfirmDelete)
-
 router.patch('/profile/:id', usersController.profileEditPatch)
-
 router.delete('/profile/:id', usersController.profileEditDelete)
 
+// Avatar
 router.get('/profile/:id/avatar', usersController.profileEditAvatar)
-
 router.patch('/profile/:id/avatar', uploads.single('avatar'), usersController.profileEditPatchAvatar)
 
+//Pass
 router.get('/profile/:id/password', usersController.profileEditPassword)
-
 router.patch('/profile/:id/password', usersController.profileEditPatchPassword)
 
+// Logout
 router.get('/logout', usersController.logout)
 
 module.exports = router;

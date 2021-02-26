@@ -142,7 +142,7 @@ const usersController= {
     }).then(user=>{
 
       /*falta algo ya que no impacta el cambio en la base*/
-        res.render('users/editProfile', {user:user})
+        res.redirect('users/Profile'+ req.params.id)
       })
     },
 
