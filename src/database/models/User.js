@@ -54,13 +54,13 @@ let config = {
 }
 let user = sequelize.define(alias, cols, config);
 
-/*
+
 user.associate = function(models){
     user.hasMany(models.Carts,{
         as: 'Carts',
         foreignKey: "userId",
     })
-}*/
+}
 
 
 return user;
