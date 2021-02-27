@@ -20,10 +20,12 @@
 
                         <div class="container-dates">
                             <input class="name" type="text" name="first_name" placeholder="Nombre" >
+                            <p><%= typeof errors.first_name == 'undefined' ? "" : errors.first_name.msg %></p>
                         </div>
 
                         <div class="container-dates">
                             <input class="surname" type="text" name="last_name" placeholder="Apellido" >
+                            <p><%= typeof errors.last_name == 'undefined' ? "" : errors.last_name.msg %></p>
                         </div>
 
                         <div class="container-dates">
