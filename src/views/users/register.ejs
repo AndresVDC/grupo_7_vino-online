@@ -11,7 +11,7 @@
                             <p>Regitrarse con facebook</p>
                         </button></a>
                     </div>
-                    
+
                     <form class="register" method="post" >
 
                         <div class="text">
@@ -48,11 +48,6 @@
                         <div class="container-dates">
                             <input class="password" type="password" name="password" placeholder="Cree una contraseña" >
                             <p><%= typeof errors.password == 'undefined' ? "" : errors.password.msg %></p>
-                        </div>
-
-                        <div class="terms-and-conditions">
-                            <input type="checkbox" name="t_and_c">
-                            <label for="t-and-c">Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></label>
                         </div>
 
                         <div class="send-or-reset">
