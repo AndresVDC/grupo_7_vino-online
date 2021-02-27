@@ -6,6 +6,7 @@ const routeMiddleware = require (path.join('..','midlleware', 'routeMiddleware')
 const multer= require('multer');
 const {check, validatorResult, body} = require('express-validator');
 const loginValidator = require('../midlleware/loginValidator');
+const registerValidator = require('../midlleware/registerValidator');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -19,7 +20,7 @@ var uploads = multer({ storage: storage })
 
 //REGISTER
 router.get('/register', routeMiddleware.logueado ,usersController.indexRegister)
-router.post('/register', loginValidator, usersController.save)
+router.post('/register', registerValidator, usersController.save)
 
 //LOGIN
 router.get('/login', routeMiddleware.logueado, usersController.indexLogin)
