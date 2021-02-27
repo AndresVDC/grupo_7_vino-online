@@ -1,5 +1,7 @@
 # grupo_7_vino-online
 
+Usuario administrador= user: admin@admin.com    pass: admin
+
 [Trello del grupo](https://trello.com/b/bz9l0thN/grupo7vino-online)
 
 ## ¿Qué productos o servicios brindará nuestro sitio?
