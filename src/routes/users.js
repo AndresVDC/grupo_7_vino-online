@@ -34,7 +34,6 @@ router.post('/changePassword', usersController.changePasswordSave)
 router.get('/profile/:id', usersController.profile)
 router.get('/profile/:id/edit', usersController.profileEdit)
 router.patch('/profile/:id', usersController.profileEditPatch)
-router.delete('/profile/:id', usersController.profileEditDelete)
 
 // Avatar
 router.get('/profile/:id/avatar', usersController.profileEditAvatar)
