@@ -111,8 +111,7 @@ const usersController= {
         }
     })
     .then( user => {
-
-        res.render('users/editProfile', {user:user})
+        res.render('users/userProfile', {user:user})
     })
 
     },
@@ -226,7 +225,7 @@ const usersController= {
         res.send('Colocó mal su contraseña antigua')
       }
     },
-    
+
     logout: (req, res) => {
       req.session.destroy();
       res.redirect('/')
