@@ -35,7 +35,7 @@ const usersController= {
                         .then((datos)=>{res.redirect('/')})
                         .catch((err)=>{res.send(err)})
                   }else{
-                    registeredUser = req.body.email // Para usar con errores cuando el usuario ya existe en BD 
+                    registeredUser = req.body.email // Para usar con errores cuando el usuario ya existe en BD
                     return res.render('users/register',{errors:errors.mapped(), data: req.body})
                   }
                   })
@@ -226,29 +226,7 @@ const usersController= {
         res.send('Colocó mal su contraseña antigua')
       }
     },
-
-    profileEditDelete: (req,res) => {
-      let id= req.params.id;
-      let user = users[id];
-
-          res.render('users/userDelete', {user: user})
-    },
-
-    profileConfirmDelete: (req,res) => {
-      let id= req.params.id;
-      let eliminar;
-
-      for (let i= 0; i < users.length; i++){
-        if (id == users[i].id){
-          eliminar = users.splice(id, 1)
-
-          users= JSON.stringify(users)
-          fs.writeFileSync(filePath, users)
-
-          res.redirect('/')
-        }
-      }
-    },
+    
     logout: (req, res) => {
       req.session.destroy();
       res.redirect('/')

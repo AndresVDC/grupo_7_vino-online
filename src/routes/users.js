@@ -33,7 +33,6 @@ router.post('/changePassword', usersController.changePasswordSave)
 // Profile
 router.get('/profile/:id', usersController.profile)
 router.get('/profile/:id/edit', usersController.profileEdit)
-router.get('/profile/:id/delete', usersController.profileConfirmDelete)
 router.patch('/profile/:id', usersController.profileEditPatch)
 router.delete('/profile/:id', usersController.profileEditDelete)
 
