@@ -10,7 +10,7 @@
 
           <section class="form-edit-avatar">
             <h1 class="tittle-edit">Editar Avatar</h1>
-              <form  method="post" action="/users/profile/<%= user.id %>/avatar?_method=PATCH" enctype="multipart/form-data">
+              <form  method="post" action="/users/profile/avatar/<%= user.id %>" enctype="multipart/form-data">
 
                 <img class="avatar-edit" src="/uploadsAvatars/<%= user.avatar%>" height="200px" width="200px"/>
 

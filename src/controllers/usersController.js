@@ -146,28 +146,16 @@ const usersController= {
     },
 
     profileEditPatchAvatar: (req,res) => {
-      let id = req.params.id
-      let photoAvatar= req.file
-      let user= users[id]
-      let cambio;
 
-        if(bcrypt.compareSync(req.body.password, user.password)){
-          cambio= users.splice(user.id, 1, {
-            id:user.id,
-            first_name: user.first_name,
-            last_name: user.last_name,
-            category: user.category,
-            email: user.email,
-            password: bcrypt.hashSync(req.body.password, 10),
-            avatar: photoAvatar.filename
-          })
-          users= JSON.stringify(users)
-          fs.writeFileSync(filePath, users)
-
-          res.redirect('users/login')
-        }else{
-          res.send('no colocó bien su contraseña')
+      db.users.update({
+        avatar: req.file.filename
+      },{
+        where:{
+          id: req.params.id
         }
+      })
+      
+      res.redirect('/users/profile/' + req.params.id)
     },
 
     profileEditPassword: (req,res) => {
