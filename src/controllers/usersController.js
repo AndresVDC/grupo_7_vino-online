@@ -136,13 +136,7 @@ const usersController= {
     },
 
     profileEditAvatar: (req,res) => {
-      db.users.findOne(
-        {
-          where:{
-            id: req.params.id
-          }
-        }
-      )
+      db.users.findByPk(req.params.id)
       .then(user => {
         res.render('users/editAvatar', {user: user})
       })

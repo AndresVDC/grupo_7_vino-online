@@ -36,8 +36,8 @@ router.get('/profile/edit/:id', usersController.profileEdit)
 router.post('/profile/edit/:id', usersController.profileEditPatch)
 
 // Avatar
-router.get('/profile/:id/avatar', usersController.profileEditAvatar)
-router.patch('/profile/:id/avatar', uploads.single('avatar'), usersController.profileEditPatchAvatar)
+router.get('/profile/avatar/:id', usersController.profileEditAvatar)
+router.post('/profile/avatar/:id', uploads.single('avatar'), usersController.profileEditPatchAvatar)
 
 //Pass
 router.get('/profile/:id/password', usersController.profileEditPassword)
