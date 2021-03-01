@@ -6,12 +6,7 @@
         <%- include('../partials/header') %>
 
         <section class="container-edit">
-          <section class="container-colum">
-            <a href="/users/profile/<%= user.id %>">Perfil Principal</a>
-            <a href="/users/profile/<%= user.id %>/edit">Editar Datos</a>
-            <a href="/users/profile/<%= user.id %>/avatar">Editar Avatar</a>
-            <a href="/users/profile/<%= user.id %>/password">Editar Contraseña</a>
-          </section>
+          <%- include('../partials/profileBar') %>
 
           <section class="form-edit-avatar">
             <h1 class="tittle-edit">Editar Avatar</h1>
