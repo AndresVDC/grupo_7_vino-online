@@ -132,8 +132,7 @@ const usersController= {
         }
     })
 
-      /*falta algo ya que no impacta el cambio en la base*/
-    res.redirect('/')
+    res.redirect('/users/profile/' + req.params.id)
     },
 
     profileEditAvatar: (req,res) => {
