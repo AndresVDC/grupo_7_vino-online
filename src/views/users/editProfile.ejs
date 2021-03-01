@@ -10,7 +10,7 @@
 
           <section class="form-edit">
             <h1 class="tittle-edit">Editar Usuario</h1>
-              <form  method="post" action="/users/profile/<%= user.id %>?_method=PATCH">
+              <form  method="post" action="/users/profile/edit/<%= user.id %>">
 
                 <div class="container-edit">
                   <p>Tu Nombre/s</p>
@@ -30,6 +30,7 @@
                 <section class= "send-or-reset">
                   <button class="btn-form-enter" type="submit">Guardar cambios</button>
                 </section>
+              </form>
           </section>
         </section>
 

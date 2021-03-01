@@ -105,11 +105,7 @@ const usersController= {
 
 
     profile:(req,res) => {
-      db.users.findOne({
-        where: {
-            email: req.session.users.email
-        }
-    })
+      db.users.findByPk(req.params.id)
     .then( user => {
         res.render('users/userProfile', {user:user})
     })
@@ -117,11 +113,7 @@ const usersController= {
     },
 
     profileEdit: (req,res) => {
-      db.users.findOne({
-        where: {
-            email: req.session.users.email
-        }
-    })
+      db.users.findByPk(req.params.id)
     .then( user => {
 
         res.render('users/editProfile', {user:user})
@@ -136,13 +128,12 @@ const usersController= {
         category: req.body.category,
     }, {
         where: {
-            id: req.session.id
+            id: req.params.id
         }
-    }).then(user=>{
+    })
 
       /*falta algo ya que no impacta el cambio en la base*/
-        res.redirect('users/Profile'+ req.params.id)
-      })
+    res.redirect('/')
     },
 
     profileEditAvatar: (req,res) => {
