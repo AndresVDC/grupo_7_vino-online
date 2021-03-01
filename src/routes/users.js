@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router()
 const path = require('path');
 const usersController = require(path.join('..', 'controllers','usersController'));
 const routeMiddleware = require (path.join('..','midlleware', 'routeMiddleware'));
@@ -32,7 +32,7 @@ router.post('/changePassword', usersController.changePasswordSave)
 
 // Profile
 router.get('/profile/:id', usersController.profile)
-router.get('/profile/:id/edit', usersController.profileEdit)
+router.get('/profile/edit/:id', usersController.profileEdit)
 router.patch('/profile/:id', usersController.profileEditPatch)
 
 // Avatar
