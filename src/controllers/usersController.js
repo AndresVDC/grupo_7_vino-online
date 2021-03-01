@@ -159,17 +159,14 @@ const usersController= {
     },
 
     profileEditPassword: (req,res) => {
-      db.users.findOne({
-        where:{
-          id: req.params.id
-        }
-      })
+      db.users.finddByPk(req.params.id)
       .then(user =>{
         res.render('users/editPassword', {user: user})
       })
     },
 
     profileEditPatchPassword: (req,res) => {
+      db.users.findByPk(req.params.id)
       let id = req.params.id
       let user = users[id]
       let cambio;

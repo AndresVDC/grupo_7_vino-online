@@ -40,8 +40,8 @@ router.get('/profile/avatar/:id', usersController.profileEditAvatar)
 router.post('/profile/avatar/:id', uploads.single('avatar'), usersController.profileEditPatchAvatar)
 
 //Pass
-router.get('/profile/:id/password', usersController.profileEditPassword)
-router.patch('/profile/:id/password', usersController.profileEditPatchPassword)
+router.get('/profile/editPassword/:id', usersController.profileEditPassword)
+router.post('/profile/editPassword/:id', usersController.profileEditPatchPassword)
 
 // Logout
 router.get('/logout', usersController.logout)
