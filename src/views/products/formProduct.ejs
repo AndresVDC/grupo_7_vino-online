@@ -4,61 +4,101 @@
     <body>
         <%- include('../partials/header') %>
             <section class="main-margin">
-                <h1 class="form-product-title">Formulario de productos</h1>
-                <form class="form-product" method="POST" action="/products/create" enctype="multipart/form-data">
-                    <label class="form-product-label" for="productName">Producto</label>
-                    <input class="form-product-input" type="text" name="productName" id="productName" value="<%= nuevoProducto.productName %> ">
-                    <p class="form-error">
-                        <%= typeof errors.productName=='undefined' ? '' : errors.productName.msg%>
-                    </p>
-                    <label class="form-product-label" for="productPrice" >Precio</label>
-                    <input class="form-product-input" type="text" name="productPrice" id="productPrice" value="<%= nuevoProducto.productPrice %>">
-                    <p class="form-error">
-                        <%= typeof errors.productPrice=='undefined' ? '' : errors.productPrice.msg%>
-                    </p>
-                    <label class="form-product-label" for="productCategory">Categoria</label>
-                    <div class="form-product-input">
-                        <select name="productCategory" id="productCategory">
-                            <option value="<%= nuevoProducto.productCategory %>"><%= nuevoProducto.productCategory %></option>
-                            <option value="Tinto">Tinto</option>
-                            <option value="Espumante">Espumante</option>
-                            <option value="Blanco">Blanco</option>
-                            <option value="Espirituoso">Espirituoso</option>
-                        </select>
+                <div class="container products-wrapper">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="products-title">Formulario de creación de productos</h2>
+                        </div>
                     </div>
-                    <label class="form-product-label" for="productVarietal">Varietal</label>
-                    <div class="form-product-input flex">
-                        <% for( let index = 0; index < varietals.length; index++ ) { %>
-                            <%const element=varietals[index];%>
-                            <input type="radio" name="productVarietal" id="productVarietal" value="<%= element.id%>"><%= element.varietal%>
-                        <% } %>
+                    <div class="col-12">
+                        <form class="form-product" method="POST" action="/products/create"
+                            enctype="multipart/form-data">
+                            <div class="row product-detail">
+                                <div class="col-12 col-md-6">
+                                    <label class="form-product-label" for="productName">Producto</label>
+                                    <input class="form-product-input" type="text" name="productName" id="productName"
+                                        value="<%= nuevoProducto.productName %> ">
+                                    <p class="form-error">
+                                        <%= typeof errors.productName=='undefined' ? '' : errors.productName.msg%>
+                                    </p>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-product-label" for="productPrice">Precio</label>
+                                    <input class="form-product-input" type="text" name="productPrice" id="productPrice"
+                                        value="<%= nuevoProducto.productPrice %>">
+                                    <p class="form-error">
+                                        <%= typeof errors.productPrice=='undefined' ? '' : errors.productPrice.msg%>
+                                    </p>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-product-label" for="productCategory">Categoria</label>
+                                    <div class="form-product-input">
+                                        <select name="productCategory" id="productCategory">
+                                            <option value="Tinto">Tinto</option>
+                                            <option value="Espumante">Espumante</option>
+                                            <option value="Blanco">Blanco</option>
+                                            <option value="Espirituoso">Espirituoso</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-product-label" for="productVarietal">Varietal</label>
+                                    <div class="form-product-input">
+                                        <select name="productVarietal" id="productVarietal">
+                                            <% for( let index=0; index < varietals.length; index++ ) { %>
+                                                <%const element=varietals[index];%>
+                                                    <option value="<%= element.id %>">
+                                                        <%= element.varietal%>
+                                                    </option>
+                                                    <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-product-label" for="productDiscount">Descuento</label>
+                                    <input class="form-product-input" type="number" name="productDiscount"
+                                        id="productDiscount" value="<%= nuevoProducto.productDiscount %>">
+                                    <p class="form-error">
+                                        <%= typeof errors.productDiscount=='undefined' ? '' :
+                                            errors.productDiscount.msg%>
+                                    </p>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-product-label" for="productScore">Score</label>
+                                    <input class="form-product-input" type="number" name="productScore"
+                                        id="productScore" value="<%= nuevoProducto.productScore %>">
+                                    <p class="form-error">
+                                        <%= typeof errors.productScore=='undefined' ? '' : errors.productScore.msg%>
+                                    </p>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-product-label" for="productPresentation">Presentación</label>
+                                    <input class="form-product-input" type="text" name="productPresentation"
+                                        id="productPresentation" value="<%= nuevoProducto.productPresentation %>">
+                                    <p class="form-error">
+                                        <%= typeof errors.productPresentation=='undefined' ? '' :
+                                            errors.productPresentation.msg%>
+                                    </p>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-product-label" for="image">Imagen</label>
+                                    <input class="form-product-input" type="file" name="image" id="image"
+                                        accept="image/jpg,image/png">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-product-label" for="productDetail">Descripción</label>
+                                    <textarea class="form-product-input" type="text" name="productDetail"
+                                        id="productDetail"><%= nuevoProducto.productDetail %></textarea>
+                                    <p class="form-error">
+                                        <%= typeof errors.productDetail=='undefined' ? '' : errors.productDetail.msg%>
+                                    </p>
+                                </div>
+                                <button class="form-product-btn" type="submit">Crear</button>
+                                <input class="form-product-btn-reset" type="reset" value="Borrar">
+                            </div>
+                        </form>
                     </div>
-                    <label class="form-product-label" for="productDetail">Descripción</label>
-                    <textarea class="form-product-input" type="text" name="productDetail"
-                        id="productDetail" ><%= nuevoProducto.productDetail %></textarea>
-                    <p class="form-error">
-                        <%= typeof errors.productDetail=='undefined' ? '' : errors.productDetail.msg%>
-                    </p>
-                    <label class="form-product-label" for="productDiscount">Descuento</label>
-                    <input class="form-product-input" type="number" name="productDiscount" id="productDiscount" value="<%= nuevoProducto.productDiscount %>">
-                    <p class="form-error">
-                        <%= typeof errors.productDiscount=='undefined' ? '' : errors.productDiscount.msg%>
-                    </p>
-                    <label class="form-product-label" for="productScore">Score</label>
-                    <input class="form-product-input" type="number" name="productScore" id="productScore" value="<%= nuevoProducto.productScore %>">
-                    <p class="form-error">
-                        <%= typeof errors.productScore=='undefined' ? '' : errors.productScore.msg%>
-                    </p>
-                    <label class="form-product-label" for="productPresentation">Presentación</label>
-                    <input class="form-product-input" type="text" name="productPresentation" id="productPresentation" value="<%= nuevoProducto.productPresentation %>">
-                    <p class="form-error">
-                        <%= typeof errors.productPresentation=='undefined' ? '' : errors.productPresentation.msg%>
-                    </p>
-                    <label class="form-product-label" for="image">Imagen</label>
-                    <input class="form-product-input" type="file" name="image" id="image" accept="image/jpg,image/png">
-                    <button class="form-product-btn" type="submit">Crear</button>
-                    <input class="form-product-btn-reset" type="reset" value="Borrar">
-                </form>
+                </div>
             </section>
             <%- include('../partials/footer') %>
     </body>

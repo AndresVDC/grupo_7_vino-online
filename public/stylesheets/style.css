@@ -884,19 +884,33 @@ color: green;
   font-family: 'PT Sans Narrow', sans-serif;
 }
 
+.product-detail {
+  background-color: #c6d8f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.products-wrapper {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  
+}
 .form-product{
   display: flex;
   flex-direction: column;
   width: 100%;
-
 }
 .form-product-label{
   font-family:'PT Sans Narrow', sans-serif ;
   font-size: 20px;
 }
 .form-product-input{
-  width: 90%;
+  width: 100%;
   align-self: center;
+}
+.form-product-input textarea{
+  min-height: 140px;
+  resize: vertical;
+  padding: 15px;
 }
 .form-error{
   width: 90%;
