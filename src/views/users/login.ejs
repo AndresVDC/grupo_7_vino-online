@@ -26,6 +26,7 @@
                 <div class="container-dates">
                     <input class="password" type="password" name="password" placeholder="Ingrese su contraseña" value='<%= data.password %>'>
                     <p><%= typeof errors.password == 'undefined' ? "" : errors.password.msg %></p>
+                    <p><%= typeof errorPass == 'undefined' ? "" : errorPass %></p>
                 </div>
                 <div class="">
                     <input type="checkbox" name="remember" id="remember" class="remember"><label for="remember">Recordarme</label>
