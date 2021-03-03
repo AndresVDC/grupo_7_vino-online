@@ -138,7 +138,7 @@ const usersController= {
     profileEditAvatar: (req,res) => {
       db.users.findByPk(req.params.id)
       .then(user => {
-        res.render('users/editAvatar', {user: user})
+        res.render('users/editAvatar', {user: user, data: {},errors: []})
       })
       .catch((err)=>{
         res.send(err)
@@ -146,9 +146,12 @@ const usersController= {
     },
 
     profileEditPatchAvatar: (req,res) => {
+      let errors = validationResult(req);
 
+      if(errors.isEmpty()){
       db.users.update({
-        avatar: req.file.filename
+        avatar: /*req.files[0].filename */ req.files != undefined ? "/images/products/" + req.files[0].filename : ""
+        //? es como un IF, antes de los dos puntos lo que pasa si se cumple la condición y después la otra opción
       },{
         where:{
           id: req.params.id
@@ -156,6 +159,9 @@ const usersController= {
       })
       
       res.redirect('/users/profile/' + req.params.id)
+      }else{
+        return res.render('users/editAvatar', {errors:errors.mapped(), data: req.body})
+      }
     },
 
     profileEditPassword: (req,res) => {
