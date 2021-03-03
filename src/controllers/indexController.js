@@ -12,8 +12,11 @@ const indexController = {
         res.render('index', { products: products });
       })
       .catch((error) => {
-        res.send(error)
-      })
+        console.log('***********************')
+        console.log('SE PRESENTO UN PROBLEMA DE CONEXION A LA DB Y NO ES POSIBLE CONSULTAR LOS PRODUCTOS. Error: ' + error)
+        console.log('***********************')
+        res.render('somethingWrong')
+    })
   },
   somethingWrong: (req, res) => {
 		res.render('somethingWrong')

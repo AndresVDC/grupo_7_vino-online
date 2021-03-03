@@ -72,7 +72,8 @@ const productController = {
 
     },
     detail: (req, res) => {
-        db.Products.findByPk(req.params.id)
+        let id = req.params.id
+        db.Products.findByPk(id)
             .then((product) => {
                 if (product != null) {
                     db.Products.findAll({
@@ -90,6 +91,9 @@ const productController = {
 
                 }
                 else {
+                    console.log('***********************')
+                    console.log('SE INTENTO ACCEDER AL PRODUCTO CON ID ' + id + ', EL MISMO NO EXISTE.')
+                    console.log('***********************')
                     res.render('somethingWrong')
                 }
             }
