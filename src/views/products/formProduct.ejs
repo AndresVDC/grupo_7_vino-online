@@ -96,7 +96,10 @@
                                 <div class="col-12 col-md-6">
                                     <label class="form-product-label" for="image">Imagen</label>
                                     <input class="form-product-input" type="file" name="image" id="image"
-                                        accept="image/jpg,image/png">
+                                        accept="image/*">
+                                    <p class="form-error">
+                                        <%= typeof errors.image=='undefined' ? '' : errors.image.msg%>
+                                    </p>
                                 </div>
                                 <div class="col-12">
                                     <label class="form-product-label" for="productDetail">Descripción</label>

@@ -1,66 +1,87 @@
 <html>
 <%- include('../partials/head') %>
+
     <body>
         <%- include('../partials/header') %>
             <section class="main-margin">
-                <h1 class="form-product-title">Formulario de productos</h1>
-                <form class="form-product" action="/products/edit/<%= product.id%>?_method=PUT" method="POST">
-                    <label class="form-product-label" for="productName">Producto</label>
-                    <input class="form-product-input" type="text" name="productName" id="productName"
-                        value="<%= product.name %>">
-                    <p class="form-error">
-                        <%= typeof errors.productName=='undefined' ? '' : errors.productName.msg%>
-                    </p>
-                    <label class="form-product-label" for="productPrice">Precio</label>
-                    <input class="form-product-input" type="text" name="productPrice" id="productPrice"
-                        value="<%= product.price %>">
-                    <p class="form-error">
-                        <%= typeof errors.productPrice=='undefined' ? '' : errors.productPrice.msg%>
-                    </p>
-                    <label class="form-product-label" for="productCategory">Categoria</label>
-                    <div class="form-product-input">
-                        <select name="productCategory" id="productCategory">
-                            <option value="<%= product.category %>">
-                                <%= product.category %>
-                            </option>
-                            <option value="Tinto">Tinto</option>
-                            <option value="Espumante">Espumante</option>
-                            <option value="Blanco">Blanco</option>
-                            <option value="Espirituoso">Espirituoso</option>
-                        </select>
+                <div class="container products-wrapper">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="products-title">Formulario de edición de productos</h2>
+                        </div>
                     </div>
-                    <br>
-                    <label class="form-product-label" for="productDetail">Descripción</label>
-                    <textarea class="form-product-input" type="text" name="productDetail"
-                        id="productDetail"><%= product.detail %></textarea>
-                    <p class="form-error">
-                        <%= typeof errors.productDetail=='undefined' ? '' : errors.productDetail.msg%>
-                    </p>
-                    <label class="form-product-label" for="productDiscount">Descuento</label>
-                    <input class="form-product-input" type="text" name="productDiscount" id="productDiscount"
-                        value="<%= product.discount %>">
-                    <p class="form-error">
-                        <%= typeof errors.productDiscount=='undefined' ? '' : errors.productDiscount.msg%>
-                    </p>
-                    <label class="form-product-label" for="productScore">Score</label>
-                    <input class="form-product-input" type="text" name="productScore" id="productScore"
-                        value="<%= product.score %>">
-                    <p class="form-error">
-                        <%= typeof errors.productScore=='undefined' ? '' : errors.productScore.msg%>
-                    </p>
-                    <label class="form-product-label" for="productPresentation">Presentación</label>
-                    <input class="form-product-input" type="text" name="productPresentation" id="productPresentation"
-                        value="<%= product.presentation %>">
-                    <p class="form-error">
-                        <%= typeof errors.productPresentation=='undefined' ? '' : errors.productPresentation.msg%>
-                    </p>
-                    <!--<label class="form-product-label" for="imagen">Imagen</label>
-                    <input class="form-product-input" type="file" name="imagen" id="imagen"
-                        accept="image/jpg,image/png">-->
-                    <br>
-                    <button class="form-product-btn" type="submit">Editar</button>
-                    <input class="form-product-btn-reset" type="reset" value="Borrar">
-                </form>
+                    <div class="col-12">
+                        <form class="form-product" action="/products/edit/<%= product.id%>?_method=PUT" method="POST">
+                            <div class="row product-detail">
+                                <div class="col-12 col-md-6">
+                                    <label class="form-product-label" for="productName">Producto</label>
+                                    <input class="form-product-input" type="text" name="productName" id="productName"
+                                        value="<%= product.name %>">
+                                    <p class="form-error">
+                                        <%= typeof errors.productName=='undefined' ? '' : errors.productName.msg%>
+                                    </p>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-product-label" for="productPrice">Precio</label>
+                                    <input class="form-product-input" type="text" name="productPrice" id="productPrice"
+                                        value="<%= product.price %>">
+                                    <p class="form-error">
+                                        <%= typeof errors.productPrice=='undefined' ? '' : errors.productPrice.msg%>
+                                    </p>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-product-label" for="productCategory">Categoria</label>
+                                    <div class="form-product-input">
+                                        <select name="productCategory" id="productCategory">
+                                            <option value="<%= product.category %>">
+                                                <%= product.category %>
+                                            </option>
+                                            <option value="Tinto">Tinto</option>
+                                            <option value="Espumante">Espumante</option>
+                                            <option value="Blanco">Blanco</option>
+                                            <option value="Espirituoso">Espirituoso</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    <label class="form-product-label" for="productDiscount">Descuento</label>
+                                    <input class="form-product-input" type="text" name="productDiscount"
+                                        id="productDiscount" value="<%= product.discount %>">
+                                    <p class="form-error">
+                                        <%= typeof errors.productDiscount=='undefined' ? '' :
+                                            errors.productDiscount.msg%>
+                                    </p>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-product-label" for="productScore">Score</label>
+                                    <input class="form-product-input" type="text" name="productScore" id="productScore"
+                                        value="<%= product.score %>">
+                                    <p class="form-error">
+                                        <%= typeof errors.productScore=='undefined' ? '' : errors.productScore.msg%>
+                                    </p>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-product-label" for="productPresentation">Presentación</label>
+                                    <input class="form-product-input" type="text" name="productPresentation"
+                                        id="productPresentation" value="<%= product.presentation %>">
+                                    <p class="form-error">
+                                        <%= typeof errors.productPresentation=='undefined' ? '' :
+                                            errors.productPresentation.msg%>
+                                    </p>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-product-label" for="productDetail">Descripción</label>
+                                    <textarea class="form-product-input" type="text" name="productDetail"
+                                        id="productDetail"><%= product.detail %></textarea>
+                                    <p class="form-error">
+                                        <%= typeof errors.productDetail=='undefined' ? '' : errors.productDetail.msg%>
+                                    </p>
+                                </div>
+
+                                <button class="form-product-btn" type="submit">Editar</button>
+                                <input class="form-product-btn-reset" type="reset" value="Borrar">
+                        </form>
             </section>
             <%- include('../partials/footer') %>
     </body>

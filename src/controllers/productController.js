@@ -28,7 +28,8 @@ const productController = {
             productScore: req.body.productScore,
             productPrice: req.body.productPrice,
             productDetail: req.body.productDetail,
-            img: "/images/" + req.files[0].filename,
+            img: req.files[0] != undefined ? "/images/" + req.files[0].filename : "",
+            //img: "/images/" + req.files[0].filename,
             productDiscount: req.body.productDiscount,
             productPresentation: req.body.productPresentation,
             productCategory: req.body.productCategory,
@@ -42,7 +43,8 @@ const productController = {
                 score: req.body.productScore,
                 price: req.body.productPrice,
                 detail: req.body.productDetail,
-                image: "/images/" + req.files[0].filename,
+                image: req.files[0] != undefined ? "/images/" + req.files[0].filename : "",
+                //image: "/images/" + req.files[0].filename,
                 discount: req.body.productDiscount,
                 presentation: req.body.productPresentation,
                 category: req.body.productCategory,
@@ -88,7 +90,7 @@ const productController = {
 
                 }
                 else {
-                    res.send("El detalle del producto al que intenta acceder no existe.")
+                    res.render('somethingWrong')
                 }
             }
             )

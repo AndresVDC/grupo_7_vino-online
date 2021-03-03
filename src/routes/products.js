@@ -26,7 +26,16 @@ router.post('/create', upload.any(),[
   check('productDiscount').isInt({min:0, max:99}).withMessage('Acepta hasta 2 números enteros.'),
   check('productScore').isInt({min: 0, max: 5}).withMessage('Acepta 1 número entero entre 0 y 5.'),
   check('productPresentation').isLength({min:6}).withMessage('El nombre no debe estar vacio y requiere como mínimo 6 caracteres.'),
-  check('image')
+    check('image')
+    .custom((value, {req}) => {
+    if(req.files[0] == undefined){
+      return false
+    }
+    else if(req.files[0].mimetype === 'image/png' || req.files[0].mimetype === 'image/jpeg'){
+        return '.png or .jpg'; // retorna un dato para indicar que es verdadero.
+    }else{
+        return false;
+    }}).withMessage('Es obligatorio cargar una imagen del producto y los formatos aceptados son .PNG o .JPEG'),
 ], productController.save)
 router.get('/productCart', productController.cart)
 router.get('/edit/:id', productController.edit)
