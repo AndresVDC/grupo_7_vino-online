@@ -75,8 +75,8 @@ const usersController= {
                 console.log(user)
                 res.redirect('/')
               }else{
-          console.log(user)
-          res.render('users/login')
+          let errorPass = "La password ingresada no es valida."
+          res.render('users/login', {errorPass, data: req.body, errors})
         }
       })
     }else{
