@@ -146,21 +146,21 @@ const usersController= {
     },
 
     profileEditPatchAvatar: (req,res) => {
-      let errors = validationResult(req);
-
-      if(errors.isEmpty()){
-      db.users.update({
-        avatar: /*req.files[0].filename */ req.files != undefined ? "/images/products/" + req.files[0].filename : ""
-        //? es como un IF, antes de los dos puntos lo que pasa si se cumple la condición y después la otra opción
-      },{
-        where:{
-          id: req.params.id
-        }
-      })
-      
-      res.redirect('/users/profile/' + req.params.id)
+      console.log(req.files)
+      //res.send(req.files)
+      if(typeof req.file != "undefined"){
+            db.users.update({
+              avatar: req.file.filename
+            },{
+              where:{
+                id: req.params.id
+              }
+            })
+            .then(avatars =>{
+              res.redirect('/users/profile/' + req.params.id)
+            })
       }else{
-        return res.render('users/editAvatar', {errors:errors.mapped(), data: req.body})
+            return res.render('users/editAvatar', {errorImage: "selecciona una imagen"})
       }
     },
 

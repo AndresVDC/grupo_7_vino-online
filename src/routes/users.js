@@ -37,8 +37,7 @@ router.post('/profile/edit/:id', usersController.profileEditPatch)
 
 // Avatar
 router.get('/profile/avatar/:id', usersController.profileEditAvatar)
-router.post('/profile/avatar/:id', uploads.single('avatar'), 
-[check('avatar').isEmail().withMessage('Selecciona un archivo para tu avatar')] , usersController.profileEditPatchAvatar)
+router.post('/profile/avatar/:id', uploads.single('avatar'), usersController.profileEditPatchAvatar)
 
 //Pass
 router.get('/profile/editPassword/:id', usersController.profileEditPassword)
