@@ -151,6 +151,7 @@ const usersController= {
       if(errors.isEmpty()){
       db.users.update({
         avatar: /*req.files[0].filename */ req.files != undefined ? "/images/products/" + req.files[0].filename : ""
+        //? es como un IF, antes de los dos puntos lo que pasa si se cumple la condición y después la otra opción
       },{
         where:{
           id: req.params.id
