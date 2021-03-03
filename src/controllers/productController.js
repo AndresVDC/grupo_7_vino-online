@@ -8,7 +8,8 @@ const productController = {
                 res.render('../views/products/productList', { products: products })
             })
             .catch((error) => {
-                res.send(error)
+                console.log(error)
+                res.render('somethingWrong')
             })
     },
     create: (req, res) => {
@@ -17,7 +18,8 @@ const productController = {
                 res.render('../views/products/formProduct', { errors: {}, nuevoProducto: {}, varietals: varietals })
             })
             .catch((error) => {
-                res.send(error)
+                console.log(error)
+                res.render('somethingWrong')
             })
     },
     save: (req, res) => {
@@ -32,30 +34,40 @@ const productController = {
             productCategory: req.body.productCategory,
             idVarietal: req.body.productVarietal
         }
-
         //Detección de errores
         let errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.render('../views/products/formProduct', { errors: errors.mapped(), nuevoProducto: nuevoProducto, varietals: {} })
-        }
-        db.Products.create({
-            name: req.body.productName,
-            score: req.body.productScore,
-            price: req.body.productPrice,
-            detail: req.body.productDetail,
-            image: "/images/" + req.files[0].filename,
-            discount: req.body.productDiscount,
-            presentation: req.body.productPresentation,
-            category: req.body.productCategory,
-            idVarietal: req.body.productVarietal,
-            idWinery: 1
-        })
-            .then(
-                res.redirect('/products')
-            )
-            .catch((error) => {
-                res.send(error)
+        if (errors.isEmpty()) {
+            db.Products.create({
+                name: req.body.productName,
+                score: req.body.productScore,
+                price: req.body.productPrice,
+                detail: req.body.productDetail,
+                image: "/images/" + req.files[0].filename,
+                discount: req.body.productDiscount,
+                presentation: req.body.productPresentation,
+                category: req.body.productCategory,
+                idVarietal: req.body.productVarietal,
+                idWinery: 1
             })
+                .then(result => {
+                    res.redirect('/products/' + result.id)
+                })
+                .catch((error) => {
+                    console.log(error)
+                    res.render('somethingWrong')
+                })
+            }
+        else {
+            db.Varietals.findAll()
+                .then(function (varietals) {
+                    return res.render('../views/products/formProduct', { errors: errors.mapped(), nuevoProducto: nuevoProducto, varietals: varietals })
+                })
+                .catch((error) => {
+                    console.log(error)
+                    res.render('somethingWrong')
+                })
+        }
+
     },
     detail: (req, res) => {
         db.Products.findByPk(req.params.id)
@@ -70,7 +82,8 @@ const productController = {
                             res.render('../views/products/productDetail', { product: product, related: related })
                         })
                         .catch((error) => {
-                            res.send(error)
+                            console.log(error)
+                            res.render('somethingWrong')
                         })
 
                 }
@@ -81,7 +94,8 @@ const productController = {
             )
 
             .catch((error) => {
-                res.send(error)
+                console.log(error)
+                res.render('somethingWrong')
             })
     },
     edit: (req, res) => {
@@ -95,7 +109,8 @@ const productController = {
                 }
             })
             .catch((error) => {
-                res.send(error)
+                console.log(error)
+                res.render('somethingWrong')
             })
     },
     actualizar: (req, res) => {
@@ -129,12 +144,14 @@ const productController = {
                             res.redirect('/products/' + req.params.id)
                         )
                         .catch((error) => {
-                            res.send("Error en update a la DB " + error)
+                            console.log(error)
+                            res.render('somethingWrong')
                         })
                 }
             })
             .catch((error) => {
-                res.send("Error en obtener el producto de la DB " + error)
+                console.log(error)
+                res.render('somethingWrong')
             })
     },
     cart: (req, res) => {
@@ -159,7 +176,8 @@ const productController = {
                         })
                     })
                     .catch((error) => {
-                        res.send("Error en leer productos de la DB para mostrar carrito " + error)
+                        console.log(error)
+                        res.render('somethingWrong')
                     })
             })
         }
@@ -194,49 +212,51 @@ const productController = {
                     })
                 res.redirect('../products/productCart')
             })
-                .catch((error) => {
-                    res.send("Error al agregar el producto al carrito: " + error)
-                })
-        }
-        else{
-        res.redirect('../users/login')
-    }
-},
-removeFromCart: (req, res) => {
-    db.Carts.findOne({
-        where: {
-            userId: res.locals.user.id
-        }
-    }).then(returnedCart => {
-        //En segundo lugar se efectua una query para traer ese carrito con sus asociaciones
-        db.Carts.findByPk(returnedCart.id)
-            .then(products => {
-                //Remueve el  producto, cantidad y precio en la tabla cartDetails.
-                products.removeProduct(Number(req.params.id))
-                let quantityOfProducts = Number(products.quantityOfProducts) - Number(req.body.removeFromCart);
-                let totalPrice = Number(products.totalPrice) - Number(req.body.removePrice);
-                db.Carts.update({
-                    quantityOfProducts: quantityOfProducts,
-                    totalPrice: totalPrice
-                },
-                    {
-                        where: { id: products.id }
-                    })
+            .catch((error) => {
+                console.log(error)
+                res.render('somethingWrong')
             })
-        res.redirect('/products/productCart')
-    })
-        .catch((error) => {
-            res.send("Error al agregar el producto al carrito: " + error)
-        })
-},
-delete: (req, res) => {
-    db.Products.destroy({
-        where: {
-            id: req.params.id
         }
-    })
-    res.redirect('/products')
-},
+        else {
+            res.redirect('../users/login')
+        }
+    },
+    removeFromCart: (req, res) => {
+        db.Carts.findOne({
+            where: {
+                userId: res.locals.user.id
+            }
+        }).then(returnedCart => {
+            //En segundo lugar se efectua una query para traer ese carrito con sus asociaciones
+            db.Carts.findByPk(returnedCart.id)
+                .then(products => {
+                    //Remueve el  producto, cantidad y precio en la tabla cartDetails.
+                    products.removeProduct(Number(req.params.id))
+                    let quantityOfProducts = Number(products.quantityOfProducts) - Number(req.body.removeFromCart);
+                    let totalPrice = Number(products.totalPrice) - Number(req.body.removePrice);
+                    db.Carts.update({
+                        quantityOfProducts: quantityOfProducts,
+                        totalPrice: totalPrice
+                    },
+                        {
+                            where: { id: products.id }
+                        })
+                })
+            res.redirect('/products/productCart')
+        })
+        .catch((error) => {
+            console.log(error)
+            res.render('somethingWrong')
+        })
+    },
+    delete: (req, res) => {
+        db.Products.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        res.redirect('/products')
+    },
     search: (req, res) => {
         db.Products.findAll({
             where: {
@@ -247,20 +267,26 @@ delete: (req, res) => {
                 res.render('../views/products/productList', { products: products })
 
             })
-            .catch()
-    },
-        category: (req, res) => {
-            db.Products.findAll({
-                where: {
-                    category: req.params.category
-                }
+            .catch((error) => {
+                console.log(error)
+                res.render('somethingWrong')
             })
-                .then(function (products) {
-                    res.render('../views/products/productList', { products: products })
+    },
+    category: (req, res) => {
+        db.Products.findAll({
+            where: {
+                category: req.params.category
+            }
+        })
+            .then(function (products) {
+                res.render('../views/products/productList', { products: products })
 
-                })
-                .catch()
-        }
+            })
+            .catch((error) => {
+                console.log(error)
+                res.render('somethingWrong')
+            })
+    }
 
 }
 

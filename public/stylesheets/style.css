@@ -957,8 +957,27 @@ color: green;
   border: none;
 }
 /*termina estilos de formulario de carga de productos*/
-
-
+.not-registered{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center-card{
+  background-color: white;
+  width: 40%;
+}
+.login-button {
+  background-color: white;
+  font-size: 1.6em;
+  color: #3a51b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 15px;
+}
 /* Style product Detail end*/
 
 @media(min-width:426px){

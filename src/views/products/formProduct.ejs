@@ -34,6 +34,9 @@
                                     <label class="form-product-label" for="productCategory">Categoria</label>
                                     <div class="form-product-input">
                                         <select name="productCategory" id="productCategory">
+                                            <option value="<%= nuevoProducto.productCategory %>">
+                                                <%= nuevoProducto.productCategory %>
+                                            </option>
                                             <option value="Tinto">Tinto</option>
                                             <option value="Espumante">Espumante</option>
                                             <option value="Blanco">Blanco</option>
@@ -45,12 +48,22 @@
                                     <label class="form-product-label" for="productVarietal">Varietal</label>
                                     <div class="form-product-input">
                                         <select name="productVarietal" id="productVarietal">
-                                            <% for( let index=0; index < varietals.length; index++ ) { %>
-                                                <%const element=varietals[index];%>
-                                                    <option value="<%= element.id %>">
-                                                        <%= element.varietal%>
-                                                    </option>
-                                                    <% } %>
+                                            <option
+                                                value="<%= typeof nuevoProducto.idVarietal != 'undefined' ? nuevoProducto.idVarietal : ''%>">
+                                                <% if ( typeof nuevoProducto.idVarietal!='undefined' ) { %>
+                                                    <% if (varietals[nuevoProducto.idVarietal]) { %>
+                                                        <%= varietals[nuevoProducto.idVarietal-1].varietal %>
+                                                            <% } else {%>
+                                                                Elegí
+                                                                <% } %>
+                                                                    <% } else {%>
+                                                                        Elegí
+                                                                        <% } %>
+                                            </option>
+                                            <% varietals.forEach(element=> { %>
+                                                <option value=<%=element.id%>><%=element.varietal%>
+                                                </option>
+                                                <% }) %>
                                         </select>
                                     </div>
                                 </div>

@@ -1,0 +1,23 @@
+<!-- Include Head -->
+<%- include('./partials/head', {title: 'somethingWrong' }) %>
+
+    <body>
+        <!-- Header -->
+        <%- include('./partials/header') %>
+            <!-- /Header -->
+            <main>
+                <div class="not-registered">
+                    <div class="center-card">
+                        <img src="/images/something_wrong.jpg" alt="Algo salio mal" style="width: 100%;">
+                        <div>
+                            <a role="button" href="/" class="login-button">
+                                <span>Volver al HOME!</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- footer -->
+            <%- include('./partials/footer') %>
+                <!-- /footer -->
+    </body>
