@@ -74,22 +74,27 @@ const usersController = {
 
       // SEQUELIZE MODELS
       db.users.findOne({ where: { email: req.body.email } })
-        .then((user) => {
-          const pass = bcrypt.compareSync(req.body.password, user.password)
-          if (pass) {
+      .then((user) => {
+        console.log(user)
+        if (user){
+          if(bcrypt.compareSync(req.body.password, user.password)){
             req.session.users = user
             if (req.body.remember) {
               res.cookie('remember', req.session.users, { maxAge: 1000 * 60 * 60 })
               res.locals.user = req.session.users
             }
             res.redirect('/')
-          } else {
+          }else{
             let errorPass = "La password ingresada no es valida."
-            res.render('users/login', { errorPass, data: req.body, errors })
+          res.render('users/login', { errorPass, data: req.body, errors })
           }
-        })
+        }else{
+          let errorEmail = "El e-mail no está registrado."
+          res.render('users/login', { errorEmail, data: req.body, errors })
+        }
+      })
     } else {
-      res.render('users/login', { errors: errors.mapped(), data: req.body })
+        res.render('users/login', { errors: errors.mapped(), data: req.body })
     }
   },
 
