@@ -30,13 +30,13 @@ CREATE TABLE `cartdetails` (
   `createdAt` datetime DEFAULT current_timestamp(),
   `updatedAt` datetime DEFAULT current_timestamp(),
   `deletedAt` datetime DEFAULT NULL,
-  `cartId` int(10) unsigned NOT NULL,
+  `cartId` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `productId_idx` (`productId`),
   KEY `cartId_idx` (`cartId`),
   CONSTRAINT `cartId` FOREIGN KEY (`cartId`) REFERENCES `carts` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `productId` FOREIGN KEY (`productId`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,6 @@ CREATE TABLE `cartdetails` (
 
 LOCK TABLES `cartdetails` WRITE;
 /*!40000 ALTER TABLE `cartdetails` DISABLE KEYS */;
-INSERT INTO `cartdetails` VALUES (1,2,1,2198.70,'0000-00-00 00:00:00','0000-00-00 00:00:00','0000-00-00 00:00:00',1);
 /*!40000 ALTER TABLE `cartdetails` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,17 +56,14 @@ DROP TABLE IF EXISTS `carts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `carts` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `quantityOfProducts` tinyint(255) unsigned NOT NULL,
   `totalPrice` decimal(7,2) unsigned NOT NULL,
-  `userId` bigint(20) unsigned DEFAULT NULL,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `userId_idx` (`userId`),
-  CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,7 +72,7 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
-INSERT INTO `carts` VALUES (1,2,6034.00,1,NULL,NULL,NULL),(2,0,0.00,2,NULL,'2021-02-10 23:03:34',NULL);
+INSERT INTO `carts` VALUES (3,0,0.00,'2021-03-03 23:13:45','2021-03-03 23:13:45',NULL),(4,0,0.00,'2021-03-03 23:15:24','2021-03-03 23:15:24',NULL),(5,0,0.00,'2021-03-03 23:18:44','2021-03-03 23:18:44',NULL),(6,0,0.00,'2021-03-03 23:24:32','2021-03-03 23:24:32',NULL),(7,0,0.00,'2021-03-03 23:25:50','2021-03-03 23:25:50',NULL);
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,11 +224,14 @@ CREATE TABLE `users` (
   `avatar` varchar(200) DEFAULT NULL,
   `category` varchar(45) NOT NULL DEFAULT 'user',
   `identityDocument` varchar(200) NOT NULL,
+  `idCart` bigint(20) unsigned NOT NULL,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   `deletedAt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `cartId_idx` (`idCart`),
+  CONSTRAINT `idCart` FOREIGN KEY (`idCart`) REFERENCES `carts` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -241,7 +240,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'e','e','e@e.com','123456',NULL,'user','123456',NULL,NULL,NULL),(2,'admin','admin','admin@admin.com','$2a$10$HNlSOIzjUx44xntkxclCtehUBgzMzYShlG6Tmt0w2vh0mM78VgxSG','avatar-default.png','Administrador','','2021-02-09 14:57:14','2021-02-09 14:57:14',NULL),(8,'emiliano','emiliano','emiliano19@a.com','$2a$10$ANQimwEaIKFWsPr0rPqtG..QU5jaMbKucae1ymHHeuU41vuZmZzim','avatar-default.png','Administrador','','2021-02-10 23:49:46','2021-02-10 23:49:46',NULL),(9,'Emiliano','Rosico','emiliano19@gmail.com','$2a$10$kDG89jtbt7MSkxekSygELes0Yt///tSqhjPXFiNSbnK2RR20wocz2','avatar-default.png','Usuario','','2021-02-10 23:53:51','2021-02-10 23:53:51',NULL);
+INSERT INTO `users` VALUES (3,'admin','admin','admin@admin.com','$2a$10$Sb7GLEqu7poCAFKdO8rA8eHYRbIcI23mrwAlHriUBJqu0rireoRVK','avatar-default.png','Administrador','',7,'2021-03-03 23:25:50','2021-03-03 23:25:50',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,4 +304,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-17  7:52:17
+-- Dump completed on 2021-03-03 20:50:55

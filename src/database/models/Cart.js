@@ -3,7 +3,7 @@ module.exports = (sequelize, dataTypes) => {
         id: {
             autoIncrement: true,
             primaryKey: true,
-            type: dataTypes.INTEGER.UNSIGNED,
+            type: dataTypes.BIGINT.UNSIGNED,
             allowNull: false,
 
         } ,
@@ -16,7 +16,6 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.DECIMAL(7,2),
             defaultValue: 0
         },
-        userId: {type: dataTypes.INTEGER.UNSIGNED},
         createdAt: {type: dataTypes.DATE, defaultValue: dataTypes.NOW},
         updatedAt: {type: dataTypes.DATE, defaultValue: dataTypes.NOW},
         deletedAt:{type: dataTypes.DATE, defaultValue: dataTypes.NULL} ,
@@ -31,11 +30,11 @@ module.exports = (sequelize, dataTypes) => {
             foreignKey: "cartId",
             otherKey: "productId"
         })
-        Cart.belongsTo(models.users,{
-            as: 'Users',
-            foreignKey: "userId",
-            })
-        
+        //Cart.belongsTo(models.users,{
+        //    as: 'Users',
+        //    foreignKey: "userId",
+        //    })
+        //
         //CartDetail.belongsTo(models.Wineries,{
         //    as: "Wineries",
         //    foreignKey: "idWinery"

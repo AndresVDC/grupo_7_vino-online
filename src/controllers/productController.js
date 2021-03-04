@@ -167,13 +167,13 @@ const productController = {
         }
         else {
             //En primer lugar se busca cual es el ID del carrito que pertenece al usuario.
-            db.Carts.findOne({
+            db.users.findOne({
                 where: {
-                    userId: res.locals.user.id
+                    idCart: res.locals.user.idCart
                 }
             }).then(returnedCart => {
                 //En segundo lugar se efectua una query para traer ese carrito con sus asociaciones
-                db.Carts.findByPk(returnedCart.id, { include: [{ association: "product" }] })
+                db.Carts.findByPk(returnedCart.idCart, { include: [{ association: "product" }] })
                     .then(products => {
                         res.render('../views/products/productCart', {
                             empty: products.quantityOfProducts == 0,
@@ -191,13 +191,13 @@ const productController = {
     addToCart: (req, res) => {
         //En primer lugar se busca cual es el ID del carrito que pertenece al usuario.
         if (res.locals.user.id) {
-            db.Carts.findOne({
+            db.users.findOne({
                 where: {
-                    userId: res.locals.user.id
+                    idCart: res.locals.user.idCart
                 }
             }).then(returnedCart => {
                 //En segundo lugar se efectua una query para traer ese carrito con sus asociaciones
-                db.Carts.findByPk(returnedCart.id)
+                db.Carts.findByPk(returnedCart.idCart)
                     .then(products => {
                         //Agregado del producto, cantidad y precio en la tabla cartDetails.
                         products.addProduct(Number(req.body.id), {
@@ -228,13 +228,13 @@ const productController = {
         }
     },
     removeFromCart: (req, res) => {
-        db.Carts.findOne({
+        db.users.findOne({
             where: {
-                userId: res.locals.user.id
+                idCart: res.locals.user.idCart
             }
         }).then(returnedCart => {
             //En segundo lugar se efectua una query para traer ese carrito con sus asociaciones
-            db.Carts.findByPk(returnedCart.id)
+            db.Carts.findByPk(returnedCart.idCart)
                 .then(products => {
                     //Remueve el  producto, cantidad y precio en la tabla cartDetails.
                     products.removeProduct(Number(req.params.id))
