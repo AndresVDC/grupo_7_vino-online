@@ -14,79 +14,91 @@
                                     tienda</a></button>
                         </section>
                         <% } else{ %>
-                            <% products.product.forEach(element=> { %>
-                                <section class="container-productList">
-                                    <a href="/products/<%= element.id %>">
-                                        <div class="container-productList-img">
-                                            <img src="<%= element.image%>" alt="">
-                                        </div>
-                                    </a>
-                                    <div class="container-productList-info">
-                                        <h4 class="productDetail-container-productName">
-                                            <%= element.name %>
-                                        </h4>
-                                        <span class="productDetail-container-price">$
-                                            <%=(element.price-element.price*element.discount /100).toFixed(2) %>
-                                        </span>
-                                        <div class="productDetail-container3">
-                                            <span class="offers-container-card-realPrice">$
-                                                <%=element.price%>
-                                            </span>
-                                            <span class="offers-container-card-discount">
-                                                <%=element.discount%>%off
-                                            </span>
-                                        </div>
-                                        <p class="productDetail-container-unitsPerProduct">
-                                            <%= element.presentation %>
-                                        </p>
-                                        <div class="cart-container-btn">
-                                            <i class="fas fa-minus-circle cart-icon"></i>
-                                            <input class="cart-counter" type="text" id="counter" class="form-control"
-                                                value="<%= element.CartDetail.productQuantity%>">
-                                            <i class="fas fa-plus-circle cart-icon"></i>
-                                            <form action="delete/fromCart/<%=element.id%>?_method=DELETE" method="POST">
-                                                <input type="text" hidden value="<%= element.CartDetail.productQuantity%>" name="removeFromCart">
-                                                <input type="text" hidden value="<%=(element.price-element.price*element.discount /100).toFixed(2) %>" name="removePrice">
-                                                <button type="submit">Eliminar producto</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </section>
-                                </a>
-                                <%}); %>
-                                    <% } %>
-                                        <div class="container-sections">
-                                            <section>
-                                                <div class="cart-description">
-                                                    <div class="cart-item-a">SUBTOTAL(#items)</div>
-                                                    <div class="cart-item-b">
-                                                        <%= total %>
-                                                    </div>
+                            <div class="container">
+                                <div class="row">
+                                    <% products.product.forEach(element=> { %>
+                                        <div class="col-md-2 container-productList">
+                                            <a href="/products/<%= element.id %>">
+                                                <div class="container-productList-img">
+                                                    <img src="<%= element.image%>" alt="">
                                                 </div>
-                                            </section>
-                                            <section>
-                                                <div class="cart-description">
-                                                    <div class="cart-item-a">ENVIO</div>
-                                                    <div class="cart-item-b">CODIGO POSTAL</div>
+                                            </a>
+                                            <div class="container-productList-info">
+                                                <h4 class="productDetail-container-productName">
+                                                    <%= element.name %>
+                                                </h4>
+                                                <span class="productDetail-container-price">$
+                                                    <%=(element.price-element.price*element.discount /100).toFixed(2) %>
+                                                </span>
+                                                <div class="productDetail-container3">
+                                                    <span class="offers-container-card-realPrice">$
+                                                        <%=element.price%>
+                                                    </span>
+                                                    <span class="offers-container-card-discount">
+                                                        <%=element.discount%>%off
+                                                    </span>
                                                 </div>
-                                            </section>
-                                            <section>
-                                                <div class="cart-description">
-                                                    <div class="cart-item-a">TOTAL</div>
-                                                    <div class="cart-item-b">
-                                                        <%= total %>
-                                                    </div>
+                                                <p class="productDetail-container-unitsPerProduct">
+                                                    <%= element.presentation %>
+                                                </p>
+                                                <div class="cart-container-btn">
+                                                    <i class="fas fa-minus-circle cart-icon"></i>
+                                                    <input class="cart-counter" type="text" id="counter"
+                                                        class="form-control"
+                                                        value="<%= element.CartDetail.productQuantity%>">
+                                                    <i class="fas fa-plus-circle cart-icon"></i>
+                                                    <form action="delete/fromCart/<%=element.id%>?_method=DELETE"
+                                                        method="POST">
+                                                        <input type="text" hidden
+                                                            value="<%= element.CartDetail.productQuantity%>"
+                                                            name="removeFromCart">
+                                                        <input type="text" hidden
+                                                            value="<%=(element.price-element.price*element.discount /100).toFixed(2) %>"
+                                                            name="removePrice">
+                                                        <button type="submit">Eliminar producto</button>
+                                                    </form>
                                                 </div>
-                                            </section>
-                                            <section>
-                                                <div>
-                                                    <button class="cart-btn3"><a class=cart-btn3 href="/">Seguir
-                                                            comprando</a></button><button class="cart-btn4"
-                                                        type="submit">Finalizar
-                                                        compra</button>
-                                                </div>
-                                            </section>
+                                            </div>
+
                                         </div>
+                                        <%}); %>
+                                </div>
+                            </div>
+
+
+                            <% } %>
+                                <div class="container-sections">
+                                    <section>
+                                        <div class="cart-description">
+                                            <div class="cart-item-a">SUBTOTAL(#items)</div>
+                                            <div class="cart-item-b">
+                                                <%= total %>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section>
+                                        <div class="cart-description">
+                                            <div class="cart-item-a">ENVIO</div>
+                                            <div class="cart-item-b">CODIGO POSTAL</div>
+                                        </div>
+                                    </section>
+                                    <section>
+                                        <div class="cart-description">
+                                            <div class="cart-item-a">TOTAL</div>
+                                            <div class="cart-item-b">
+                                                <%= total %>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section>
+                                        <div>
+                                            <button class="cart-btn3"><a class=cart-btn3 href="/">Seguir
+                                                    comprando</a></button><button class="cart-btn4"
+                                                type="submit">Finalizar
+                                                compra</button>
+                                        </div>
+                                    </section>
+                                </div>
                 </section>
             </main>
             <%- include('../partials/footer') %>

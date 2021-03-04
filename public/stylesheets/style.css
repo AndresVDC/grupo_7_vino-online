@@ -870,6 +870,7 @@ color: green;
 }
 .container-productList-img{
  width: 100%;
+ height: 150px;
  text-align: center;
 }
 .container-productList-img img{
@@ -1000,7 +1001,10 @@ color: green;
   }
   .container-productList{
     display: table;
-    min-width: 230px
+    min-width: 210px
+  }
+  .container {
+    max-width: 1000px;
   }
   .background-blue{
     background: rgb(61, 155, 218);
