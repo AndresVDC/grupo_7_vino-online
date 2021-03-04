@@ -1,37 +1,43 @@
 <%- include('../partials/head') %>
+
   <body>
     <main>
       <%- include('../partials/header') %>
-      <section class="main-margin">
-        <%products.forEach(element=> { %>
-          <a href="/products/<%= element.id %>">
-            <section class="container-productList">
-              <div class="container-productList-img">
-                <img src="<%= element.image%>" alt="">
-              </div>
-              <div class="container-productList-info">
-                <h4 class="productDetail-container-productName">
-                  <%= element.name %>
-                </h4>
+        <section class="main-margin">
+          <div class="container">
+            <div class="row">
+              <%products.forEach(element=> { %>
 
-                <span class="productDetail-container-price">$
-                  <%=(element.price-element.price*element.discount /100).toFixed(2) %>
-                </span>
-                <div class="productDetail-container3">
-                  <span class="offers-container-card-realPrice">$
-                    <%=element.price%>
-                  </span>
-                  <span class="offers-container-card-discount">
-                    <%=element.discount%>%off
-                  </span>
-                </div>
-                <p class="productDetail-container-unitsPerProduct"><%= element.presentation %></p>
-                
-              </div>
-            </section>
-          </a>
-          <%}); %>
-      </section>
+                <a href="/products/<%= element.id %>">
+                  <div class="col-12 col-md-3 container-productList">
+                    <div class="container-productList-img">
+                      <img src="<%= element.image%>" alt="">
+                    </div>
+                    <div class="container-productList-info">
+                      <h4 class="productDetail-container-productName">
+                        <%= element.name %>
+                      </h4>
+
+                      <span class="productDetail-container-price">$
+                        <%=(element.price-element.price*element.discount /100).toFixed(2) %>
+                      </span>
+                      <div class="productDetail-container3">
+                        <span class="offers-container-card-realPrice">$
+                          <%=element.price%>
+                        </span>
+                        <span class="offers-container-card-discount">
+                          <%=element.discount%>%off
+                        </span>
+                      </div>
+
+                    </div>
+                  </div>  
+                </a>
+
+                <%}); %>
+            </div>
+          </div>
+        </section>
     </main>
     <%- include('../partials/footer') %>
   </body>

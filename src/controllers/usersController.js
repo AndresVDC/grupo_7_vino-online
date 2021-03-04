@@ -82,7 +82,6 @@ const usersController = {
               res.cookie('remember', req.session.users, { maxAge: 1000 * 60 * 60 })
               res.locals.user = req.session.users
             }
-            console.log(user)
             res.redirect('/')
           } else {
             let errorPass = "La password ingresada no es valida."

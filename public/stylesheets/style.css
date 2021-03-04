@@ -72,6 +72,12 @@ main {
 
   .dropdown:hover .dropbtn {background-color: #3e3f8e;}
 
+  .dropdown-content i {
+    background: rgb(61, 155, 218);
+    color: white;
+    font-size: 1.4em;
+  }
+
   /* Slideshow container */
 .slideshow-container {
   position: relative;
@@ -738,11 +744,9 @@ footer h4{
 }
 .productDetail-container3{
   display: flex;
-  margin: 0px 10px;
-  padding: 5px 10px;
 }
 .productDetail-container3 span{
-  margin-left: 0px;
+  margin: 0px 3px;
   padding: 0;
 }
 .productDetail-container2 h4{
@@ -751,7 +755,8 @@ footer h4{
   margin: 10px;
 }
 .productDetail-container-price{
-  font-weight: 800;
+  font-weight: 600;
+  color: rgb(61, 155, 218);;
 }
 
 /*Contador add to card*/
@@ -853,25 +858,26 @@ color: green;
   }
 
 /*ProductList*/
+.row {
+  display:block;
+}
 .container-productList{
   display: inline-flex;
   background-color: white;
   width: 100%;
-  justify-content: center;
-  align-items: center;
-
+  margin: 9px;
+  border-radius: 9px;
 }
 .container-productList-img{
- width: 30%;
- border-right: solid 1px lightgray;
+ width: 100%;
  text-align: center;
 }
 .container-productList-img img{
-  width: 120px;
+  width: 150px;
   }
 
 .container-productList-info{
-  width: 70%;
+  width: 100%;
   color: black;
   display: flex;
   flex-direction: column;
@@ -989,6 +995,13 @@ color: green;
 
 @media(min-width:768px){
 
+  .row{
+    display: flex;
+  }
+  .container-productList{
+    display: table;
+    min-width: 230px
+  }
   .background-blue{
     background: rgb(61, 155, 218);
   }

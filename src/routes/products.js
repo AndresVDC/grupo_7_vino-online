@@ -20,9 +20,9 @@ router.get('/search', productController.search)
 router.get('/category/:category', productController.category)
 router.get('/create', productController.create)
 router.post('/create', upload.any(),[
-  check('productName').isLength({min:6}).withMessage('El nombre no debe estar vacio y requiere como mínimo 6 caracteres.'),
+  check('productName').isLength({min:5}).withMessage('El nombre no debe estar vacio y requiere como mínimo 5 caracteres.'),
   check('productPrice').isDecimal({decimal_digits: '0,2'}).withMessage('El Precio no debe estar vacio, solo debe ingresar números y hasta 2 decimales.'),
-  check('productDetail').isLength({max:280}).withMessage('El texto no debe superar los 280 caracteres.'),
+  check('productDetail').isLength({min: 20, max:1000}).withMessage('El texto debe contener entre 20 y 1000 caracteres.'),
   check('productDiscount').isInt({min:0, max:99}).withMessage('Acepta hasta 2 números enteros.'),
   check('productScore').isInt({min: 0, max: 5}).withMessage('Acepta 1 número entero entre 0 y 5.'),
   check('productPresentation').isLength({min:6}).withMessage('El nombre no debe estar vacio y requiere como mínimo 6 caracteres.'),
@@ -31,7 +31,7 @@ router.post('/create', upload.any(),[
     if(req.files[0] == undefined){
       return false
     }
-    else if(req.files[0].mimetype === 'image/png' || req.files[0].mimetype === 'image/jpeg'){
+    else if(req.files[0].mimetype === 'image/png' || req.files[0].mimetype === 'image/jpeg' || req.files[0].mimetype === 'image/gif'){
         return '.png or .jpg'; // retorna un dato para indicar que es verdadero.
     }else{
         return false;
@@ -40,9 +40,9 @@ router.post('/create', upload.any(),[
 router.get('/productCart', productController.cart)
 router.get('/edit/:id', productController.edit)
 router.put('/edit/:id',[
-  check('productName').isLength({min:6}).withMessage('El nombre no debe estar vacio y requiere como mínimo 6 caracteres.'),
+  check('productName').isLength({min:5}).withMessage('El nombre no debe estar vacio y requiere como mínimo 5 caracteres.'),
   check('productPrice').isDecimal({decimal_digits: '0,2'}).withMessage('El Precio no debe estar vacio, solo debe ingresar números y hasta 2 decimales.'),
-  check('productDetail').isLength({max:280}).withMessage('El texto no debe superar los 280 caracteres.'),
+  check('productDetail').isLength({min: 20, max:1000}).withMessage('El texto debe contener entre 20 y 1000 caracteres.'),
   check('productDiscount').isInt({min:0, max:99}).withMessage('Acepta hasta 2 números enteros.'),
   check('productScore').isInt({min:0, max:5}).withMessage('Acepta 1 número entero entre 0 y 5.'),
   check('productPresentation').isLength({min:6}).withMessage('El nombre no debe estar vacio y requiere como mínimo 6 caracteres.'),
