@@ -187,33 +187,7 @@ const usersController = {
   },
 
   profileEditPatchPassword: (req, res) => {
-    db.users.findByPk(req.params.id)
-    let id = req.params.id
-    let user = users[id]
-    let cambio;
-
-    if (bcrypt.compareSync(req.body.password1, user.password)) {
-      if (req.body.password2 == req.body.password3) {
-        cambio = users.splice(user.id, 1, {
-          id: user.id,
-          first_name: user.first_name,
-          last_name: user.last_name,
-          category: user.category,
-          email: user.email,
-          password: bcrypt.hashSync(req.body.password2, 10),
-          avatar: user.avatar
-        })
-
-        users = JSON.stringify(users)
-        fs.writeFileSync(filePath, users)
-
-        res.redirect('users/login')
-      } else {
-        res.send('Colocó mal su nueva contraseña')
-      }
-    } else {
-      res.send('Colocó mal su contraseña antigua')
-    }
+    
   },
 
   logout: (req, res) => {
