@@ -180,7 +180,7 @@ const usersController = {
   },
 
   profileEditPassword: (req, res) => {
-    db.users.finddByPk(req.params.id)
+    db.users.findByPk(req.params.id)
       .then(user => {
         res.render('users/editPassword', { user: user })
       })
