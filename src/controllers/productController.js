@@ -1,6 +1,5 @@
 const { validationResult } = require('express-validator')
-const path = require('path')
-let db = require(path.join('..', 'database', 'models'))
+const db = require('../database/models');
 const productController = {
     productList: (req, res) => {
         db.Products.findAll()

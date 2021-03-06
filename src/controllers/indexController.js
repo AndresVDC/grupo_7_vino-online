@@ -1,9 +1,6 @@
-const path = require('path')
-//variable en la que se declara el archivo producto.
-let db = require(path.join('..', 'database', 'models'))
+const db = require('../database/models');
 const indexController = {
   home: function (req, res) {
-    //let products = fileController.openFile(productsJson)
     db.Products.findAll({ 
       limit: 4,
       order: db.sequelize.random()
