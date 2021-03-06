@@ -14,6 +14,9 @@ module.exports = (sequelize, dataTypes) => {
         createdAt: {type: dataTypes.DATE, defaultValue: dataTypes.NOW},
         updatedAt: {type: dataTypes.DATE, defaultValue: dataTypes.NOW},
         deletedAt:{type: dataTypes.DATE, defaultValue: dataTypes.NULL} ,
+    },{
+        tableName: "cartdetails",
+        timestamps: true
     })
    return CartDetail;
 }
