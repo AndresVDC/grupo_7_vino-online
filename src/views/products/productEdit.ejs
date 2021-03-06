@@ -1,5 +1,6 @@
 <html>
 <%- include('../partials/head') %>
+    <script src="/js/productValidator.js"></script>
 
     <body>
         <%- include('../partials/header') %>
@@ -17,7 +18,7 @@
                                     <label class="form-product-label" for="productName">Producto</label>
                                     <input class="form-product-input" type="text" name="productName" id="productName"
                                         value="<%= product.name %>">
-                                    <p class="form-error">
+                                    <p class="form-error productName">
                                         <%= typeof errors.productName=='undefined' ? '' : errors.productName.msg%>
                                     </p>
                                 </div>
@@ -25,7 +26,7 @@
                                     <label class="form-product-label" for="productPrice">Precio</label>
                                     <input class="form-product-input" type="text" name="productPrice" id="productPrice"
                                         value="<%= product.price %>">
-                                    <p class="form-error">
+                                    <p class="form-error productPrice">
                                         <%= typeof errors.productPrice=='undefined' ? '' : errors.productPrice.msg%>
                                     </p>
                                 </div>
@@ -48,7 +49,7 @@
                                     <label class="form-product-label" for="productDiscount">Descuento</label>
                                     <input class="form-product-input" type="text" name="productDiscount"
                                         id="productDiscount" value="<%= product.discount %>">
-                                    <p class="form-error">
+                                    <p class="form-error productDiscount">
                                         <%= typeof errors.productDiscount=='undefined' ? '' :
                                             errors.productDiscount.msg%>
                                     </p>
@@ -57,7 +58,7 @@
                                     <label class="form-product-label" for="productScore">Score</label>
                                     <input class="form-product-input" type="text" name="productScore" id="productScore"
                                         value="<%= product.score %>">
-                                    <p class="form-error">
+                                    <p class="form-error productScore">
                                         <%= typeof errors.productScore=='undefined' ? '' : errors.productScore.msg%>
                                     </p>
                                 </div>
@@ -65,7 +66,7 @@
                                     <label class="form-product-label" for="productPresentation">Presentación</label>
                                     <input class="form-product-input" type="text" name="productPresentation"
                                         id="productPresentation" value="<%= product.presentation %>">
-                                    <p class="form-error">
+                                    <p class="form-error productPresentation">
                                         <%= typeof errors.productPresentation=='undefined' ? '' :
                                             errors.productPresentation.msg%>
                                     </p>
@@ -74,7 +75,7 @@
                                     <label class="form-product-label" for="productDetail">Descripción</label>
                                     <textarea class="form-product-input" type="text" name="productDetail"
                                         id="productDetail"><%= product.detail %></textarea>
-                                    <p class="form-error">
+                                    <p class="form-error productDesc">
                                         <%= typeof errors.productDetail=='undefined' ? '' : errors.productDetail.msg%>
                                     </p>
                                 </div>

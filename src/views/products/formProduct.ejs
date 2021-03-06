@@ -1,5 +1,6 @@
 <html>
 <%- include('../partials/head') %>
+    <script src="/js/productValidator.js"></script>
 
     <body>
         <%- include('../partials/header') %>
@@ -17,8 +18,8 @@
                                 <div class="col-12 col-md-6">
                                     <label class="form-product-label" for="productName">Producto</label>
                                     <input class="form-product-input" type="text" name="productName" id="productName"
-                                        value="<%= nuevoProducto.productName %> ">
-                                    <p class="form-error">
+                                        value="<%= nuevoProducto.productName %>">
+                                    <p class="form-error productName">
                                         <%= typeof errors.productName=='undefined' ? '' : errors.productName.msg%>
                                     </p>
                                 </div>
@@ -26,7 +27,7 @@
                                     <label class="form-product-label" for="productPrice">Precio</label>
                                     <input class="form-product-input" type="text" name="productPrice" id="productPrice"
                                         value="<%= nuevoProducto.productPrice %>">
-                                    <p class="form-error">
+                                    <p class="form-error productPrice">
                                         <%= typeof errors.productPrice=='undefined' ? '' : errors.productPrice.msg%>
                                     </p>
                                 </div>
@@ -71,7 +72,7 @@
                                     <label class="form-product-label" for="productDiscount">Descuento</label>
                                     <input class="form-product-input" type="number" name="productDiscount"
                                         id="productDiscount" value="<%= nuevoProducto.productDiscount %>">
-                                    <p class="form-error">
+                                    <p class="form-error productDiscount">
                                         <%= typeof errors.productDiscount=='undefined' ? '' :
                                             errors.productDiscount.msg%>
                                     </p>
@@ -80,7 +81,7 @@
                                     <label class="form-product-label" for="productScore">Score</label>
                                     <input class="form-product-input" type="number" name="productScore"
                                         id="productScore" value="<%= nuevoProducto.productScore %>">
-                                    <p class="form-error">
+                                    <p class="form-error productScore">
                                         <%= typeof errors.productScore=='undefined' ? '' : errors.productScore.msg%>
                                     </p>
                                 </div>
@@ -88,7 +89,7 @@
                                     <label class="form-product-label" for="productPresentation">Presentación</label>
                                     <input class="form-product-input" type="text" name="productPresentation"
                                         id="productPresentation" value="<%= nuevoProducto.productPresentation %>">
-                                    <p class="form-error">
+                                    <p class="form-error productPresentation">
                                         <%= typeof errors.productPresentation=='undefined' ? '' :
                                             errors.productPresentation.msg%>
                                     </p>
@@ -97,15 +98,15 @@
                                     <label class="form-product-label" for="image">Imagen</label>
                                     <input class="form-product-input" type="file" name="image" id="image"
                                         accept="image/*">
-                                    <p class="form-error">
+                                    <p class="form-error image">
                                         <%= typeof errors.image=='undefined' ? '' : errors.image.msg%>
                                     </p>
                                 </div>
                                 <div class="col-12">
                                     <label class="form-product-label" for="productDetail">Descripción</label>
                                     <textarea class="form-product-input" type="text" name="productDetail"
-                                        id="productDetail"><%= nuevoProducto.productDetail %></textarea>
-                                    <p class="form-error">
+                                        id="productDetail"><%= nuevoProducto.productDetail%></textarea>
+                                    <p class="form-error productDesc">
                                         <%= typeof errors.productDetail=='undefined' ? '' : errors.productDetail.msg%>
                                     </p>
                                 </div>
