@@ -11,6 +11,9 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(150),
             allowNull: false
         } 
+    },{
+        tableName: "wineries",
+        timestamps: true
     })
     Winery.associate = function(models){
         Winery.hasMany(models.Products,{

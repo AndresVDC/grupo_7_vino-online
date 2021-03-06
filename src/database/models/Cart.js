@@ -20,7 +20,8 @@ module.exports = (sequelize, dataTypes) => {
         updatedAt: {type: dataTypes.DATE, defaultValue: dataTypes.NOW},
         deletedAt:{type: dataTypes.DATE, defaultValue: dataTypes.NULL} ,
     },{
-
+        tableName: "carts",
+        timestamps: true
     })
 
     Cart.associate = function(models){

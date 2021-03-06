@@ -1,8 +1,6 @@
 let path = require('path');
 let fs = require('fs');
 let bcrypt = require('bcryptjs');//usar siempre BCRYPTJS
-let filePath = path.join('src', 'data', 'users.json');
-let users = JSON.parse(fs.readFileSync(filePath, { encoding: "utf-8" }));
 const { check, validationResult, body } = require('express-validator');
 // requerimos SEQUELIZE MODELS
 const db = require('../database/models');

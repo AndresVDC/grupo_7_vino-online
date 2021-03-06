@@ -33,7 +33,8 @@ module.exports = (sequelize, dataTypes) => {
         updatedAt: {type: dataTypes.DATE, defaultValue: dataTypes.NOW},
         deletedAt:{type: dataTypes.DATE, defaultValue: dataTypes.NULL, paranoid: true} ,
     },{
-        
+        tableName: "products",
+        timestamps: true
     })
 
     Product.associate = function(models){
