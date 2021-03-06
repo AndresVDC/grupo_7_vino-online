@@ -21,6 +21,7 @@
                 <div class="container-dates">
                     <input class="email" type="email" name="email" placeholder="E-mail" value='<%= data.email %>'>
                     <p><%= typeof errors.email == 'undefined' ? "" : errors.email.msg %></p>
+                    <p><%= typeof errorEmail == 'undefined' ? "" : errorEmail %></p>
                 </div>
 
                 <div class="container-dates">

@@ -74,22 +74,27 @@ const usersController = {
 
       // SEQUELIZE MODELS
       db.users.findOne({ where: { email: req.body.email } })
-        .then((user) => {
-          const pass = bcrypt.compareSync(req.body.password, user.password)
-          if (pass) {
+      .then((user) => {
+        console.log(user)
+        if (user){
+          if(bcrypt.compareSync(req.body.password, user.password)){
             req.session.users = user
             if (req.body.remember) {
               res.cookie('remember', req.session.users, { maxAge: 1000 * 60 * 60 })
               res.locals.user = req.session.users
             }
             res.redirect('/')
-          } else {
+          }else{
             let errorPass = "La password ingresada no es valida."
-            res.render('users/login', { errorPass, data: req.body, errors })
+          res.render('users/login', { errorPass, data: req.body, errors })
           }
-        })
+        }else{
+          let errorEmail = "El e-mail no está registrado."
+          res.render('users/login', { errorEmail, data: req.body, errors })
+        }
+      })
     } else {
-      res.render('users/login', { errors: errors.mapped(), data: req.body })
+        res.render('users/login', { errors: errors.mapped(), data: req.body })
     }
   },
 
@@ -175,40 +180,14 @@ const usersController = {
   },
 
   profileEditPassword: (req, res) => {
-    db.users.finddByPk(req.params.id)
+    db.users.findByPk(req.params.id)
       .then(user => {
         res.render('users/editPassword', { user: user })
       })
   },
 
   profileEditPatchPassword: (req, res) => {
-    db.users.findByPk(req.params.id)
-    let id = req.params.id
-    let user = users[id]
-    let cambio;
-
-    if (bcrypt.compareSync(req.body.password1, user.password)) {
-      if (req.body.password2 == req.body.password3) {
-        cambio = users.splice(user.id, 1, {
-          id: user.id,
-          first_name: user.first_name,
-          last_name: user.last_name,
-          category: user.category,
-          email: user.email,
-          password: bcrypt.hashSync(req.body.password2, 10),
-          avatar: user.avatar
-        })
-
-        users = JSON.stringify(users)
-        fs.writeFileSync(filePath, users)
-
-        res.redirect('users/login')
-      } else {
-        res.send('Colocó mal su nueva contraseña')
-      }
-    } else {
-      res.send('Colocó mal su contraseña antigua')
-    }
+    
   },
 
   logout: (req, res) => {
