@@ -41,7 +41,10 @@ router.post('/profile/avatar/:id', uploads.single('avatar'), usersController.pro
 
 //Pass
 router.get('/profile/editPassword/:id', usersController.profileEditPassword)
-router.post('/profile/editPassword/:id', usersController.profileEditPatchPassword)
+router.post('/profile/editPassword/:id', [check('password1').not().isEmpty().withMessage('Debe completar este campo'),
+check('password2').not().isEmpty().withMessage('Debe completar este campo'),
+check('password3').not().isEmpty().withMessage('Debe completar este campo')] , 
+usersController.profileEditPatchPassword)
 
 // Logout
 router.get('/logout', usersController.logout)
