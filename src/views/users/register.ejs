@@ -20,12 +20,12 @@
 
                         <div class="container-dates">
                             <input class="name" type="text" name="first_name" placeholder="Nombre" >
-                            <p><%= typeof errors.first_name == 'undefined' ? "" : errors.first_name.msg %></p>
+                            <p class="registerName"><%= typeof errors.first_name == 'undefined' ? "" : errors.first_name.msg %></p>
                         </div>
 
                         <div class="container-dates">
                             <input class="surname" type="text" name="last_name" placeholder="Apellido" >
-                            <p><%= typeof errors.last_name == 'undefined' ? "" : errors.last_name.msg %></p>
+                            <p class="registerSurname"><%= typeof errors.last_name == 'undefined' ? "" : errors.last_name.msg %></p>
                         </div>
 
                         <div class="container-dates">
@@ -38,7 +38,7 @@
 
                         <div class="container-dates">
                             <input class="email" type="email" name="email" placeholder="E-mail" >
-                            <p><%= typeof errors.email == 'undefined' ? "" : errors.email.msg %></p>
+                            <p class="registerEmail"><%= typeof errors.email == 'undefined' ? "" : errors.email.msg %></p>
                         </div>
                         <div>
                             <% if (typeof registeredUser != 'undefined') { %>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="container-dates">
                             <input class="password" type="password" name="password" placeholder="Cree una contraseña" >
-                            <p><%= typeof errors.password == 'undefined' ? "" : errors.password.msg %></p>
+                            <p class="registerPassword"><%= typeof errors.password == 'undefined' ? "" : errors.password.msg %></p>
                         </div>
 
                         <div class="send-or-reset">
@@ -65,6 +65,7 @@
 
                 <%- include('../partials/footer') %>
         </main>
+        <script src="/js/registerValidator.js"></script>
     </body>
 
     </html>
