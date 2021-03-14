@@ -1,4 +1,4 @@
-let path = require('path');
+let path = require('path'); 
 let fs = require('fs');
 let bcrypt = require('bcryptjs');//usar siempre BCRYPTJS
 const { check, validationResult, body } = require('express-validator');
@@ -131,6 +131,10 @@ const usersController = {
 
         res.render('users/editProfile', { user: user })
       })
+      .catch((err) => {
+        console.log(err)
+        res.render('somethingWrong')
+      })
 
   },
 
@@ -144,8 +148,8 @@ const usersController = {
         id: req.params.id
       }
     })
-
     res.redirect('/users/profile/' + req.params.id)
+
   },
 
   profileEditAvatar: (req, res) => {
