@@ -20,13 +20,13 @@
 
                 <div class="container-dates">
                     <input class="email" type="email" name="email" placeholder="E-mail" value='<%= data.email %>'>
-                    <p><%= typeof errors.email == 'undefined' ? "" : errors.email.msg %></p>
+                    <p class="loginEmail"><%= typeof errors.email == 'undefined' ? "" : errors.email.msg %></p>
                     <p><%= typeof errorEmail == 'undefined' ? "" : errorEmail %></p>
                 </div>
 
                 <div class="container-dates">
                     <input class="password" type="password" name="password" placeholder="Ingrese su contraseña" value='<%= data.password %>'>
-                    <p><%= typeof errors.password == 'undefined' ? "" : errors.password.msg %></p>
+                    <p class="loginPassword"><%= typeof errors.password == 'undefined' ? "" : errors.password.msg %></p>
                     <p><%= typeof errorPass == 'undefined' ? "" : errorPass %></p>
                 </div>
                 <div class="">
@@ -51,6 +51,7 @@
 
         <%- include('../partials/footer') %>
     </main>
+    <script src="/js/loginValidator.js"></script>
 </body>
 
 </html>

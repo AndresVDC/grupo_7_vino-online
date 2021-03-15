@@ -1,4 +1,4 @@
-let path = require('path');
+let path = require('path'); 
 let fs = require('fs');
 let bcrypt = require('bcryptjs');//usar siempre BCRYPTJS
 const { check, validationResult, body } = require('express-validator');
@@ -131,6 +131,10 @@ const usersController = {
 
         res.render('users/editProfile', { user: user })
       })
+      .catch((err) => {
+        console.log(err)
+        res.render('somethingWrong')
+      })
 
   },
 
@@ -144,8 +148,8 @@ const usersController = {
         id: req.params.id
       }
     })
-
     res.redirect('/users/profile/' + req.params.id)
+
   },
 
   profileEditAvatar: (req, res) => {
@@ -180,12 +184,37 @@ const usersController = {
   profileEditPassword: (req, res) => {
     db.users.findByPk(req.params.id)
       .then(user => {
-        res.render('users/editPassword', { user: user })
+        res.render('users/editPassword', { user: user, passErrors: [] })
       })
   },
 
   profileEditPatchPassword: (req, res) => {
-    
+    let passErrors = validationResult(req);
+
+    if (passErrors.isEmpty()) {
+            db.users.findByPk(req.params.id)
+            .then(user =>{
+              if(bcrypt.compareSync(req.body.password1, user.password) && (req.body.password2 == req.body.password3)){
+                db.users.update({
+                  password: bcrypt.hashSync(req.body.password2)
+                }, {
+                  where: {
+                    id: req.params.id
+                  }
+                }).then(patchPass => {
+                  return res.redirect('/users/profile/' + req.params.id)
+                })
+                .catch((err) => {res.send(err)})
+              }else{
+                //return res.send('no paso el segundo if')
+                let errorPass = "La password ingresada no es valida."
+                return res.render('users/editPassword',{errorPass})
+              }
+              })
+              .catch((err) => {res.send(err)})
+      }else{
+        return res.render('users/editPassword', {passErrors : passErrors.mapped()})
+      }
   },
 
   logout: (req, res) => {
