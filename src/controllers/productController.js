@@ -204,14 +204,17 @@ const productController = {
                             }
                         })
                         let quantityOfProducts = Number(products.quantityOfProducts) + Number(req.body.counter);
-                        let totalPrice = Number(products.totalPrice) + Number(req.body.price);
-                        db.Carts.update({
-                            quantityOfProducts: quantityOfProducts,
-                            totalPrice: totalPrice
-                        },
-                            {
-                                where: { id: products.id }
-                            })
+                        //Obtiene la suma total 
+                        db.CartDetail.sum('productPrice',{where:{cartId: products.id}}).then((totalPrice)=>{
+                            db.Carts.update({
+                                quantityOfProducts: quantityOfProducts,
+                                totalPrice: totalPrice
+                            },
+                                {
+                                    where: { id: products.id }
+                                })
+                        })
+
                     })
                 res.redirect('../products/productCart')
             })
