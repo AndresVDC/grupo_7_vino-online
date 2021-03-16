@@ -7,8 +7,8 @@ module.exports = (req, res, next) =>{
 
     } else if (req.cookies.users){
         
-        req.session.users = req.cookies.usuario;
-        res.locals.user = req.cookies.usuario;
+        req.session.users = req.cookies.users;
+        res.locals.user = req.cookies.users;
 
     }
     next()
