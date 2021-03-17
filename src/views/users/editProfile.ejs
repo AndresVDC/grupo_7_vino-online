@@ -10,22 +10,30 @@
 
           <section class="form-edit">
             <h1 class="tittle-edit">Editar Usuario</h1>
-              <form  method="post" action="/users/profile/edit/<%= user.id %>">
+              <form class="editProfile" method="post" action="/users/profile/edit/<%= user.id %>">
 
                 <div class="container-edit">
                   <p>Tu Nombre/s</p>
-                  <input class="name" type="text" name="first_name" value= "<%= user.firstName%>">
+                  <input class="nombre" type="text" name="first_name" value= "<%= user.firstName%>">
+                  <p class="errorName"><%= typeof errors.first_name == 'undefined' ? "" : errors.first_name.msg %></p>
+                  <p><%= typeof errorName == 'undefined' ? "" : errorName %></p>
                 </div>
 
                 <div class="container-edit">
                   <p>Tu Apellido/s</p>
-                    <input class="surname" type="text" name="last_name" value= "<%= user.lastName%>">
+                    <input class="apellido" type="text" name="last_name" value= "<%= user.lastName%>">
+                    <p class="errorSurname"><%= typeof errors.last_name == 'undefined' ? "" : errors.last_name.msg %></p>
                 </div>
 
-                <div class="container-edit">
-                  <p>Tu Categoria</p>
-                    <input class="category" type="text" name="category" value= "<%= user.category%>">
-                </div>
+                <div class="container-dates">
+                  <label for="">Elija una categoria</label>
+                  <select class="category" name="category">
+                      <option value="Usuario">Comprador</option>
+                      <option value="Administrador">Vendedor</option>
+                  </select>
+              </div>
+
+                
 
                 <section class= "send-or-reset">
                   <button class="btn-form-enter" type="submit">Guardar cambios</button>
@@ -41,4 +49,5 @@
         <%- include('../partials/footer') %>
 
     </main>
+    <script src="/js/editProfileValidator.js"></script>
 </body>
