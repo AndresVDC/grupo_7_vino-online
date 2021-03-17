@@ -78,7 +78,7 @@ const usersController = {
           if(bcrypt.compareSync(req.body.password, user.password)){
             req.session.users = user
             if (req.body.remember) {
-              res.cookie('remember', req.session.users, { maxAge: 1000 * 60 * 60 })
+              res.cookie('remember', user.email, { maxAge: 1000 * 60 * 60 })
               res.locals.user = req.session.users
             }
             res.redirect('/')
