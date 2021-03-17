@@ -4,6 +4,8 @@ Usuario administrador= user: admin@admin.com    pass: admin
 
 [Trello del grupo](https://trello.com/b/bz9l0thN/grupo7vino-online)
 
+[WEB del proyecto hosteada en AWS](http://ec2-3-14-151-180.us-east-2.compute.amazonaws.com:3000/)
+
 ## ¿Qué productos o servicios brindará nuestro sitio?
 
 Producto: 70% de Vinos Boutique y 30% vinos de Bodegas reconocidas, proviniendo el 100% de fincas de valle de Uco. 
