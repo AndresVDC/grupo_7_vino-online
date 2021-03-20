@@ -122,6 +122,10 @@ const usersController = {
       .then(user => {
         res.render('users/userProfile', { user: user })
       })
+      .catch((err) => {
+        console.log(err)
+        res.render('somethingWrong')
+      })
 
   },
 
@@ -129,7 +133,7 @@ const usersController = {
     db.users.findByPk(req.params.id)
       .then(user => {
 
-        res.render('users/editProfile', { user: user })
+        res.render('users/editProfile', { user: user, errors: []})
       })
       .catch((err) => {
         console.log(err)
@@ -139,16 +143,41 @@ const usersController = {
   },
 
   profileEditPatch: (req, res) => {
-    db.users.update({
-      firstName: req.body.first_name,
-      lastName: req.body.last_name,
-      category: req.body.category,
-    }, {
-      where: {
-        id: req.params.id
+    db.users.findByPk(req.params.id)
+    .then(user => {
+
+      let errors = validationResult(req);
+
+    if (errors.isEmpty()) {
+
+      if (req.body.first_name){
+
+        if(req.body.last_name){
+
+          db.users.update({
+            firstName: req.body.first_name,
+            lastName: req.body.last_name,
+            category: req.body.category
+          }, {
+            where: {
+              id: req.params.id
+            }
+          })
+          return res.redirect('/users/profile/' + req.params.id)
+
+        }
+      }else{
+        let errorName = 'Debe completar este campo'
+        res.render('users/editProfile', {errorName, user: user})
       }
-    })
-    res.redirect('/users/profile/' + req.params.id)
+
+      
+
+    }else {
+        res.render('users/editProfile', { errors: errors.mapped(), user: user})
+    }
+      
+    }) 
 
   },
 
@@ -163,7 +192,9 @@ const usersController = {
   },
 
   profileEditPatchAvatar: (req, res) => {
-    console.log(req.files)
+    db.users.findByPk(req.params.id)
+      .then(user => {
+        console.log(req.files)
     //res.send(req.files)
     if (typeof req.file != "undefined") {
       db.users.update({
@@ -177,8 +208,9 @@ const usersController = {
           res.redirect('/users/profile/' + req.params.id)
         })
     } else {
-      return res.render('users/editAvatar', { errorImage: "selecciona una imagen" })
+      return res.render('users/editAvatar', { errorImage: "selecciona una imagen", user: user })
     }
+      })
   },
 
   profileEditPassword: (req, res) => {
@@ -189,7 +221,10 @@ const usersController = {
   },
 
   profileEditPatchPassword: (req, res) => {
-    let passErrors = validationResult(req);
+    
+    db.users.findByPk(req.params.id)
+    .then(user => {
+      let passErrors = validationResult(req);
 
     if (passErrors.isEmpty()) {
             db.users.findByPk(req.params.id)
@@ -213,8 +248,9 @@ const usersController = {
               })
               .catch((err) => {res.send(err)})
       }else{
-        return res.render('users/editPassword', {passErrors : passErrors.mapped()})
+        return res.render('users/editPassword', {passErrors : passErrors.mapped(), user:user})
       }
+    })
   },
 
   logout: (req, res) => {

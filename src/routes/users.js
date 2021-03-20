@@ -33,7 +33,8 @@ router.post('/changePassword', usersController.changePasswordSave)
 // Profile
 router.get('/profile/:id', usersController.profile)
 router.get('/profile/edit/:id', usersController.profileEdit)
-router.post('/profile/edit/:id', usersController.profileEditPatch)
+router.post('/profile/edit/:id', [check('first_name').not().isEmpty().withMessage('El campo nombre requiere un minimo de 1 caracter'),
+check('last_name').not().isEmpty().withMessage('El campo apellido requiere un minimo de 1 caracter')], usersController.profileEditPatch)
 
 // Avatar
 router.get('/profile/avatar/:id', usersController.profileEditAvatar)
