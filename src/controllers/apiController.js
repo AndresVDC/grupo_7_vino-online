@@ -74,7 +74,12 @@ const apiController = {
     users: (req, res) => {
         db.users.findAll()
         .then(user =>{
-            user = user.map(user=> user = {id: user.id, firstName: user.firstName, email: user.email, category: user.category})
+            user = user.map(user=> user = {
+                                    id: user.id, 
+                                    firstName: user.firstName, 
+                                    email: user.email, 
+                                    category: user.category
+                })
         
         let userRespuesta = {
             meta : {
@@ -90,7 +95,35 @@ const apiController = {
     },
     //Responde el detalle del usuario mediante API con un formato JSON
     userDetails: (req, res) => {
-
+        {
+            db.users.findAll({
+                where : [{
+                    id : req.params.id
+                }]
+            })
+            .then(User => {
+                
+                User = User.map(User => User = {
+                                                id : User.id , 
+                                                firstName : User.firstName, 
+                                                lastName: User.lastName, 
+                                                email : User.email, 
+                                                avatar: User.avatar 
+                            }) 
+                delete User.password;
+                let userRespuesta= {
+                    meta : {
+                        status : 200,
+                        url : `/api/users/${req.params.id}`
+                    },
+                    data : User,
+                    urlAvatar: "Aun no lo logré hacer"
+                }
+               
+               res.json(userRespuesta)
+                               
+            })
+        }        
     }
 }
 
