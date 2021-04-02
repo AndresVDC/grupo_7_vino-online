@@ -72,7 +72,21 @@ const apiController = {
     },
     //Responde la lista de usuarios mediante API con un formato JSON
     users: (req, res) => {
-
+        db.users.findAll()
+        .then(user =>{
+            user = user.map(user=> user = {id: user.id, firstName: user.firstName, email: user.email, category: user.category})
+        
+        let userRespuesta = {
+            meta : {
+                status : 200,
+                count : user.length,
+                url : `/api/users/`
+            },
+                data : user
+            }
+       
+            res.json(userRespuesta)
+        })
     },
     //Responde el detalle del usuario mediante API con un formato JSON
     userDetails: (req, res) => {
