@@ -6,7 +6,7 @@ Usuario administrador= user: admin@admin.com    pass: admin
 
 [WEB del proyecto hosteada en AWS](http://ec2-3-14-151-180.us-east-2.compute.amazonaws.com:3000/)
 
-[Repo DASHBOARD] (https://github.com/EmilianoRosico/dashboard_amiga_uco)
+[Repo DASHBOARD](https://github.com/EmilianoRosico/dashboard_amiga_uco)
 
 ## ¿Qué productos o servicios brindará nuestro sitio?
 
