@@ -42,8 +42,8 @@ const apiController = {
         }).catch(error => { console.log(error) })
 
         //Se confeccionan los links de nexy y previous.
-        let next = data.length == 10 ? "http://localhost:3001/api/products/page=" + (page + 1) : null;
-        let previous = page == 1 ? null : "http://localhost:3001/api/products/page=" + (page - 1);
+        let next = data.length == 10 ? `http://localhost:3001/api/products/page=${page + 1}` : null;
+        let previous = page == 1 ? null : `http://localhost:3001/api/products/page=${page - 1}`;
 
         //Se construye la respuesta.
         let answer = {
@@ -55,7 +55,7 @@ const apiController = {
             },
             data: data
         }
-        res.json({ answer })
+        res.json( answer )
     },
     //Responde el detalle del producto mediante API con un formato JSON
     productDetails: (req, res) => {
@@ -81,7 +81,7 @@ const apiController = {
                                     category: user.category
                 })
         
-        let userRespuesta = {
+        let answer = {
             meta : {
                 status : 200,
                 count : user.length,
@@ -90,7 +90,7 @@ const apiController = {
                 data : user
             }
        
-            res.json(userRespuesta)
+            res.json(answer)
         })
     },
     //Responde el detalle del usuario mediante API con un formato JSON
@@ -111,7 +111,7 @@ const apiController = {
                                                 avatar: User.avatar 
                             }) 
                 delete User.password;
-                let userRespuesta= {
+                let answer= {
                     meta : {
                         status : 200,
                         url : `/api/users/${req.params.id}`
@@ -120,7 +120,7 @@ const apiController = {
                     urlAvatar: "Aun no lo logré hacer"
                 }
                
-               res.json(userRespuesta)
+               res.json(answer)
                                
             })
         }        
