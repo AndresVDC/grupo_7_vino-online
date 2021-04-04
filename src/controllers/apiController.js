@@ -77,6 +77,12 @@ const apiController = {
             }
             )
     },
+    lastProduct: async (req, res) => {
+        const lastProduct = await db.Products.findOne({
+            order: [["id", "DESC"]]
+        })
+        res.json(lastProduct)
+    },
     wineries: async (req, res) => {
         const wineries = await db.Wineries.findAll({ include: [{ association: "Products" }] })
         const wineriesCount = await db.Wineries.count()
