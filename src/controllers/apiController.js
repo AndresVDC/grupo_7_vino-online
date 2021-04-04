@@ -34,9 +34,16 @@ const apiController = {
             console.log(error)
         })
         //se hace la consulta a la db con un limite de 10 productos y un offset basado en el N° de página.
-        const data = await db.Products.findAll({limit: 10, offset: (10*(page-1))}).then(products => {
-            for (let index = 0; index < products.length; index++) {
-                products[index].setDataValue("endpoint", "/api/products/" + products[index].id);
+        const data = await db.Products.findAll({limit: 10, offset: (10*(page-1))}).then(response => {
+            let products = []
+            //Este loop se encarga de parsear la información a presentar.
+            for (let index = 0; index < response.length; index++) {
+                products.push({
+                    id: response[index].id,
+                    name: response[index].name,
+                    description: response[index].detail,
+                    category: response[index].category,
+                    endpoint: `http://localhost:3001/products/${response[index].id}`});
             }
             return products;
         }).catch(error => { console.log(error) })
@@ -69,6 +76,17 @@ const apiController = {
                 }
             }
             )
+    },
+    wineries: async (req, res) => {
+        const wineries = await db.Wineries.findAll({ include: [{ association: "Products" }] })
+        const wineriesCount = await db.Wineries.count()
+        answer = {
+            meta: {
+                count: wineriesCount
+            },
+            data: wineries
+        }
+        res.json(answer)
     },
     //Responde la lista de usuarios mediante API con un formato JSON
     users: (req, res) => {
