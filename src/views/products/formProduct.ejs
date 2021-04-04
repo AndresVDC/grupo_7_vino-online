@@ -69,6 +69,29 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
+                                    <label class="form-product-label" for="productWinery">Bodega</label>
+                                    <div class="form-product-input">
+                                        <select name="productWinery" id="productWinery">
+                                            <option
+                                                value="<%= typeof nuevoProducto.productWinery != 'undefined' ? nuevoProducto.productWinery : ''%>">
+                                                <% if ( typeof nuevoProducto.productWinery!='undefined' ) { %>
+                                                    <% if (winery[nuevoProducto.idWinery]) { %>
+                                                        <%= winery[nuevoProducto.idWinery-1].name %>
+                                                            <% } else {%>
+                                                                Elegí
+                                                                <% } %>
+                                                                    <% } else {%>
+                                                                        Elegí
+                                                                        <% } %>
+                                            </option>
+                                            <% winery.forEach(element=> { %>
+                                                <option value=<%=element.id%>><%=element.name%>
+                                                </option>
+                                                <% }) %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
                                     <label class="form-product-label" for="productDiscount">Descuento</label>
                                     <input class="form-product-input" type="number" name="productDiscount"
                                         id="productDiscount" value="<%= nuevoProducto.productDiscount %>">

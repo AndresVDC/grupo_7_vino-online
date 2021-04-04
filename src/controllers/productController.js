@@ -1,27 +1,27 @@
 const { validationResult } = require('express-validator')
 const db = require('../database/models');
 const productController = {
-    productList: (req, res) => {
-        db.Products.findAll()
-            .then(function (products) {
-                res.render('../views/products/productList', { products: products })
-            })
-            .catch((error) => {
-                console.log(error)
-                res.render('somethingWrong')
-            })
+    productList: async (req, res) => {
+        try {
+            const products = await db.Products.findAll()
+            res.render('../views/products/productList', { products: products })
+        } catch (error) {
+            console.log(error)
+            res.render('somethingWrong')
+        }
     },
-    create: (req, res) => {
-        db.Varietals.findAll()
-            .then(function (varietals) {
-                res.render('../views/products/formProduct', { errors: {}, nuevoProducto: {}, varietals: varietals })
-            })
-            .catch((error) => {
-                console.log(error)
-                res.render('somethingWrong')
-            })
+    create: async (req, res) => {
+        try {
+            const varietals = await db.Varietals.findAll();
+            const winery = await db.Wineries.findAll();
+
+            res.render('../views/products/formProduct', { errors: {}, nuevoProducto: {}, varietals: varietals, winery: winery })
+        } catch (error) {
+            console.log(error)
+            res.render('somethingWrong')
+        }
     },
-    save: (req, res) => {
+    save: async (req, res) => {
         let nuevoProducto = {
             productName: req.body.productName,
             productScore: req.body.productScore,
@@ -31,7 +31,8 @@ const productController = {
             productDiscount: req.body.productDiscount,
             productPresentation: req.body.productPresentation,
             productCategory: req.body.productCategory,
-            idVarietal: req.body.productVarietal
+            idVarietal: req.body.productVarietal,
+            idWinery: req.body.productWinery
         }
         //Detección de errores
         let errors = validationResult(req);
@@ -46,7 +47,7 @@ const productController = {
                 presentation: req.body.productPresentation,
                 category: req.body.productCategory,
                 idVarietal: req.body.productVarietal,
-                idWinery: 1
+                idWinery: req.body.productWinery
             })
                 .then(result => {
                     res.redirect('/products/' + result.id)
@@ -55,16 +56,17 @@ const productController = {
                     console.log(error)
                     res.render('somethingWrong')
                 })
-            }
+        }
         else {
-            db.Varietals.findAll()
-                .then(function (varietals) {
-                    return res.render('../views/products/formProduct', { errors: errors.mapped(), nuevoProducto: nuevoProducto, varietals: varietals })
-                })
-                .catch((error) => {
-                    console.log(error)
-                    res.render('somethingWrong')
-                })
+            try {
+                const varietals = await db.Varietals.findAll();
+                const winery = await db.Wineries.findAll();
+
+                res.render('../views/products/formProduct', { errors: errors.mapped(), nuevoProducto: nuevoProducto, varietals: varietals, winery: winery })
+            } catch (error) {
+                console.log(error)
+                res.render('somethingWrong')
+            }
         }
 
     },
@@ -101,20 +103,19 @@ const productController = {
                 res.render('somethingWrong')
             })
     },
-    edit: (req, res) => {
-        db.Products.findByPk(req.params.id)
-            .then(function (product) {
-                if (product != null) {
-                    res.render('../views/products/productEdit', { product: product, errors: {} })
-                }
-                else {
-                    res.send("El producto que intenta modificar es inexistente.")
-                }
-            })
-            .catch((error) => {
-                console.log(error)
-                res.render('somethingWrong')
-            })
+    edit: async (req, res) => {
+        try {
+            const product = await db.Products.findByPk(req.params.id)
+            if (product != null) {
+                res.render('../views/products/productEdit', { product: product, errors: {} })
+            }
+            else {
+                res.send("El producto que intenta modificar es inexistente.")
+            }
+        } catch (error) {
+            console.log(error)
+            res.render('somethingWrong')
+        }
     },
     actualizar: (req, res) => {
         //Obetener el producto de la DB
@@ -205,7 +206,7 @@ const productController = {
                         })
                         let quantityOfProducts = Number(products.quantityOfProducts) + Number(req.body.counter);
                         //Obtiene la suma total 
-                        db.CartDetail.sum('productPrice',{where:{cartId: products.id}}).then((totalPrice)=>{
+                        db.CartDetail.sum('productPrice', { where: { cartId: products.id } }).then((totalPrice) => {
                             db.Carts.update({
                                 quantityOfProducts: quantityOfProducts,
                                 totalPrice: totalPrice
@@ -218,10 +219,10 @@ const productController = {
                     })
                 res.redirect('../products/productCart')
             })
-            .catch((error) => {
-                console.log(error)
-                res.render('somethingWrong')
-            })
+                .catch((error) => {
+                    console.log(error)
+                    res.render('somethingWrong')
+                })
         }
         else {
             res.redirect('../users/login')
@@ -250,10 +251,10 @@ const productController = {
                 })
             res.redirect('/products/productCart')
         })
-        .catch((error) => {
-            console.log(error)
-            res.render('somethingWrong')
-        })
+            .catch((error) => {
+                console.log(error)
+                res.render('somethingWrong')
+            })
     },
     delete: (req, res) => {
         db.Products.destroy({
@@ -263,37 +264,32 @@ const productController = {
         })
         res.redirect('/products')
     },
-    search: (req, res) => {
-        db.Products.findAll({
-            where: {
-                name: { [db.Sequelize.Op.like]: '%' + req.query.search + '%' }
-            }
-        })
-            .then(function (products) {
-                res.render('../views/products/productList', { products: products })
-
+    search: async (req, res) => {
+        try {
+            const products = await db.Products.findAll({
+                where: {
+                    name: { [db.Sequelize.Op.like]: '%' + req.query.search + '%' }
+                }
             })
-            .catch((error) => {
-                console.log(error)
-                res.render('somethingWrong')
-            })
+            res.render('../views/products/productList', { products: products })
+        } catch (error) {
+            console.log(error)
+            res.render('somethingWrong')
+        }
     },
-    category: (req, res) => {
-        db.Products.findAll({
-            where: {
-                category: req.params.category
-            }
-        })
-            .then(function (products) {
-                res.render('../views/products/productList', { products: products })
-
+    category: async (req, res) => {
+        try {
+            const products = await db.Products.findAll({
+                where: {
+                    category: req.params.category
+                }
             })
-            .catch((error) => {
-                console.log(error)
-                res.render('somethingWrong')
-            })
+            res.render('../views/products/productList', { products: products })
+        } catch (error) {
+            console.log(error)
+            res.render('somethingWrong')
+        }
     }
-
 }
 
 module.exports = productController;

@@ -17,7 +17,7 @@ main {
   display: flex;
 }
 .nav-bar{
-    font-size: 17px;
+    font-size: 15px;
     background: rgb(61, 155, 218);
     display: flex;
     align-items: center;
@@ -75,7 +75,7 @@ main {
   .dropdown-content i {
     background: rgb(61, 155, 218);
     color: white;
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
 
   /* Slideshow container */
@@ -995,7 +995,6 @@ color: green;
 
 
 @media(min-width:768px){
-
   .row{
     display: flex;
   }
