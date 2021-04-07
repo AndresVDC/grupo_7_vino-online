@@ -5,10 +5,10 @@ module.exports = (req, res, next) =>{
 
         res.locals.user = req.session.users
 
-    } else if (req.cookies.users){
+    } else if (req.cookies.remember){
         
-        req.session.users = req.cookies.users;
-        res.locals.user = req.cookies.users;
+        req.session.users = req.cookies.remember;
+        res.locals.user = req.cookies.remember;
 
     }
     next()

@@ -73,13 +73,13 @@ const usersController = {
       // SEQUELIZE MODELS
       db.users.findOne({ where: { email: req.body.email } })
       .then((user) => {
-        console.log(user)
         if (user){
           if(bcrypt.compareSync(req.body.password, user.password)){
-            req.session.users = user
+            
+            req.session.users = {...user['dataValues'], password:''}
             if (req.body.remember) {
-              res.cookie('remember', user.email, { maxAge: 1000 * 60 * 60 })
-              res.locals.user = req.session.users
+              res.cookie('remember', req.session.users, { maxAge: 1000 * 60 * 60 })
+              
             }
             res.redirect('/')
           }else{
@@ -254,6 +254,7 @@ const usersController = {
   },
 
   logout: (req, res) => {
+    res.clearCookie('remember');
     req.session.destroy();
     res.redirect('/')
   }
