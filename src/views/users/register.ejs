@@ -41,7 +41,7 @@
                             <p class="registerEmail"><%= typeof errors.email == 'undefined' ? "" : errors.email.msg %></p>
                         </div>
                         <div>
-                            <% if (typeof registeredUser != 'undefined') { %>
+                            <% if (registeredUser != "") { %>
                             <strong>
                                 <p><%= "El email " + registeredUser + " ya se encuentra registrado" %></p>
                             </strong>

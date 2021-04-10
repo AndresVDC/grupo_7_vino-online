@@ -10,6 +10,7 @@ const db = require('../database/models');
 const usersController = {
   indexRegister: (req, res) => {
     res.render('users/register', {
+      registeredUser:"",
       data: {},
       errors: []
     })
