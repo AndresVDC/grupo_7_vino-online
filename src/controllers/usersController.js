@@ -35,11 +35,11 @@ const usersController = {
               avatar: 'avatar-default.png',
               idCart: dbcart.id
             })
-              .then((datos) => { res.redirect('/') })
+              .then((datos) => { res.redirect('login') })
               .catch((err) => { res.send(err) })
           } else {
             registeredUser = req.body.email // Para usar con errores cuando el usuario ya existe en BD
-            return res.render('users/register', { errors: errors.mapped(), data: req.body })
+            return res.render('users/register', { errors: errors.mapped(), data: req.body, registeredUser })
           }
         })
         .catch((err) => { res.send(err) })
