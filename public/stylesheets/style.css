@@ -462,6 +462,7 @@ main {
 }
 
 .avatar-edit{
+  object-fit: cover;
   margin: 10px 26px;
   border-radius: 100px;
 }
