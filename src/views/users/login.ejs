@@ -1,57 +1,67 @@
 <%- include('../partials/head') %>
 
-<body>
-    <main class="login-and-register">
-        <%- include('../partials/header') %>
+    <body>
+        <main class="login-and-register">
+            <%- include('../partials/header') %>
+                <section class="container-form">
+                    <div class="register-with-facebook">
+                        <a href="https://es-la.facebook.com/" target="blank"><button class="button-facebook"
+                                name="facebook"><span class="fab fa-facebook-f"></span></button></a>
+                        <a href="https://es-la.facebook.com/" target="blank"><button class="button-facebook1"
+                                name="facebook">
+                                <p>Ingresar con facebook</p>
+                            </button></a>
+                    </div>
+                    <form class="register" action='' method="post" novalidate>
+                        <div class="text">
+                            <p>INGRESA TUS DATOS:</p>
+                        </div>
 
-        <section class="container-form">
+                        <div class="container-dates">
+                            <input class="email" type="email" name="email" placeholder="E-mail"
+                                value='<%= data.email %>'>
+                            <p class="loginEmail">
+                                <%= typeof errors.email=='undefined' ? "" : errors.email.msg %>
+                            </p>
+                            <p>
+                                <%= typeof errorEmail=='undefined' ? "" : errorEmail %>
+                            </p>
+                        </div>
 
-          <div class="register-with-facebook">
-              <a href="https://es-la.facebook.com/" target="blank"><button class="button-facebook" name="facebook"><span class="fab fa-facebook-f"></span></button></a>
-              <a href="https://es-la.facebook.com/" target="blank"><button class="button-facebook1" name="facebook">
-                  <p>Ingresar con facebook</p>
-              </button></a>
-          </div>
-            
-            <form class="register"  action='' method="post" novalidate>
-                <div class="text">
-                    <p>INGRESA TUS DATOS:</p>
-                </div>
-
-                <div class="container-dates">
-                    <input class="email" type="email" name="email" placeholder="E-mail" value='<%= data.email %>'>
-                    <p class="loginEmail"><%= typeof errors.email == 'undefined' ? "" : errors.email.msg %></p>
-                    <p><%= typeof errorEmail == 'undefined' ? "" : errorEmail %></p>
-                </div>
-
-                <div class="container-dates">
-                    <input class="password" type="password" name="password" placeholder="Ingrese su contraseña" value='<%= data.password %>'>
-                    <p class="loginPassword"><%= typeof errors.password == 'undefined' ? "" : errors.password.msg %></p>
-                    <p><%= typeof errorPass == 'undefined' ? "" : errorPass %></p>
-                </div>
-                <div class="">
-                    <input type="checkbox" name="remember" id="remember" class="remember"><label for="remember">Recordarme</label>
-                </div>
-                <div class="send-or-reset">
-                    <button class="btn-form-enter" type="submit" name="send">Ingresar</button>
-                    <button class="btn-form-delete" type="reset" name="reset">Borrar contenido</button>
-                </div>
+                        <div class="container-dates">
+                            <input class="password" type="password" name="password" placeholder="Ingrese su contraseña"
+                                value='<%= data.password %>'>
+                            <p class="loginPassword">
+                                <%= typeof errors.password=='undefined' ? "" : errors.password.msg %>
+                            </p>
+                            <p>
+                                <%= typeof errorPass=='undefined' ? "" : errorPass %>
+                            </p>
+                        </div>
+                        <div class="">
+                            <input type="checkbox" name="remember" id="remember" class="remember"><label
+                                for="remember">Recordarme</label>
+                        </div>
+                        <div class="send-or-reset">
+                            <button class="btn-form-enter" type="submit" name="send">Ingresar</button>
+                            <button class="btn-form-delete" type="reset" name="reset">Borrar contenido</button>
+                        </div>
 
 
 
-                <div class="go-to-page">
-                    <a href="changePassword">Olvidé mi contraseña</a>
-                    <a href="register">¿No tengo cuenta?</a>
-                </div>
-            </form>
-            <br>
-            <br>
-            <br>
-        </section>
+                        <div class="go-to-page">
+                            <a href="changePassword">Olvidé mi contraseña</a>
+                            <a href="register">¿No tengo cuenta?</a>
+                        </div>
+                    </form>
+                    <br>
+                    <br>
+                    <br>
+                </section>
 
-        <%- include('../partials/footer') %>
-    </main>
-    <script src="/js/loginValidator.js"></script>
-</body>
+                <%- include('../partials/footer') %>
+        </main>
+        <script src="/js/loginValidator.js"></script>
+    </body>
 
-</html>
+    </html>

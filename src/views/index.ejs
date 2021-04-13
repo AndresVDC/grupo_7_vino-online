@@ -1,18 +1,16 @@
 <%- include('./partials/head') %>
+    <%- include('./partials/header') %>
 
-    <body>
-        <main>
-            <%- include('./partials/header') %>
+        <body>
+            <main>
                 <section>
                     <div class="slideshow-container">
                         <div class="mySlides fade">
                             <img src="/images/banner.png" style="width:100%">
                         </div>
-
                         <div class="mySlides fade">
                             <a href="/payment"><img src="/images/pago.jpg" style="width:100%"></a>
                         </div>
-
                         <div class="mySlides fade">
                             <a href="/shipping"><img src="/images/envio.jpg" style="width:100%"></a>
                         </div>
@@ -71,11 +69,10 @@
                                                     <%= element.name %>
                                                 </h3>
                                                 <h5 class="offers-container-card-price">$<%=
-                                                        (element.price-element.price*element.discount/100).toFixed(2)
-                                                        %>
+                                                        (element.price-element.price*element.discount/100).toFixed(2) %>
                                                 </h5>
-                                                <span class="offers-container-card-realPrice">$<%= element.price
-                                                        %></span>
+                                                <span class="offers-container-card-realPrice">$<%= element.price %>
+                                                </span>
                                                 <span class="offers-container-card-discount">
                                                     <%= element.discount %>% off
                                                 </span>
@@ -139,24 +136,24 @@
                 </section>
                 <%- include('./partials/footer') %>
 
-        </main>
-        <script>
-            //Scritp de animación en el banner
-            var slideIndex = 0;
-            showSlides();
+            </main>
+            <script>
+                //Scritp de animación en el banner
+                var slideIndex = 0;
+                showSlides();
 
-            function showSlides() {
-                var i;
-                var slides = document.getElementsByClassName("mySlides");
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
+                function showSlides() {
+                    var i;
+                    var slides = document.getElementsByClassName("mySlides");
+                    for (i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "none";
+                    }
+                    slideIndex++;
+                    if (slideIndex > slides.length) { slideIndex = 1 }
+                    slides[slideIndex - 1].style.display = "block";
+                    setTimeout(showSlides, 4000); // Cambia de imagen cada 2 segundos
                 }
-                slideIndex++;
-                if (slideIndex > slides.length) { slideIndex = 1 }
-                slides[slideIndex - 1].style.display = "block";
-                setTimeout(showSlides, 4000); // Cambia de imagen cada 2 segundos
-            }
-        </script>
-    </body>
+            </script>
+        </body>
 
-    </html>
+        </html>
