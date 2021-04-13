@@ -46,7 +46,7 @@ main {
   	outline: inherit;
     height: 36px;
     width: 90%;
-    font-size: 24px;
+    font-size: 21px;
 }
 .nav-bar--search button {
   width: 40px;
@@ -988,6 +988,18 @@ color: green;
   background-color: rgb(243, 189, 10);
   cursor: pointer;
   border: none;
+}
+.desktopGrid{
+  margin: 10%;
+  display: flex;
+  flex-direction: column;
+}
+.shipping-card{
+  border: 1px solid lightgrey;
+  margin-bottom: 30px;
+}
+.highlight-text {
+  font-weight: bold;
 }
 /*termina estilos de formulario de carga de productos*/
 .not-registered{

@@ -17,6 +17,12 @@ const indexController = {
   },
   somethingWrong: (req, res) => {
 		res.render('somethingWrong')
-	}
+	},
+  shipping: (req,res) => {
+    res.render('shipping')
+  },
+  payment: (req,res) => {
+    res.render('payment')
+  }
 }
 module.exports = indexController

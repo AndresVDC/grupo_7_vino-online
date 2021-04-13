@@ -1,0 +1,94 @@
+<%- include('./partials/head') %>
+    <%- include('./partials/header') %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <body>
+            <section class="main-margin">
+                <div class="desktopGrid">
+                    <!--
+                    <div class="shipping-card">
+                        <label>Provincia</label>
+                        <select class="initialized">
+                            <option>Seleccione provincia</option>
+                            <option value="CAPITAL FEDERAL">CAPITAL FEDERAL</option>
+                            <option value="BUENOS AIRES">BUENOS AIRES</option>
+                            <option value="CORDOBA">CORDOBA</option>
+                            <option value="SANTA FE">SANTA FE</option>
+                            <option value="MENDOZA">MENDOZA</option>
+                            <option value="CATAMARCA">CATAMARCA</option>
+                            <option value="ENTRE RIOS">ENTRE RIOS</option>
+                            <option value="JUJUY">JUJUY</option>
+                            <option value="LA PAMPA">LA PAMPA</option>
+                            <option value="LA RIOJA">LA RIOJA</option>
+                            <option value="NEUQUEN">NEUQUEN</option>
+                            <option value="RIO NEGRO">RIO NEGRO</option>
+                            <option value="SALTA">SALTA</option>
+                            <option value="SAN JUAN">SAN JUAN</option>
+                            <option value="SAN LUIS">SAN LUIS</option>
+                            <option value="SANTIAGO DEL ESTERO">SANTIAGO DEL ESTERO</option>
+                            <option value="TUCUMAN">TUCUMAN</option>
+                            <option value="CHACO">CHACO</option>
+                            <option value="CHUBUT">CHUBUT</option>
+                            <option value="CORRIENTES">CORRIENTES</option>
+                            <option value="FORMOSA">FORMOSA</option>
+                            <option value="MISIONES">MISIONES</option>
+                            <option value="SANTA CRUZ">SANTA CRUZ</option>
+                        </select>
+                    </div>
+                -->
+                    <div class="shipping-card">
+                        <a class="btn btn-outline-primary btn-lg btn-block" data-toggle="collapse" href="#envioDomicilio" role="button"
+                            aria-expanded="false" aria-controls="envioDomicilio">
+                            <i class="fas fa-truck"></i><span>  Envío a domicilio</span>
+                        </a>
+                        <div class="collapse" id="envioDomicilio">
+                            <div class="card card-body">
+                                <table class="responsive">
+                                    <tbody>
+                                        <tr>
+                                            <td class="highlight-text">¡Sin cargo! - </td>
+                                            <td>Para órdenes de $ 4.000,00 o más.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>$ 450,00 - </td>
+                                            <td>Para órdenes de menos de $ 4.000,00.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shipping-card">
+                        <a class="btn btn-outline-primary btn-lg btn-block" data-toggle="collapse" href="#retiroSucursal" role="button"
+                            aria-expanded="false" aria-controls="retiroSucursal">
+                            <i class="fas fa-store-alt"></i><span>  Retiro en sucursal</span>
+                        </a>
+                        <div class="collapse" id="retiroSucursal">
+                            <div class="card card-body">
+                                <table class="responsive">
+                                    <tbody>
+                                        <tr>
+                                            <td class="highlight-text">¡Sin cargo! - </td>
+                                            <td>Para órdenes de $ 4.000,00 o más.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>$ 350,00 - </td>
+                                            <td>Para órdenes de menos de $ 4.000,00.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+        </body>
+        <%- include('./partials/footer') %>

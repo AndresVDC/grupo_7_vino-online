@@ -1,0 +1,55 @@
+<%- include('./partials/head') %>
+    <%- include('./partials/header') %>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <body>
+            <section class="main-margin">
+                <div class="desktopGrid">
+                    <div class="payment-card">
+                        <a class="btn btn-outline-secondary btn-lg btn-block" data-toggle="collapse" href="#Tarjeta"
+                            role="button" aria-expanded="false" aria-controls="Tarjeta">
+                            <i class="fas fa-credit-card"></i><span> Tarjeta de Crédito o Débito</span>
+                        </a>
+                        <div class="collapse" id="Tarjeta">
+                            <div class="card card-body">
+                                <span class="">Después de confirmar tu compra te enviaremos a la página
+                                    segura de MercadoPago para que realices el pago. ¡Hasta 3 cuotas sin interés!</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment-card">
+                        <a class="btn btn-outline-secondary btn-lg btn-block" data-toggle="collapse" href="#Efectivo"
+                            role="button" aria-expanded="false" aria-controls="Efectivo">
+                            <i class="fas fa-money-bill-alt"></i><span> Efectivo</span>
+                        </a>
+                        <div class="collapse" id="Efectivo">
+                            <div class="card card-body">
+                                <span class="">Después de confirmar tu compra te enviaremos a la página segura de MercadoPago para que obtengas el cupón de pago para RapiPago o PagoFácil</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment-card">
+                        <a class="btn btn-outline-secondary btn-lg btn-block" data-toggle="collapse" href="#Transferencia"
+                            role="button" aria-expanded="false" aria-controls="Transferencia">
+                            <i class="fas fa-university"></i><span> Transferencia Bancaria</span>
+                        </a>
+                        <div class="collapse" id="Transferencia">
+                            <div class="card card-body">
+                                <span class="">Al confirmar tu compra te mostraremos los datos de nuestra cuenta bancaria.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+        </body>
+        <%- include('./partials/footer') %>
