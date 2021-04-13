@@ -1,13 +1,13 @@
 <%- include('../partials/head') %>
+  <%- include('../partials/header') %>
 
-  <body>
-    <main>
-      <%- include('../partials/header') %>
-        <section class="main-margin">
+    <body>
+      <main>
+        <section class="main-margin min-height">
           <div class="container">
             <div class="row">
-              <%products.forEach(element=> { %>
-
+              <% if (products.length>=1) { %>
+                <%products.forEach(element=> { %>
                 <a href="/products/<%= element.id %>">
                   <div class="col-12 col-md-4 container-productList">
                     <div class="container-productList-img">
@@ -29,15 +29,16 @@
                           <%=element.discount%>%off
                         </span>
                       </div>
-
                     </div>
-                  </div>  
+                  </div>
                 </a>
-
                 <%}); %>
+              <% } else { %>
+                <h1>NO SE ENCONTRARON LOS PRODUCTOS BUSCADOS.</h1>
+              <%}; %>
             </div>
           </div>
         </section>
-    </main>
+      </main>
+    </body>
     <%- include('../partials/footer') %>
-  </body>
