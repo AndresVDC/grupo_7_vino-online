@@ -29,7 +29,7 @@ module.exports = (sequelize, dataTypes) => {
         },
         identityDocument: {
             type: dataTypes.STRING(200),
-
+            defaultValue: 1
         },
         category: {
             type: dataTypes.STRING(45),
