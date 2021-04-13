@@ -76,10 +76,16 @@ const usersController = {
         .then((user) => {
           if (user) {
             if (bcrypt.compareSync(req.body.password, user.password)) {
-
-              req.session.users = { ...user['dataValues'], password: '' }
+              //Se guarda el usuario en un objeto y se eliminan las propiedades que no deben alamacenarse en la cookie.
+              let userobject = user
+              delete userobject.dataValues.password
+              delete userobject.dataValues.createdAt
+              delete userobject.dataValues.updatedAt
+              delete userobject.dataValues.deletedAt
+              delete userobject.dataValues.identityDocument
+              req.session.users = userobject
               if (req.body.remember) {
-                res.cookie('remember', req.session.users.email, { maxAge: 1000 * 60 * 60 })
+                res.cookie('remember', req.session.users, { maxAge: 1000 * 60 * 60 })
 
               }
               res.redirect('/')
