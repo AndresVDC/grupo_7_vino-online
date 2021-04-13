@@ -1049,6 +1049,9 @@ color: green;
   .main-margin{
   margin: 0% 5%;
   }
+  .min-height {
+    min-height: 70vh;
+  }
 
   .dropbtn {
     display: none;

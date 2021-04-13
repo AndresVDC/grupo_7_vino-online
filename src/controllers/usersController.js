@@ -79,7 +79,7 @@ const usersController = {
 
               req.session.users = { ...user['dataValues'], password: '' }
               if (req.body.remember) {
-                res.cookie('remember', req.session.users, { maxAge: 1000 * 60 * 60 })
+                res.cookie('remember', req.session.users.email, { maxAge: 1000 * 60 * 60 })
 
               }
               res.redirect('/')
