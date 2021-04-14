@@ -740,6 +740,25 @@ footer h4{
 }
 /* Style product cart end*/
 
+.contacto{
+  display: flex;
+  justify-content: center;
+}
+.contacto-span{
+  color: white;
+  background-color: rgb(61, 155, 218);
+  font-size: 24px;
+  width: 100%;
+  height:50px;
+  text-align: center;
+  cursor: pointer;
+  border: solid 1px lightblue;
+}
+.contacto-span:hover{
+  cursor: pointer;
+  border: solid 1px black;
+  background-color: rgb(71,175,228);
+}
 /* Style product Detail start*/
 /*detail*/
 

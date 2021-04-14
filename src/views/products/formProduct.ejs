@@ -35,8 +35,8 @@
                                     <label class="form-product-label" for="productCategory">Categoria</label>
                                     <div class="form-product-input">
                                         <select name="productCategory" id="productCategory">
-                                            <option value="<%= nuevoProducto.productCategory %>">
-                                                <%= nuevoProducto.productCategory %>
+                                            <option value="<%= typeof nuevoProducto.productCategory != 'undefined' ? nuevoProducto.productCategory : 'Elegí' %>">
+                                                <%= typeof nuevoProducto.productCategory != 'undefined' ? nuevoProducto.productCategory : 'Elegí' %>
                                             </option>
                                             <option value="Tinto">Tinto</option>
                                             <option value="Espumante">Espumante</option>
