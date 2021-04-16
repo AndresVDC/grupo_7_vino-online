@@ -256,13 +256,19 @@ const productController = {
                 res.render('somethingWrong')
             })
     },
-    delete: (req, res) => {
-        db.Products.destroy({
-            where: {
-                id: req.params.id
-            }
-        })
-        res.redirect('/products')
+    delete: async (req, res) => {
+        try {
+            const product = await db.Products.destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
+            res.redirect('/products')
+
+        } catch (error) {
+            console.log(error)
+            res.render('somethingWrong')
+        }
     },
     search: async (req, res) => {
         try {
