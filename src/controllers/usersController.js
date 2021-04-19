@@ -50,7 +50,8 @@ const usersController = {
       })
 
     } else {
-      res.render('users/register', { errors: errors.mapped(), data: req.body })
+      registeredUser = "";
+      res.render('users/register', { errors: errors.mapped(), data: req.body, registeredUser })
     }
 
 
