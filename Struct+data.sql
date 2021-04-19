@@ -16,6 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `cartdetails`
+--
+
+DROP TABLE IF EXISTS `cartdetails`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cartdetails` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `productQuantity` tinyint(255) unsigned NOT NULL,
+  `productId` bigint(20) unsigned NOT NULL,
+  `productPrice` decimal(7,2) NOT NULL,
+  `createdAt` datetime DEFAULT current_timestamp(),
+  `updatedAt` datetime DEFAULT current_timestamp(),
+  `deletedAt` datetime DEFAULT NULL,
+  `cartId` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `productId_idx` (`productId`),
+  KEY `cartId_idx` (`cartId`),
+  CONSTRAINT `cartId` FOREIGN KEY (`cartId`) REFERENCES `carts` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `productId` FOREIGN KEY (`productId`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `cartdetails`
 --
 
@@ -24,6 +48,24 @@ LOCK TABLES `cartdetails` WRITE;
 INSERT INTO `cartdetails` VALUES (60,1,4,28899.15,'2021-04-16 14:36:58','2021-04-16 14:36:58',NULL,8),(61,1,7,198.90,'2021-04-16 14:37:11','2021-04-16 14:37:11',NULL,8);
 /*!40000 ALTER TABLE `cartdetails` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `carts`
+--
+
+DROP TABLE IF EXISTS `carts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `carts` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `quantityOfProducts` tinyint(255) unsigned NOT NULL,
+  `totalPrice` decimal(7,2) unsigned NOT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `carts`
@@ -36,6 +78,23 @@ INSERT INTO `carts` VALUES (3,0,0.00,'2021-03-03 23:13:45','2021-03-03 23:13:45'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `paymentmethods`
+--
+
+DROP TABLE IF EXISTS `paymentmethods`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `paymentmethods` (
+  `id` tinyint(255) unsigned NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `paymentmethods`
 --
 
@@ -43,6 +102,36 @@ LOCK TABLES `paymentmethods` WRITE;
 /*!40000 ALTER TABLE `paymentmethods` DISABLE KEYS */;
 /*!40000 ALTER TABLE `paymentmethods` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `products` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) NOT NULL,
+  `score` tinyint(5) unsigned DEFAULT NULL,
+  `price` decimal(7,2) unsigned DEFAULT NULL,
+  `detail` varchar(512) NOT NULL,
+  `image` varchar(150) DEFAULT NULL,
+  `category` varchar(45) NOT NULL,
+  `discount` tinyint(99) unsigned DEFAULT NULL,
+  `presentation` varchar(100) CHARACTER SET big5 NOT NULL,
+  `idVarietal` tinyint(200) unsigned NOT NULL,
+  `idWinery` bigint(20) unsigned NOT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_idx` (`idVarietal`),
+  KEY `idWinery_idx` (`idWinery`),
+  CONSTRAINT `idVarietal` FOREIGN KEY (`idVarietal`) REFERENCES `varietals` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `idWinery` FOREIGN KEY (`idWinery`) REFERENCES `wineries` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=1034 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `products`
@@ -55,6 +144,32 @@ INSERT INTO `products` VALUES (1,'Angelica Zapata',4,2443.00,'Vino de la bodega 
 UNLOCK TABLES;
 
 --
+-- Table structure for table `useraddresses`
+--
+
+DROP TABLE IF EXISTS `useraddresses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `useraddresses` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `street` varchar(200) NOT NULL,
+  `number` varchar(200) NOT NULL,
+  `floor` tinyint(255) DEFAULT NULL,
+  `department` varchar(45) DEFAULT NULL,
+  `postalCode` varchar(45) DEFAULT NULL,
+  `city` varchar(150) DEFAULT NULL,
+  `province` varchar(150) DEFAULT NULL,
+  `idUser` bigint(20) unsigned DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idUser_idx` (`idUser`),
+  CONSTRAINT `idUser` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `useraddresses`
 --
 
@@ -64,6 +179,28 @@ LOCK TABLES `useraddresses` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `userpaymentmethods`
+--
+
+DROP TABLE IF EXISTS `userpaymentmethods`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `userpaymentmethods` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `paymentMethodId` tinyint(255) unsigned NOT NULL,
+  `userId` bigint(20) unsigned NOT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId_idx` (`userId`),
+  KEY `paymentMethodId_idx` (`paymentMethodId`),
+  CONSTRAINT `paymentMethodId` FOREIGN KEY (`paymentMethodId`) REFERENCES `paymentmethods` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `userId1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `userpaymentmethods`
 --
 
@@ -71,6 +208,32 @@ LOCK TABLES `userpaymentmethods` WRITE;
 /*!40000 ALTER TABLE `userpaymentmethods` DISABLE KEYS */;
 /*!40000 ALTER TABLE `userpaymentmethods` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(150) NOT NULL,
+  `lastName` varchar(150) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `avatar` varchar(200) DEFAULT NULL,
+  `category` varchar(45) NOT NULL DEFAULT 'user',
+  `identityDocument` varchar(200) NOT NULL,
+  `idCart` bigint(20) unsigned NOT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cartId_idx` (`idCart`),
+  CONSTRAINT `idCart` FOREIGN KEY (`idCart`) REFERENCES `carts` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `users`
@@ -83,6 +246,20 @@ INSERT INTO `users` VALUES (3,'admin','admin','admin@admin.com','$2a$10$Sb7GLEqu
 UNLOCK TABLES;
 
 --
+-- Table structure for table `varietals`
+--
+
+DROP TABLE IF EXISTS `varietals`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `varietals` (
+  `id` tinyint(200) unsigned NOT NULL,
+  `varietal` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `varietals`
 --
 
@@ -91,6 +268,23 @@ LOCK TABLES `varietals` WRITE;
 INSERT INTO `varietals` VALUES (1,'Malbec'),(2,'Cabernet'),(3,'Cabernet Franc'),(4,'Bonarda');
 /*!40000 ALTER TABLE `varietals` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `wineries`
+--
+
+DROP TABLE IF EXISTS `wineries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wineries` (
+  `id` bigint(20) unsigned NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `deletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `wineries`
@@ -111,4 +305,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-16 11:41:44
+-- Dump completed on 2021-04-19 17:58:37
