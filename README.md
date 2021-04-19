@@ -4,7 +4,7 @@ Usuario administrador= user: admin@admin.com    pass: admin
 
 [Trello del grupo](https://trello.com/b/bz9l0thN/grupo7vino-online)
 
-[WEB del proyecto hosteada en AWS](http://ec2-3-14-151-180.us-east-2.compute.amazonaws.com:3001/)
+[WEB del proyecto hosteada en AWS](http://ec2-52-14-76-111.us-east-2.compute.amazonaws.com:3001/)
 
 [Repo DASHBOARD](https://github.com/EmilianoRosico/dashboard_amiga_uco)
 
